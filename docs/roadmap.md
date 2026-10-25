@@ -21,7 +21,7 @@ and [release record](releases/1.3.0.md).
 | v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
 | v1.3 | Dynamic circuits and classical control | Released as v1.3.0; NuGet uploads accepted, public-feed verification pending |
-| v1.4 | Noisy dynamic circuits | Candidate locally verified on .NET 9/10 and CUDA; remote CI and release pending |
+| v1.4 | Noisy dynamic circuits | Candidate locally verified on .NET 9/10 and CUDA; platform CI tracked in PR #12, release pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -342,7 +342,8 @@ The user selected this scope for candidate 1.4.0-rc.1. It introduces a separate
 NoisyDynamicCircuit and NoisyDynamicStateVectorSimulator, with fifteen Unshipped
 API additions. Existing circuit/workflow contracts remain intact. See the
 [guide](noisy-dynamic-circuits.md) and [validation record](releases/1.4.0.md).
-Stable promotion, remote CI and publication remain pending.
+Platform CI is tracked in [PR #12](https://github.com/olgerd007/QuantumMatter/pull/12).
+Stable promotion and publication remain pending.
 
 Local validation passes all 763 CUDA-enabled tests per runtime in Debug/Release,
 portable fallback suites, zero-warning builds and formatting. All four fresh-package
