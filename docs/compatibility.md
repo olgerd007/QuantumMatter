@@ -51,6 +51,9 @@ require explicit inventory diffs. The reviewed 1.0.0 inventory is frozen in
 PublicAPI.Shipped.txt as the release contract. Version 1.2 adds seven reviewed
 declarations. Version 1.3 adds 22 dynamic-circuit declarations, giving 240 shipped
 declarations while preserving all 218 declarations shipped through 1.2.
+The v1.4 candidate adds fifteen Unshipped declarations for noisy dynamic circuits
+while preserving all 240 shipped declarations. Existing result types and backend
+ports are reused; see the [candidate record](releases/1.4.0.md).
 Since v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
 parameter-name compatibility is enabled. SDK package validation compares compiled
 assets at pack time. A separate smoke check compiles the consumer against the
@@ -91,12 +94,12 @@ licenses/notices. Packages carry documentation and license files. Consumers own
 injected backend lifetimes, especially IDisposable CUDA contexts. Core/Application
 have no container, logging, network or persistence dependencies.
 
-Release 1.3.0 packages and symbols have been accepted by nuget.org under user
+Release 1.3.0 packages and symbols are published on nuget.org under user
 olgerd007, using the same OIDC Trusted Publishing approach as
 XBullet.EasyTesting. The user-provided screenshot confirms QuantumMatter's own
 repository/workflow policy and QuantumMatter.* scope. Its first OIDC
-publish has succeeded. Public indexing and fresh .NET 9/10 public-feed checks for
-the baseline, observation and dynamic APIs remain pending.
+publish has succeeded. Fresh .NET 9/10 public-feed baseline, observation and dynamic
+consumers pass CPU/SIMD/CUDA checks with exact tagged-source metadata verified.
 The release record distinguishes that evidence from successful upload acceptance.
 The policy scope does not itself reserve the QuantumMatter prefix; no reserved-prefix
 claim is made. Changes continue through feature branches and reviewed release tags.

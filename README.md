@@ -4,6 +4,13 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
+## v1.4 candidate
+
+Candidate **1.4.0-rc.1** adds explicit noise channels to dynamic circuits with
+measurement, classical feedback and reset through a separate API. See the
+[noisy dynamic guide](docs/noisy-dynamic-circuits.md) and
+[validation record](docs/releases/1.4.0.md). Stable promotion and publication are pending.
+
 ## SDK v1.3
 
 Version **1.3.0** adds dynamic circuits, mid-circuit measurement, classical
@@ -12,8 +19,9 @@ library assets for .NET 9/10 consumers. See the [dynamic guide](docs/dynamic-cir
 [API additions](docs/api/1.3.0.md) and [validation record](docs/releases/1.3.0.md).
 
 The [v1.3.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.3.0)
-is published on GitHub. NuGet has accepted all three packages and matching symbols;
-indexing and fresh public-feed verification are pending:
+is published on GitHub and NuGet with matching symbols. Fresh public-feed baseline,
+observation and dynamic consumers pass on .NET 9/10, including CUDA, with the exact
+tagged-source metadata verified:
 [Core](https://www.nuget.org/packages/QuantumMatter.Core/1.3.0),
 [Application](https://www.nuget.org/packages/QuantumMatter.Application/1.3.0) and
 [Infrastructure](https://www.nuget.org/packages/QuantumMatter.Infrastructure/1.3.0).
@@ -147,8 +155,9 @@ Counts, snapshots, runtime overhead, and concurrent simulations require addition
 memory. Circuits and states are mutable and must not be modified concurrently.
 
 Correlated noise, density-matrix execution, general multi-target custom unitaries,
-broader SIMD kernels, dynamic loops and combined noise/dynamic programs are future
-work. StateVector.Reset restores an owned host state; DynamicCircuit.Reset is a
+broader SIMD kernels and dynamic loops are future work. Combined noise/dynamic
+programs are introduced separately in the v1.4 candidate. StateVector.Reset restores
+an owned host state; DynamicCircuit.Reset is a
 stochastic single-qubit instruction.
 
 ## Repository milestones

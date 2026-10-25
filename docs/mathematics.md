@@ -118,6 +118,13 @@ ensemble channel is sum_j Rj rho Rj^dagger. It is not a coherent sum of branches
 Run repeats the full history independently for each shot and counts only explicitly
 written classical bits. See the [dynamic guide](dynamic-circuits.md).
 
+The v1.4 candidate composes those dynamic histories with explicit Kraus channels.
+Noise acts on the current conditional state and leaves stored classical bits
+unchanged; later measurements/control use that history. Each final classical label
+groups a sum of weighted outer products, even when overwrites merge earlier records.
+Never coherently combine those histories or sample all shots from one noise branch.
+See the [noisy dynamic guide](noisy-dynamic-circuits.md).
+
 ## Numerical validation
 
 The reference backend uses double-precision Complex arithmetic and does not

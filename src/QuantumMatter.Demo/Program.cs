@@ -7,10 +7,10 @@ using QuantumMatter.Infrastructure;
 
 string example = args.Length == 0 ? "bell" : args[0].ToLowerInvariant();
 string backend = args.Length < 2 ? "scalar" : args[1].ToLowerInvariant();
-if (args.Length > 2 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "observations" or "dynamic" or "all")
+if (args.Length > 2 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "observations" or "dynamic" or "noisy-dynamic" or "all")
     || backend is not ("scalar" or "parallel" or "parallel-simd" or "cuda"))
 {
-    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|observations|dynamic|all] [scalar|parallel|parallel-simd|cuda]");
+    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|observations|dynamic|noisy-dynamic|all] [scalar|parallel|parallel-simd|cuda]");
     return 2;
 }
 
@@ -55,6 +55,9 @@ switch (example)
         break;
     case "dynamic":
         DynamicExamples.Run(new DynamicStateVectorSimulator(execution));
+        break;
+    case "noisy-dynamic":
+        NoisyDynamicExamples.Run(new NoisyDynamicStateVectorSimulator(execution, new CpuNoiseChannelBackend()));
         break;
     case "all":
         RunBell(simulator);

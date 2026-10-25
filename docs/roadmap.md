@@ -20,7 +20,8 @@ and [release record](releases/1.3.0.md).
 | v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
 | v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
-| v1.3 | Dynamic circuits and classical control | Released as v1.3.0; NuGet uploads accepted, public-feed verification pending |
+| v1.3 | Dynamic circuits and classical control | Released as v1.3.0; platform CI, NuGet publication and fresh CPU/CUDA consumers verified |
+| v1.4 | Noisy dynamic circuits | Candidate locally verified on .NET 9/10 and CUDA; platform CI tracked in PR #12, release pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -321,10 +322,34 @@ Stable version 1.3.0 is released after merging [PR #9](https://github.com/olgerd
 and stable promotion [PR #10](https://github.com/olgerd007/QuantumMatter/pull/10).
 The implementation and promotion each passed all eight Windows/Linux Debug/Release
 runtime CI jobs. The tagged-source workflow passes platform validation and OIDC
-uploads for all three packages and symbols. Public-feed verification is pending.
+uploads for all three packages and symbols. Fresh nuget.org-only baseline,
+observation and dynamic consumers pass on .NET 9/10 with CUDA and the exact source
+commit verified. Milestone v1.3 is complete.
 See the [dynamic guide](dynamic-circuits.md) and
 [validation record](releases/1.3.0.md). This increment excludes loops, arbitrary
 classical expressions, combined noise/dynamic programs and device-resident feedback.
+
+## v1.4 — Noisy dynamic circuits
+
+Acceptance criteria:
+
+- Compose existing explicit channels with ordered measurement, classical feedback and reset.
+- Preserve classical history across noise boundaries and independent quantum/classical histories per shot.
+- Reuse existing backend ports, noise sampling, measurement and dynamic result contracts.
+- Compare supported branches with independent complex-amplitude and Kraus-density oracles.
+- Preserve 240 shipped API declarations and validate all four package consumers and unchanged baseline binaries on .NET 9/10.
+- Document host/device boundaries, resource budgets, stochastic uncertainty and failure behavior.
+
+The user selected this scope for candidate 1.4.0-rc.1. It introduces a separate
+NoisyDynamicCircuit and NoisyDynamicStateVectorSimulator, with fifteen Unshipped
+API additions. Existing circuit/workflow contracts remain intact. See the
+[guide](noisy-dynamic-circuits.md) and [validation record](releases/1.4.0.md).
+Platform CI is tracked in [PR #12](https://github.com/olgerd007/QuantumMatter/pull/12).
+Stable promotion and publication remain pending.
+
+Local validation passes all 763 CUDA-enabled tests per runtime in Debug/Release,
+portable fallback suites, zero-warning builds and formatting. All four fresh-package
+consumers and unchanged 1.0.0-compiled consumers pass on both runtimes, including CUDA.
 
 ## Shared release checks
 

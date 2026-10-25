@@ -74,9 +74,11 @@ public sealed class DynamicCircuit
         return this;
     }
 
-    internal int Execute(StateVector state, IStateVectorBackend backend, Random random, CancellationToken cancellationToken)
+    internal int Execute(StateVector state, IStateVectorBackend backend, Random random, CancellationToken cancellationToken,
+        int initialClassical = 0)
     {
-        int classical = 0;
+        // A noisy dynamic program resumes this private segment with the preceding classical history.
+        int classical = initialClassical;
         foreach (Step step in _steps)
         {
             cancellationToken.ThrowIfCancellationRequested();
