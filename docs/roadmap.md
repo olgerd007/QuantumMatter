@@ -21,7 +21,7 @@ and [release record](releases/1.4.0.md).
 | v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
 | v1.3 | Dynamic circuits and classical control | Released as v1.3.0; platform CI, NuGet publication and fresh CPU/CUDA consumers verified |
-| v1.4 | Noisy dynamic circuits | Released as v1.4.0; NuGet uploads accepted, public-feed verification pending |
+| v1.4 | Noisy dynamic circuits | Released as v1.4.0; platform CI, NuGet publication and all four fresh CPU/CUDA consumers verified |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -349,8 +349,9 @@ contracts remain intact. See the
 The final implementation revision passed [all eight platform/runtime CI jobs](https://github.com/olgerd007/QuantumMatter/actions/runs/40222313725).
 Promotion also passed [all eight CI jobs](https://github.com/olgerd007/QuantumMatter/actions/runs/40223622092).
 The v1.4.0 tag identifies the merged promotion tree. The tagged-source workflow
-passes Windows/Linux validation and OIDC uploads for all three packages and symbols;
-public indexing and fresh public-feed verification are pending.
+passes Windows/Linux validation and OIDC uploads for all three packages and symbols.
+All four fresh nuget.org-only consumers pass on .NET 9/10 with real CUDA and the
+exact release commit verified. Milestone v1.4 is complete.
 
 Local validation passes all 763 CUDA-enabled tests per runtime in Debug/Release,
 portable fallback suites, zero-warning builds and formatting. All four fresh-package
