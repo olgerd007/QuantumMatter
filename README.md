@@ -8,10 +8,22 @@ Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
 Version **1.5.0** adds Pauli Hamiltonians, parameterized rotations and
 occurrence-wise energy gradients. See the [variational guide](docs/variational.md)
-and [validation record](docs/releases/1.5.0.md). Stable publication is being prepared.
+and [validation record](docs/releases/1.5.0.md).
 The 28 additive declarations preserve all 255 earlier APIs; library assets remain
 net9.0 for .NET 9/10 consumers. See the [release notes](docs/releases/1.5.0-notes.md)
 and [API additions](docs/api/1.5.0.md).
+
+The [v1.5.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.5.0)
+is published on GitHub and NuGet with matching symbols. All five fresh public-feed
+consumers pass on .NET 9/10, including CUDA, with exact tagged-source metadata verified:
+[Core](https://www.nuget.org/packages/QuantumMatter.Core/1.5.0),
+[Application](https://www.nuget.org/packages/QuantumMatter.Application/1.5.0) and
+[Infrastructure](https://www.nuget.org/packages/QuantumMatter.Infrastructure/1.5.0).
+
+```sh
+dotnet add package QuantumMatter.Application --version 1.5.0
+dotnet add package QuantumMatter.Infrastructure --version 1.5.0
+```
 
 ## SDK v1.4
 
@@ -28,11 +40,6 @@ with exact tagged-source metadata verified:
 [Application](https://www.nuget.org/packages/QuantumMatter.Application/1.4.0) and
 [Infrastructure](https://www.nuget.org/packages/QuantumMatter.Infrastructure/1.4.0).
 
-```sh
-dotnet add package QuantumMatter.Application --version 1.4.0
-dotnet add package QuantumMatter.Infrastructure --version 1.4.0
-```
-
 The [v1.0.0](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.0.0),
 [v1.1.0](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.1.0),
 [v1.2.0](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.2.0) and
@@ -43,8 +50,8 @@ QuantumMatter-specific OIDC Trusted Publishing policy.
 ```powershell
 ./scripts/Test-Packages.ps1 -Configuration Release
 ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -ConsumerFramework net10.0
-./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.4.0 -ValidateObservations -ValidateDynamicCircuits -ValidateNoisyDynamicCircuits
-./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.4.0 -ConsumerFramework net10.0 -ValidateObservations -ValidateDynamicCircuits -ValidateNoisyDynamicCircuits
+./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.5.0 -ValidateObservations -ValidateDynamicCircuits -ValidateNoisyDynamicCircuits -ValidateVariational
+./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.5.0 -ConsumerFramework net10.0 -ValidateObservations -ValidateDynamicCircuits -ValidateNoisyDynamicCircuits -ValidateVariational
 ```
 
 PowerShell 7, the .NET 10 SDK and .NET 9/10 runtimes are required for development checks.
@@ -52,8 +59,8 @@ The scripts pack to
 artifacts/packages and test a fresh package-only consumer with an isolated cache.
 Library targets remain net9.0. Packages validate against published 1.0.0 and run
 unchanged consumers compiled against that baseline. See the
-[versioned API reference](docs/api/1.4.0.md), [compatibility policy](docs/compatibility.md)
-and [release record](docs/releases/1.4.0.md).
+[versioned API reference](docs/api/1.5.0.md), [compatibility policy](docs/compatibility.md)
+and [release record](docs/releases/1.5.0.md).
 
 ## Build and run
 
