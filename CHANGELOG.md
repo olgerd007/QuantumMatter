@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.0-rc.1 — Unreleased
+## 1.3.0 — 2026-10-25
 
 - Separate dynamic circuits with mid-circuit measurement and mapped classical writes.
 - Mask/value conditions on snapshotted unitary segments and measurement-based qubit reset.

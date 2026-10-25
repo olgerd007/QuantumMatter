@@ -110,7 +110,7 @@ Pauli label on q0. These new normalized queries do not modify stored amplitudes;
 the existing Probability method still returns raw squared magnitude. See the
 [observation guide](observations.md) for selection ordering and implementation costs.
 
-The v1.3 candidate introduces a separate DynamicCircuit with explicit mid-circuit
+Version 1.3 introduces a separate DynamicCircuit with explicit mid-circuit
 measurement and classical feedback. Each history follows the Born rule and executes
 only unitary segments matching its classical register. Reset of qubit q samples
 R0=|0><0| or R1=|0><1| locally, yielding Rj psi/||Rj psi|| with Born weight; the

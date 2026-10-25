@@ -20,7 +20,7 @@ and [release record](releases/1.2.0.md).
 | v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
 | v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
-| v1.3 | Dynamic circuits and classical control | Candidate implemented; local dual-runtime CPU/CUDA and package checks pass; PR checks track CI; release review pending |
+| v1.3 | Dynamic circuits and classical control | Implementation merged; stable 1.3.0 promotion and publication pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -304,7 +304,7 @@ for all three packages and symbols. Fresh nuget.org-only consumers pass both exi
 and new observation checks on .NET 9/10 with real CUDA and the exact source commit
 verified. Milestone v1.2 is complete. Evidence is in the [release record](releases/1.2.0.md).
 See the [observation guide](observations.md). Dynamic circuits and classical
-feedback are introduced separately in the v1.3 candidate; existing terminal sampling is unchanged.
+feedback are introduced separately in v1.3; existing terminal sampling is unchanged.
 
 ## v1.3 — Dynamic circuits and classical control
 
@@ -317,7 +317,9 @@ Acceptance criteria:
 - Verify teleportation phases on all backends, reset Kraus density matrices and exact branch oracles.
 - Preserve shipped APIs, allocation/cancellation contracts, .NET 9/10 coverage and baseline consumers.
 
-Candidate version is 1.3.0-rc.1. See the [dynamic guide](dynamic-circuits.md) and
+Stable version 1.3.0 is selected after merging [PR #9](https://github.com/olgerd007/QuantumMatter/pull/9).
+The candidate passed [all eight platform/runtime CI jobs](https://github.com/olgerd007/QuantumMatter/actions/runs/40215994904).
+See the [dynamic guide](dynamic-circuits.md) and
 [validation record](releases/1.3.0.md). This increment excludes loops, arbitrary
 classical expressions, combined noise/dynamic programs and device-resident feedback.
 

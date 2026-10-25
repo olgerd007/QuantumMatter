@@ -43,6 +43,7 @@ try {
                 'LICENSE', 'CHANGELOG.md', 'THIRD-PARTY-NOTICES.md', 'docs/api/1.0.0.md', 'docs/releases/1.0.0.md',
                 'docs/releases/1.1.0.md', 'docs/releases/1.2.0.md', 'docs/releases/1.2.0-notes.md',
                 'docs/api/1.2.0.md', 'docs/observations.md', 'docs/dynamic-circuits.md', 'docs/releases/1.3.0.md',
+                'docs/api/1.3.0.md', 'docs/releases/1.3.0-notes.md',
                 'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
                 if (!$archive.GetEntry($requiredEntry)) { throw "$packageId is missing $requiredEntry." }
             }

@@ -168,5 +168,5 @@ Scope is independent single-qubit Markov channels at explicit circuit positions.
 Continuous-time/Lindblad evolution, arbitrary Kraus input, density-matrix execution,
 correlated noise, thermal excitation, readout errors, mid-circuit measurement,
 classical feedback and automatic calibration remain outside NoisyCircuit's scope.
-The v1.3 candidate provides separate [dynamic circuits](dynamic-circuits.md) with
+Version 1.3 provides separate [dynamic circuits](dynamic-circuits.md) with
 measurement, feedback and reset; combining them with noise remains future work.
