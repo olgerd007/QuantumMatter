@@ -1,1 +1,8 @@
 #nullable enable
+QuantumMatter.Core.PauliString
+QuantumMatter.Core.PauliString.Operators.get -> string!
+QuantumMatter.Core.PauliString.PauliString(string! operators) -> void
+QuantumMatter.Core.PauliString.QubitCount.get -> int
+QuantumMatter.Core.StateVector.ExpectationValue(QuantumMatter.Core.PauliString! observable, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> double
+QuantumMatter.Core.StateVector.MarginalProbability(System.ReadOnlySpan<int> qubits, int outcome, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> double
+QuantumMatter.Core.StateVector.Measure(System.ReadOnlySpan<int> qubits, System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> int

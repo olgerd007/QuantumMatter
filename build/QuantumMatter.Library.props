@@ -9,7 +9,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>PACKAGE-README.md</PackageReadmeFile>
     <PackageTags>quantum;simulation;state-vector;dotnet</PackageTags>
-    <PackageReleaseNotes>Full .NET 9/10 validation and compatibility checks against SDK 1.0.0. See CHANGELOG.md and docs/releases/1.1.0.md in the package.</PackageReleaseNotes>
+    <PackageReleaseNotes>Prerelease: partial-register measurement, marginal probabilities and Pauli-string expectations. See CHANGELOG.md and docs/releases/1.2.0.md in the package.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <EnablePackageValidation>true</EnablePackageValidation>
     <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion>

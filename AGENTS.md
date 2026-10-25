@@ -51,6 +51,12 @@ locators, catch-all exception handling, and unrelated abstractions.
 - State storage is private. Snapshot returns a copy. Backends are trusted, synchronous
   extensions; do not retain host buffers or use them after Execute returns.
 - Run samples terminal measurements without collapse. MeasureAll collapses the state.
+- Partial Measure selects ordered qubits, retains the entire projected branch and its
+  phases, and packs qubits[k] into outcome bit k. MarginalProbability and Pauli
+  expectations divide by actual Born mass without mutating amplitudes. Pauli labels
+  place q0 on the right. Keep host observations allocation-free per amplitude; do not
+  substitute full collapse for a subset measurement. See docs/observations.md for
+  cancellation and full-basis sampling conventions.
 - Noise uses Core/Noise, INoiseChannelBackend and the separate Application/Noise
   trajectory workflow. Each noisy shot gets a fresh trajectory; never sample all
   shots from one selected noise branch or average trajectory amplitudes. Do not
@@ -121,6 +127,8 @@ Keep PackageValidationBaselineVersion at the reviewed published baseline and ret
 the 1.x assembly binding version. Test-Packages.ps1 must also execute a consumer
 compiled against that baseline with candidate DLLs, without rebuilding the app.
 Keep samples/PackageConsumer limited to APIs available in the 1.0.0 baseline.
+Use samples/ObservationConsumer for additive v1.2 APIs; Test-Packages.ps1 must run
+it from fresh candidate packages separately from the unchanged baseline consumer.
 Use the current docs/releases record for promotion; local package validation is not publication.
 
 ```sh
