@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsPackable>false</IsPackable>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <QuantumMatterPackageVersion Condition="'$(QuantumMatterPackageVersion)' == ''">1.2.0-rc.1</QuantumMatterPackageVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="QuantumMatter.Application" Version="$(QuantumMatterPackageVersion)" />
+    <PackageReference Include="QuantumMatter.Infrastructure" Version="$(QuantumMatterPackageVersion)" />
+  </ItemGroup>
+</Project>

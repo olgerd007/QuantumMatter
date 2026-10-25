@@ -4,7 +4,7 @@ using QuantumMatter.Core.Noise;
 namespace QuantumMatter.Core;
 
 /// <summary>Owns a mutable double-precision pure state initialized to the all-zero basis state.</summary>
-public sealed class StateVector
+public sealed partial class StateVector
 {
     /// <summary>Default host amplitude-array budget, 512 MiB.</summary>
     public const long DefaultMemoryBudgetBytes = 512L * 1024 * 1024;
