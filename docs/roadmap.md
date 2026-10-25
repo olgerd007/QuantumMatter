@@ -19,7 +19,7 @@ and [release record](releases/1.1.0.md).
 | v0.7 | Quantum noise simulation | Functional criteria verified |
 | v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
 | v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
-| v1.2 | Partial measurement and observables | Candidate implemented; local dual-runtime CPU/CUDA and package checks pass; remote CI/release review pending |
+| v1.2 | Partial measurement and observables | Candidate implemented; local dual-runtime CPU/CUDA and package checks pass; PR checks track CI; release review pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
