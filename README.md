@@ -12,8 +12,9 @@ library assets for .NET 9/10 consumers. See the [noisy dynamic guide](docs/noisy
 [API additions](docs/api/1.4.0.md) and [validation record](docs/releases/1.4.0.md).
 
 The [v1.4.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.4.0)
-is published on GitHub. NuGet accepted all three packages and matching symbols;
-indexing and fresh public-feed verification are pending:
+is published on GitHub and NuGet with matching symbols. Fresh public-feed baseline,
+observation, dynamic and noisy dynamic consumers pass on .NET 9/10, including CUDA,
+with exact tagged-source metadata verified:
 [Core](https://www.nuget.org/packages/QuantumMatter.Core/1.4.0),
 [Application](https://www.nuget.org/packages/QuantumMatter.Application/1.4.0) and
 [Infrastructure](https://www.nuget.org/packages/QuantumMatter.Infrastructure/1.4.0).
