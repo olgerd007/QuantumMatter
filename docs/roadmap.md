@@ -5,8 +5,8 @@ scope targets, with no delivery dates assigned. A version is ready to release on
 when its acceptance criteria and the shared release checks below pass.
 
 The v0.x validation paragraphs below are historical records of local milestone
-work. Current cross-platform CI and publication status are in the v1.2 section
-and [release record](releases/1.2.0.md).
+work. Current cross-platform CI and publication status are in the v1.3 section
+and [release record](releases/1.3.0.md).
 
 | Version | Goal | Current implementation coverage |
 | --- | --- | --- |
@@ -20,7 +20,7 @@ and [release record](releases/1.2.0.md).
 | v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
 | v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
-| v1.3 | Dynamic circuits and classical control | Implementation merged; stable 1.3.0 promotion and publication pending |
+| v1.3 | Dynamic circuits and classical control | Released as v1.3.0; NuGet uploads accepted, public-feed verification pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -317,8 +317,11 @@ Acceptance criteria:
 - Verify teleportation phases on all backends, reset Kraus density matrices and exact branch oracles.
 - Preserve shipped APIs, allocation/cancellation contracts, .NET 9/10 coverage and baseline consumers.
 
-Stable version 1.3.0 is selected after merging [PR #9](https://github.com/olgerd007/QuantumMatter/pull/9).
-The candidate passed [all eight platform/runtime CI jobs](https://github.com/olgerd007/QuantumMatter/actions/runs/40215994904).
+Stable version 1.3.0 is released after merging [PR #9](https://github.com/olgerd007/QuantumMatter/pull/9)
+and stable promotion [PR #10](https://github.com/olgerd007/QuantumMatter/pull/10).
+The implementation and promotion each passed all eight Windows/Linux Debug/Release
+runtime CI jobs. The tagged-source workflow passes platform validation and OIDC
+uploads for all three packages and symbols. Public-feed verification is pending.
 See the [dynamic guide](dynamic-circuits.md) and
 [validation record](releases/1.3.0.md). This increment excludes loops, arbitrary
 classical expressions, combined noise/dynamic programs and device-resident feedback.
