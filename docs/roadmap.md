@@ -5,8 +5,8 @@ scope targets, with no delivery dates assigned. A version is ready to release on
 when its acceptance criteria and the shared release checks below pass.
 
 The v0.x validation paragraphs below are historical records of local milestone
-work. Current cross-platform CI and publication status are in the v1.3 section
-and [release record](releases/1.3.0.md).
+work. Current cross-platform CI and publication status are in the v1.4 section
+and [release record](releases/1.4.0.md).
 
 | Version | Goal | Current implementation coverage |
 | --- | --- | --- |
@@ -21,7 +21,7 @@ and [release record](releases/1.3.0.md).
 | v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
 | v1.3 | Dynamic circuits and classical control | Released as v1.3.0; platform CI, NuGet publication and fresh CPU/CUDA consumers verified |
-| v1.4 | Noisy dynamic circuits | Implementation merged; stable 1.4.0 promotion and publication pending |
+| v1.4 | Noisy dynamic circuits | Released as v1.4.0; NuGet uploads accepted, public-feed verification pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -340,13 +340,17 @@ Acceptance criteria:
 - Preserve 240 shipped API declarations and validate all four package consumers and unchanged baseline binaries on .NET 9/10.
 - Document host/device boundaries, resource budgets, stochastic uncertainty and failure behavior.
 
-Stable version 1.4.0 is selected after merging [PR #12](https://github.com/olgerd007/QuantumMatter/pull/12).
+Stable version 1.4.0 is released after merging [PR #12](https://github.com/olgerd007/QuantumMatter/pull/12)
+and promotion [PR #13](https://github.com/olgerd007/QuantumMatter/pull/13).
 It introduces a separate NoisyDynamicCircuit and NoisyDynamicStateVectorSimulator,
 with fifteen API additions promoted to Shipped (255 total). Existing circuit/workflow
 contracts remain intact. See the
 [guide](noisy-dynamic-circuits.md) and [validation record](releases/1.4.0.md).
 The final implementation revision passed [all eight platform/runtime CI jobs](https://github.com/olgerd007/QuantumMatter/actions/runs/40222313725).
-Stable promotion and publication remain pending.
+Promotion also passed [all eight CI jobs](https://github.com/olgerd007/QuantumMatter/actions/runs/40223622092).
+The v1.4.0 tag identifies the merged promotion tree. The tagged-source workflow
+passes Windows/Linux validation and OIDC uploads for all three packages and symbols;
+public indexing and fresh public-feed verification are pending.
 
 Local validation passes all 763 CUDA-enabled tests per runtime in Debug/Release,
 portable fallback suites, zero-warning builds and formatting. All four fresh-package
