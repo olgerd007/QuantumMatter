@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0-rc.1 — Unreleased
+## 1.1.0 — 2026-10-25
 
 - Full xUnit coverage on .NET 9 and .NET 10 using the .NET 10 SDK; library assets
   remain net9.0 and the 211 shipped API declarations are unchanged.

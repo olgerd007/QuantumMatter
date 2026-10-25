@@ -18,7 +18,7 @@ and [release record](releases/1.0.0.md).
 | v0.6 | NVIDIA GPU acceleration | Functional criteria verified on NVIDIA hardware |
 | v0.7 | Quantum noise simulation | Functional criteria verified |
 | v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
-| v1.1 | Full .NET 9/10 validation and compatibility | Candidate implementation, local hardware checks and eight-job platform/runtime CI pass; review/publication pending |
+| v1.1 | Full .NET 9/10 validation and compatibility | Implementation merged; stable 1.1.0 selected; promotion/publication pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -272,11 +272,12 @@ Acceptance criteria:
 - Run CUDA conformance and package/binary consumers on both runtimes with real hardware.
 - Verify that intentional compatibility breaks are rejected and record actual evidence.
 
-Candidate 1.1.0-rc.1 implements these checks. Local Debug/Release suites pass 666
+Version 1.1.0 implements these checks. Local Debug/Release suites pass 666
 cases per runtime with real CUDA. Fresh and baseline-compiled consumers pass on
 both runtimes, including CUDA. All eight Windows/Linux Debug/Release runtime CI
 jobs pass, including package/binary compatibility consumers on both platforms.
-Review and release promotion remain pending. See
+[PR #3](https://github.com/olgerd007/QuantumMatter/pull/3) is merged. Stable version
+promotion and public publication remain pending. See
 the [v1.1 validation record](releases/1.1.0.md).
 
 ## Shared release checks
