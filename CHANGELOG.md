@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.5.0-rc.1 — Unreleased
+## 1.5.0 — 2026-10-25
 
 - Immutable real Pauli Hamiltonians and normalized energy expectations without dense matrices.
 - Parameterized Rx/Ry/Rz templates with constant snapshots and shared/unused parameters.

@@ -9,7 +9,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>PACKAGE-README.md</PackageReadmeFile>
     <PackageTags>quantum;simulation;state-vector;dotnet</PackageTags>
-    <PackageReleaseNotes>1.5 candidate: Pauli Hamiltonians, parameterized rotations and occurrence-wise parameter-shift energy gradients. See CHANGELOG.md and docs/releases/1.5.0.md in the package.</PackageReleaseNotes>
+    <PackageReleaseNotes>1.5: Pauli Hamiltonians, parameterized rotations and occurrence-wise parameter-shift energy gradients. See CHANGELOG.md and docs/releases/1.5.0.md in the package.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <EnablePackageValidation>true</EnablePackageValidation>
     <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion>
