@@ -4,6 +4,13 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
+## v1.3 development
+
+The unpublished **1.3.0-rc.1** candidate adds dynamic circuits, mid-circuit
+measurement, classical conditions and qubit reset. See the [dynamic-circuit guide](docs/dynamic-circuits.md)
+and [candidate record](docs/releases/1.3.0.md). Stable installation commands below
+continue to use v1.2.0.
+
 ## SDK v1.2
 
 Version **1.2.0** adds partial-register measurement, normalized marginal

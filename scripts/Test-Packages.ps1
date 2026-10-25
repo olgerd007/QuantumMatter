@@ -16,6 +16,7 @@ $baselineVersion = $libraryProperties.SelectSingleNode('/Project/PropertyGroup/P
 $packageDirectory = Join-Path $repositoryRoot 'artifacts/packages'
 $consumerDirectory = Join-Path $repositoryRoot ('artifacts/package-smoke/' + [guid]::NewGuid().ToString('N'))
 $observationDirectory = $consumerDirectory + '-observations'
+$dynamicDirectory = $consumerDirectory + '-dynamic'
 $cacheDirectory = Join-Path $consumerDirectory 'packages'
 $env:DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE = 'true'
 $env:MSBuildEnableWorkloadResolver = 'false'
@@ -41,7 +42,7 @@ try {
             foreach ($requiredEntry in @("lib/net9.0/$packageId.dll", "lib/net9.0/$packageId.xml", 'PACKAGE-README.md',
                 'LICENSE', 'CHANGELOG.md', 'THIRD-PARTY-NOTICES.md', 'docs/api/1.0.0.md', 'docs/releases/1.0.0.md',
                 'docs/releases/1.1.0.md', 'docs/releases/1.2.0.md', 'docs/releases/1.2.0-notes.md',
-                'docs/api/1.2.0.md', 'docs/observations.md',
+                'docs/api/1.2.0.md', 'docs/observations.md', 'docs/dynamic-circuits.md', 'docs/releases/1.3.0.md',
                 'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
                 if (!$archive.GetEntry($requiredEntry)) { throw "$packageId is missing $requiredEntry." }
             }
@@ -72,7 +73,7 @@ try {
         }
     }
 
-    foreach ($directory in @($consumerDirectory, $observationDirectory)) {
+    foreach ($directory in @($consumerDirectory, $observationDirectory, $dynamicDirectory)) {
         New-Item -ItemType Directory -Path $directory -Force | Out-Null
         # Stop traversal into repository build/package configuration: only package references are allowed.
         [IO.File]::WriteAllText((Join-Path $directory 'Directory.Build.props'), "<Project />`n")
@@ -118,15 +119,20 @@ try {
 
         # New APIs have a separate package-only consumer; the baseline consumer stays limited to 1.0 APIs.
         # Use a sibling directory so SDK default compile globs cannot include one consumer in the other.
-        Copy-Item -Path (Join-Path $repositoryRoot 'samples/ObservationConsumer/*') -Destination $observationDirectory
-        $observationProject = Join-Path $observationDirectory 'ObservationConsumer.csproj'
-        Invoke-DotNet -Arguments @('restore', $observationProject, '--configfile', $configurationPath,
-            '--packages', $cacheDirectory, $versionArgument, $frameworkArgument)
-        Invoke-DotNet -Arguments @('run', '--project', $observationProject, '--no-restore', '-c', $Configuration,
-            $versionArgument, $frameworkArgument)
-        if ($EnableCuda) {
-            Invoke-DotNet -Arguments @('run', '--project', $observationProject, '--no-build', '--no-restore', '-c', $Configuration,
-                $versionArgument, $frameworkArgument, '--', '--cuda')
+        foreach ($sample in @(
+            @{ Name = 'ObservationConsumer'; Directory = $observationDirectory },
+            @{ Name = 'DynamicConsumer'; Directory = $dynamicDirectory }
+        )) {
+            Copy-Item -Path (Join-Path $repositoryRoot "samples/$($sample.Name)/*") -Destination $sample.Directory
+            $sampleProject = Join-Path $sample.Directory "$($sample.Name).csproj"
+            Invoke-DotNet -Arguments @('restore', $sampleProject, '--configfile', $configurationPath,
+                '--packages', $cacheDirectory, $versionArgument, $frameworkArgument)
+            Invoke-DotNet -Arguments @('run', '--project', $sampleProject, '--no-restore', '-c', $Configuration,
+                $versionArgument, $frameworkArgument)
+            if ($EnableCuda) {
+                Invoke-DotNet -Arguments @('run', '--project', $sampleProject, '--no-build', '--no-restore', '-c', $Configuration,
+                    $versionArgument, $frameworkArgument, '--', '--cuda')
+            }
         }
 
         # Recompile only the consumer against the published baseline, then replace just the SDK DLLs.
@@ -173,5 +179,6 @@ try {
     Write-Output "Validated package version $packageVersion from $packageDirectory"
     Write-Output "Isolated consumer and cache: $consumerDirectory"
     Write-Output "Isolated new-API consumer: $observationDirectory"
+    Write-Output "Isolated dynamic consumer: $dynamicDirectory"
 }
 finally { Pop-Location }
