@@ -5,6 +5,7 @@ param(
     [string]$ExpectedCommit,
     [switch]$ValidateObservations,
     [switch]$ValidateDynamicCircuits,
+    [switch]$ValidateNoisyDynamicCircuits,
     [switch]$EnableCuda
 )
 
@@ -66,6 +67,7 @@ try {
     $additionalSamples = @()
     if ($ValidateObservations) { $additionalSamples += @{ Name = 'ObservationConsumer'; Suffix = '-observations' } }
     if ($ValidateDynamicCircuits) { $additionalSamples += @{ Name = 'DynamicConsumer'; Suffix = '-dynamic' } }
+    if ($ValidateNoisyDynamicCircuits) { $additionalSamples += @{ Name = 'NoisyDynamicConsumer'; Suffix = '-noisy-dynamic' } }
     foreach ($sample in $additionalSamples) {
         # Keep sources separate from the baseline consumer's default compile globs.
         $sampleDirectory = $consumerDirectory + $sample.Suffix
