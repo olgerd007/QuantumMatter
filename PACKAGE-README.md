@@ -48,11 +48,11 @@ Version 1.2 adds partial-register measurement, normalized marginals and
 Pauli-string expectations on host states; see docs/observations.md. These preserve
 the existing unitary circuit and terminal sampling contracts.
 
-The v1.3 candidate adds a separate dynamic-circuit workflow with mid-circuit
+Version 1.3 adds a separate dynamic-circuit workflow with mid-circuit
 measurements, classical conditions and reset; see docs/dynamic-circuits.md.
 
 The package contains XML IntelliSense documentation, declared public API files,
 LICENSE, CHANGELOG.md, third-party notices, and the docs directory. Start with
-docs/api/1.2.0.md, docs/compatibility.md, docs/noise.md and docs/gpu-execution.md.
+docs/api/1.3.0.md, docs/compatibility.md, docs/noise.md and docs/gpu-execution.md.
 See the repository for validated hardware, raw benchmarks, known limitations and
 the [release checklist and repository](https://github.com/olgerd007/QuantumMatter).

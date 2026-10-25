@@ -29,9 +29,9 @@ restores ILGPU 1.5.3 even for CPU selection; Core/Application do not depend on I
 
 ## Versioning
 
-All three SDK packages share semantic version 1.2.0, published on nuget.org. The
-[release record](releases/1.2.0.md) contains publication and public-feed verification evidence.
-Published 1.0.0 and 1.1.0 remain available. Use matching package versions.
+All three SDK packages share a semantic version. Stable version 1.3.0 is selected;
+the [release record](releases/1.3.0.md) tracks publication. Published 1.0.0, 1.1.0
+and 1.2.0 remain available. Use matching package versions.
 The release record distinguishes prepared artifacts from public publication.
 The 1.x compatibility policy is:
 
@@ -49,7 +49,8 @@ PublicApiAnalyzers 3.3.4 is a pinned, build-only dependency compatible with the 
 compiler. It tracks the three libraries' PublicAPI files and nullability; changes
 require explicit inventory diffs. The reviewed 1.0.0 inventory is frozen in
 PublicAPI.Shipped.txt as the release contract. Version 1.2 adds seven reviewed
-declarations, giving 218 shipped declarations without removing the 1.0 baseline.
+declarations. Version 1.3 adds 22 dynamic-circuit declarations, giving 240 shipped
+declarations while preserving all 218 declarations shipped through 1.2.
 Since v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
 parameter-name compatibility is enabled. SDK package validation compares compiled
 assets at pack time. A separate smoke check compiles the consumer against the
