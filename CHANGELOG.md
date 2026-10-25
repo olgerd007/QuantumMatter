@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.5.0-rc.1 — Unreleased
+
+- Immutable real Pauli Hamiltonians and normalized energy expectations without dense matrices.
+- Parameterized Rx/Ry/Rz templates with constant snapshots and shared/unused parameters.
+- Exact-state energy/gradient evaluation using occurrence-wise parameter shifts,
+  termwise differences, compensated sums and explicit host-array budgets.
+- Independent dense derivative oracles, a variational demo and a fifth package consumer.
+- All 255 shipped APIs, 1.x binding and existing workflows are preserved.
+
 ## 1.4.0 — 2026-10-25
 
 - Separate noisy dynamic programs combine explicit single-qubit channels with
