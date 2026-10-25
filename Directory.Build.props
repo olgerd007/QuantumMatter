@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AnalysisLevel>latest</AnalysisLevel>
-    <Version Condition="'$(Version)' == ''">1.4.0-rc.1</Version>
+    <Version Condition="'$(Version)' == ''">1.4.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.4.0.0</FileVersion>
     <Deterministic>true</Deterministic>

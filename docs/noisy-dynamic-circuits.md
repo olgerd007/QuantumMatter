@@ -1,6 +1,6 @@
 # Noisy dynamic circuits
 
-The **1.4.0-rc.1 candidate** combines explicit noise placements with mid-circuit
+Version **1.4.0** combines explicit noise placements with mid-circuit
 measurement, classical feedback and reset. This is a separate NoisyDynamicCircuit
 and NoisyDynamicStateVectorSimulator; QuantumCircuit, NoisyCircuit and DynamicCircuit
 retain their existing contracts. See the [release record](releases/1.4.0.md).
@@ -98,7 +98,7 @@ no successful classical result or partial counts are returned. Invalid inputs ar
 rejected with standard argument exceptions before appending the instruction.
 As with existing builders, allocation failures are not transactional guarantees.
 
-This candidate has no conditional noise placements, loops, callbacks, arbitrary
+This release has no conditional noise placements, loops, callbacks, arbitrary
 classical expressions, correlated channels, readout-error model, automatic gate
 noise insertion, or production density-matrix execution.
 

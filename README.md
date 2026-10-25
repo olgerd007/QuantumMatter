@@ -4,12 +4,13 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
-## v1.4 candidate
+## v1.4 promotion
 
-Candidate **1.4.0-rc.1** adds explicit noise channels to dynamic circuits with
+Selected stable version **1.4.0** adds explicit noise channels to dynamic circuits with
 measurement, classical feedback and reset through a separate API. See the
 [noisy dynamic guide](docs/noisy-dynamic-circuits.md) and
-[validation record](docs/releases/1.4.0.md). Stable promotion and publication are pending.
+[validation record](docs/releases/1.4.0.md). Publication is pending; installation
+commands below continue to use v1.3.0.
 
 ## SDK v1.3
 
@@ -156,7 +157,7 @@ memory. Circuits and states are mutable and must not be modified concurrently.
 
 Correlated noise, density-matrix execution, general multi-target custom unitaries,
 broader SIMD kernels and dynamic loops are future work. Combined noise/dynamic
-programs are introduced separately in the v1.4 candidate. StateVector.Reset restores
+programs are introduced separately in v1.4. StateVector.Reset restores
 an owned host state; DynamicCircuit.Reset is a
 stochastic single-qubit instruction.
 
