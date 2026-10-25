@@ -15,8 +15,8 @@ net9.0 asset requires a major version and migration guidance.
 
 | Surface | Release target | Validation evidence |
 | --- | --- | --- |
-| Scalar/parallel CPU and reference noise | Windows x64 and Linux x64, .NET 9/10 | Local full suites pass on both runtimes; v1.1 dual-runtime Windows/Linux CI pending |
-| .NET 10 runtime using net9.0 packages | Windows/Linux x64 | Full local .NET 10 suite and package consumers pass, including CUDA and precompiled 1.0.0 consumer; v1.1 remote checks pending |
+| Scalar/parallel CPU and reference noise | Windows x64 and Linux x64, .NET 9/10 | Local full suites and all eight Windows/Linux Debug/Release runtime CI jobs pass |
+| .NET 10 runtime using net9.0 packages | Windows/Linux x64 | Full suite and fresh/precompiled 1.0.0 consumers pass on Windows/Linux; CUDA additionally validated locally on Windows |
 | SIMD | Portable Vector&lt;double&gt; Hadamard when hardware/layout permits | Local accelerated and disabled-intrinsics suites; scalar fallback |
 | CUDA | Windows x64, compatible NVIDIA device/driver | Local RTX 4070 Ti SUPER, SM_89, driver 610.88/CUDA API 13.3; Linux CUDA is experimental and outside v1.0 support |
 | Other OS/CPU architectures | Unverified | No release support claim |
