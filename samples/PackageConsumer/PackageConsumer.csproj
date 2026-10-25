@@ -7,7 +7,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IsPackable>false</IsPackable>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-    <QuantumMatterPackageVersion Condition="'$(QuantumMatterPackageVersion)' == ''">1.1.0</QuantumMatterPackageVersion>
+    <QuantumMatterPackageVersion Condition="'$(QuantumMatterPackageVersion)' == ''">1.2.0</QuantumMatterPackageVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="QuantumMatter.Application" Version="$(QuantumMatterPackageVersion)" />

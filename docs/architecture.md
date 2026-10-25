@@ -87,7 +87,7 @@ recomputed if FinalState is later evolved or measured.
 
 ## Resource and execution policy
 
-The v1.2 candidate adds host-side observation methods to StateVector and an immutable
+Version 1.2 adds host-side observation methods to StateVector and an immutable
 PauliString in Core. Marginal queries, subset projective collapse and Pauli expectations
 use constant auxiliary storage without additional backends or hardware dependencies.
 They operate after any backend completes and can precede another Evolve call. Partial

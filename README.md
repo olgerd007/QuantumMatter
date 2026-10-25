@@ -4,10 +4,10 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
-## v1.2 development
+## v1.2 promotion
 
-Development for **v1.2.0-rc.1** adds partial-register measurement and Pauli
-observables. This candidate is not published. See the [observation guide](docs/observations.md)
+Selected stable version **1.2.0** adds partial-register measurement and Pauli
+observables. Publication is pending. See the [observation guide](docs/observations.md)
 and [v1.2 validation record](docs/releases/1.2.0.md). Stable installation commands
 below continue to use v1.1.0.
 

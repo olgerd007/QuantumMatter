@@ -3,6 +3,7 @@ param(
     [ValidateSet('net9.0', 'net10.0')][string]$ConsumerFramework = 'net9.0',
     [ValidatePattern('^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$')][string]$PackageVersion,
     [string]$ExpectedCommit,
+    [switch]$ValidateObservations,
     [switch]$EnableCuda
 )
 
@@ -12,6 +13,7 @@ $repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $properties = [xml][IO.File]::ReadAllText((Join-Path $repositoryRoot 'Directory.Build.props'))
 if (!$PackageVersion) { $PackageVersion = $properties.SelectSingleNode('/Project/PropertyGroup/Version').InnerText }
 $consumerDirectory = Join-Path $repositoryRoot ('artifacts/published-smoke/' + [guid]::NewGuid().ToString('N'))
+$cacheDirectory = Join-Path $consumerDirectory 'packages'
 $env:DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE = 'true'
 $env:MSBuildEnableWorkloadResolver = 'false'
 
@@ -59,6 +61,28 @@ try {
     if ($EnableCuda) {
         Invoke-DotNet -Arguments @('run', '--project', 'PackageConsumer.csproj', '--no-build', '--no-restore',
             '-c', 'Release', $versionArgument, $frameworkArgument, '--', '--cuda', '--expected-sdk-version', $PackageVersion)
+    }
+    if ($ValidateObservations) {
+        # Keep sources separate from the baseline consumer's default compile globs.
+        $observationDirectory = $consumerDirectory + '-observations'
+        New-Item -ItemType Directory -Path $observationDirectory | Out-Null
+        Copy-Item -Path (Join-Path $repositoryRoot 'samples/ObservationConsumer/*') -Destination $observationDirectory
+        foreach ($boundaryFile in @('Directory.Build.props', 'Directory.Packages.props', 'NuGet.Config')) {
+            Copy-Item -LiteralPath (Join-Path $consumerDirectory $boundaryFile) -Destination $observationDirectory
+        }
+        if ($ConsumerFramework -eq 'net10.0') {
+            Copy-Item -LiteralPath (Join-Path $consumerDirectory 'global.json') -Destination $observationDirectory
+        }
+        $observationProject = Join-Path $observationDirectory 'ObservationConsumer.csproj'
+        Invoke-DotNet -Arguments @('restore', $observationProject, '--configfile', 'NuGet.Config',
+            '--packages', $cacheDirectory, '--no-http-cache', $versionArgument, $frameworkArgument)
+        Invoke-DotNet -Arguments @('run', '--project', $observationProject, '--no-restore', '-c', 'Release',
+            $versionArgument, $frameworkArgument)
+        if ($EnableCuda) {
+            Invoke-DotNet -Arguments @('run', '--project', $observationProject, '--no-build', '--no-restore', '-c', 'Release',
+                $versionArgument, $frameworkArgument, '--', '--cuda')
+        }
+        Write-Output "Published observation APIs validated on $ConsumerFramework."
     }
     Write-Output "Published package version $packageVersion validated on $ConsumerFramework from nuget.org."
     Write-Output "Isolated consumer and cache: $consumerDirectory"
