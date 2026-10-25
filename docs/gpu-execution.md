@@ -27,8 +27,8 @@ and [release notes](https://ilgpu.net/releases/).
 
 Actual local validation: compatible CUDA device, 16,376 MiB reported VRAM,
 [device capability omitted], compatible driver, compatible CUDA driver API, anonymized operating system, anonymized CPU, project-selected SDK/runtime .NET 9. No toolkit was installed.
-Linux builds are covered by the repository CI definition, but this work did not
-execute remote CI or validate CUDA hardware on Linux.
+Windows/Linux CPU builds, tests and package consumers pass remote CI for v1.0.
+CUDA hardware has not been validated on Linux; it remains experimental.
 
 ## Selection and ownership
 

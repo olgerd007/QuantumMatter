@@ -14,8 +14,8 @@ net9.0 asset requires a major version and migration guidance.
 
 | Surface | Release target | Validation evidence |
 | --- | --- | --- |
-| Scalar/parallel CPU and reference noise | Windows x64 and Linux x64, .NET 9 | Local Windows suite; Windows/Linux CI configured, remote run pending |
-| .NET 10 consumer of net9.0 packages | Windows/Linux x64 | Local Windows package-only smoke test, including CUDA; remote consumer CI pending; not the full suite retargeted to .NET 10 |
+| Scalar/parallel CPU and reference noise | Windows x64 and Linux x64, .NET 9 | Local Windows suite and remote Windows/Linux Debug/Release CI pass |
+| .NET 10 consumer of net9.0 packages | Windows/Linux x64 | Local Windows smoke including CUDA and remote Windows/Linux consumers pass; not the full suite retargeted to .NET 10 |
 | SIMD | Portable Vector&lt;double&gt; Hadamard when hardware/layout permits | Local accelerated and disabled-intrinsics suites; scalar fallback |
 | CUDA | Windows x64, compatible NVIDIA device/driver | Local compatible CUDA device, [device capability omitted], compatible driver; Linux CUDA is experimental and outside v1.0 support |
 | Other OS/CPU architectures | Unverified | No release support claim |
@@ -82,7 +82,7 @@ licenses/notices. Packages carry documentation and license files. Consumers own
 injected backend lifetimes, especially IDisposable CUDA contexts. Core/Application
 have no container, logging, network or persistence dependencies.
 
-Local candidate packages are not signed or publicly published. The selected feed
+Local release packages are not signed or publicly published. The selected feed
 is nuget.org, user olgerd007, using the same OIDC Trusted Publishing approach as
 XBullet.EasyTesting. The user-provided screenshot confirms QuantumMatter's own
 repository/workflow policy and QuantumMatter.* scope. Its first successful OIDC
