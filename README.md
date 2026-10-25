@@ -4,17 +4,22 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
-## v1.1 development
+## SDK v1.1
 
-The development candidate is **1.1.0-rc.1**, not yet published. It uses the .NET 10
+The selected release version is **1.1.0**, with public publication pending. It uses the .NET 10
 SDK to run the complete suite on .NET 9 and .NET 10, preserving net9.0 library assets
 and the 1.0 public APIs. Packages validate against published 1.0.0 and run consumers
 compiled against that baseline with candidate assemblies. See the
 [v1.1 validation record](docs/releases/1.1.0.md).
 
-## SDK v1.0
+```sh
+dotnet add package QuantumMatter.Application --version 1.1.0
+dotnet add package QuantumMatter.Infrastructure --version 1.1.0
+```
 
-The SDK version is **1.0.0**. Three NuGet packages expose
+## Previous SDK v1.0
+
+Version **1.0.0** remains available. Three NuGet packages expose
 Core, Application and Infrastructure with XML documentation and tracked public APIs.
 The [v1.0.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.0.0)
 is published on GitHub and NuGet. Fresh .NET 9 and .NET 10 consumers pass using
@@ -170,7 +175,8 @@ a published release.
 - [v0.7 noise channels, trajectories and uncertainty](docs/noise.md)
 - [v1.0 API reference and contracts](docs/api/1.0.0.md)
 - [Compatibility, framework and deprecation policy](docs/compatibility.md)
-- [Release verification and promotion](docs/releases/1.0.0.md)
+- [v1.1 release verification and promotion](docs/releases/1.1.0.md)
+- [v1.0 release record](docs/releases/1.0.0.md)
 - [Release notes and migration changes](CHANGELOG.md)
 - [Agent and contributor development rules](AGENTS.md)
 
