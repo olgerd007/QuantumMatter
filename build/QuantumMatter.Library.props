@@ -9,7 +9,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>PACKAGE-README.md</PackageReadmeFile>
     <PackageTags>quantum;simulation;state-vector;dotnet</PackageTags>
-    <PackageReleaseNotes>1.4 candidate: explicit noise channels combined with dynamic measurement, classical feedback and reset. See CHANGELOG.md and docs/releases/1.4.0.md in the package.</PackageReleaseNotes>
+    <PackageReleaseNotes>Explicit noise channels combined with dynamic measurement, classical feedback and reset. See CHANGELOG.md and docs/releases/1.4.0-notes.md in the package.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <EnablePackageValidation>true</EnablePackageValidation>
     <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion>
