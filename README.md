@@ -6,44 +6,40 @@ Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
 ## SDK v1.1
 
-The selected release version is **1.1.0**, with public publication pending. It uses the .NET 10
+The released SDK version is **1.1.0**. It uses the .NET 10
 SDK to run the complete suite on .NET 9 and .NET 10, preserving net9.0 library assets
 and the 1.0 public APIs. Packages validate against published 1.0.0 and run consumers
-compiled against that baseline with candidate assemblies. See the
+compiled against that baseline with replacement assemblies. Fresh public-feed
+consumers pass CPU and CUDA checks on both runtimes, with tagged-source metadata
+verified. See the
 [v1.1 validation record](docs/releases/1.1.0.md).
+
+The [v1.1.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.1.0)
+is published with three NuGet packages:
+[Core](https://www.nuget.org/packages/QuantumMatter.Core/1.1.0),
+[Application](https://www.nuget.org/packages/QuantumMatter.Application/1.1.0) and
+[Infrastructure](https://www.nuget.org/packages/QuantumMatter.Infrastructure/1.1.0).
 
 ```sh
 dotnet add package QuantumMatter.Application --version 1.1.0
 dotnet add package QuantumMatter.Infrastructure --version 1.1.0
 ```
 
-## Previous SDK v1.0
-
-Version **1.0.0** remains available. Three NuGet packages expose
-Core, Application and Infrastructure with XML documentation and tracked public APIs.
 The [v1.0.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.0.0)
-is published on GitHub and NuGet. Fresh .NET 9 and .NET 10 consumers pass using
-only nuget.org, including CUDA execution and tagged-source metadata checks.
-Release publication is configured for nuget.org account olgerd007 using the same
-OIDC convention as XBullet.EasyTesting. The matching QuantumMatter trust policy is
-created and has successfully authenticated the first package publication.
-
-```sh
-dotnet add package QuantumMatter.Application --version 1.0.0
-dotnet add package QuantumMatter.Infrastructure --version 1.0.0
-```
+remains available. Publication uses nuget.org account olgerd007 and the
+QuantumMatter-specific OIDC Trusted Publishing policy.
 
 ```powershell
 ./scripts/Test-Packages.ps1 -Configuration Release
 ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -ConsumerFramework net10.0
-./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.0.0 -ConsumerFramework net10.0
+./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.1.0 -ConsumerFramework net10.0
 ```
 
 PowerShell 7, the .NET 10 SDK and .NET 9/10 runtimes are required for development checks.
 The scripts pack to
 artifacts/packages and test a fresh package-only consumer with an isolated cache.
 Library targets remain net9.0. See the [versioned API reference](docs/api/1.0.0.md),
-[compatibility policy](docs/compatibility.md) and [release record](docs/releases/1.0.0.md).
+[compatibility policy](docs/compatibility.md) and [release record](docs/releases/1.1.0.md).
 
 ## Build and run
 

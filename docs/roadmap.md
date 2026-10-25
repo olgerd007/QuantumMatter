@@ -5,8 +5,8 @@ scope targets, with no delivery dates assigned. A version is ready to release on
 when its acceptance criteria and the shared release checks below pass.
 
 The v0.x validation paragraphs below are historical records of local milestone
-work. Current cross-platform CI and publication status are in the v1.0 section
-and [release record](releases/1.0.0.md).
+work. Current cross-platform CI and publication status are in the v1.1 section
+and [release record](releases/1.1.0.md).
 
 | Version | Goal | Current implementation coverage |
 | --- | --- | --- |
@@ -18,7 +18,7 @@ and [release record](releases/1.0.0.md).
 | v0.6 | NVIDIA GPU acceleration | Functional criteria verified on NVIDIA hardware |
 | v0.7 | Quantum noise simulation | Functional criteria verified |
 | v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
-| v1.1 | Full .NET 9/10 validation and compatibility | Implementation merged; stable 1.1.0 selected; promotion/publication pending |
+| v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -276,8 +276,11 @@ Version 1.1.0 implements these checks. Local Debug/Release suites pass 666
 cases per runtime with real CUDA. Fresh and baseline-compiled consumers pass on
 both runtimes, including CUDA. All eight Windows/Linux Debug/Release runtime CI
 jobs pass, including package/binary compatibility consumers on both platforms.
-[PR #3](https://github.com/olgerd007/QuantumMatter/pull/3) is merged. Stable version
-promotion and public publication remain pending. See
+[PR #3](https://github.com/olgerd007/QuantumMatter/pull/3) and stable promotion
+[PR #4](https://github.com/olgerd007/QuantumMatter/pull/4) are merged. The v1.1.0 tag
+is released, and all three packages and symbols are published on nuget.org.
+Fresh public-feed consumers pass CPU/CUDA checks on .NET 9/10 with the exact
+tagged-source commit verified. Milestone v1.1 is complete. See
 the [v1.1 validation record](releases/1.1.0.md).
 
 ## Shared release checks
