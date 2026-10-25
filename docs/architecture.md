@@ -219,7 +219,7 @@ only. See the [noise guide](noise.md) for contracts and estimator uncertainty.
 
 ## Noisy dynamic composition
 
-The v1.4 candidate adds Core/Dynamic.NoisyDynamicCircuit, composing private
+Version 1.4 adds Core/Dynamic.NoisyDynamicCircuit, composing private
 DynamicCircuit segments and explicit single-placement NoisyCircuit segments.
 An internal continuation value carries the classical register across noise
 boundaries; public EvolveDynamic still initializes it to zero. Both instruction
