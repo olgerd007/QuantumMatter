@@ -1,8 +1,9 @@
-# QuantumMatter SDK — 1.0.0
+# QuantumMatter SDK
 
 QuantumMatter is an MIT-licensed quantum simulator built from scratch in C# using
 double-precision System.Numerics.Complex. Libraries target .NET 9; package-only
-consumer checks also run on .NET 10.
+consumer checks also run on .NET 10. Starting with v1.1, the full xUnit suite runs
+on both runtimes using the same net9.0 library assets.
 
 | Package | Contents | Runtime dependencies |
 | --- | --- | --- |
@@ -13,11 +14,13 @@ consumer checks also run on .NET 10.
 Install Application and Infrastructure at the same version; Core is transitive.
 
 ```sh
-dotnet add package QuantumMatter.Application --version 1.0.0
-dotnet add package QuantumMatter.Infrastructure --version 1.0.0
+dotnet add package QuantumMatter.Application
+dotnet add package QuantumMatter.Infrastructure
 ```
 
-See the repository release record for publication status and validation evidence.
+These commands select the latest stable version. For a local/prerelease candidate,
+specify its version and feed. See the repository release record for publication
+status and validation evidence.
 
 ```csharp
 using QuantumMatter.Application;

@@ -11,6 +11,8 @@ Set-StrictMode -Version Latest
 $repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $versionFile = [xml][IO.File]::ReadAllText((Join-Path $repositoryRoot 'Directory.Build.props'))
 $packageVersion = $versionFile.SelectSingleNode('/Project/PropertyGroup/Version').InnerText
+$libraryProperties = [xml][IO.File]::ReadAllText((Join-Path $repositoryRoot 'build/QuantumMatter.Library.props'))
+$baselineVersion = $libraryProperties.SelectSingleNode('/Project/PropertyGroup/PackageValidationBaselineVersion').InnerText
 $packageDirectory = Join-Path $repositoryRoot 'artifacts/packages'
 $consumerDirectory = Join-Path $repositoryRoot ('artifacts/package-smoke/' + [guid]::NewGuid().ToString('N'))
 $cacheDirectory = Join-Path $consumerDirectory 'packages'
@@ -37,7 +39,7 @@ try {
         try {
             foreach ($requiredEntry in @("lib/net9.0/$packageId.dll", "lib/net9.0/$packageId.xml", 'PACKAGE-README.md',
                 'LICENSE', 'CHANGELOG.md', 'THIRD-PARTY-NOTICES.md', 'docs/api/1.0.0.md', 'docs/releases/1.0.0.md',
-                'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
+                'docs/releases/1.1.0.md', 'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
                 if (!$archive.GetEntry($requiredEntry)) { throw "$packageId is missing $requiredEntry." }
             }
             $reader = [IO.StreamReader]::new($archive.GetEntry("$packageId.nuspec").Open())
@@ -102,11 +104,52 @@ try {
                 throw "Consumer did not restore the freshly produced $packageId package."
             }
         }
-        Invoke-DotNet -Arguments @('run', '--project', $consumerProject, '--no-restore', '-c', $Configuration, $versionArgument, $frameworkArgument)
+        Invoke-DotNet -Arguments @('run', '--project', $consumerProject, '--no-restore', '-c', $Configuration,
+            $versionArgument, $frameworkArgument, '--', '--expected-sdk-version', $packageVersion)
         if ($EnableCuda) {
             Invoke-DotNet -Arguments @('run', '--project', $consumerProject, '--no-build', '--no-restore', '-c', $Configuration,
-                $versionArgument, $frameworkArgument, '--', '--cuda')
+                $versionArgument, $frameworkArgument, '--', '--cuda', '--expected-sdk-version', $packageVersion)
         }
+
+        # Recompile only the consumer against the published baseline, then replace just the SDK DLLs.
+        # The unchanged consumer binary and baseline deps.json must execute with the candidate assemblies.
+        $baselineCache = Join-Path $consumerDirectory 'baseline-packages'
+        $baselineConfiguration = Join-Path $consumerDirectory 'NuGet.Baseline.Config'
+        [IO.File]::WriteAllText($baselineConfiguration,
+            '<configuration><packageSources><clear /><add key="nuget.org" value="https://api.nuget.org/v3/index.json" /></packageSources></configuration>')
+        $baselineArgument = "-p:QuantumMatterPackageVersion=$baselineVersion"
+        Invoke-DotNet -Arguments @('restore', $consumerProject, '--configfile', $baselineConfiguration,
+            '--packages', $baselineCache, '--force', '--no-http-cache', $baselineArgument, $frameworkArgument)
+        foreach ($packageId in @('quantummatter.core', 'quantummatter.application', 'quantummatter.infrastructure')) {
+            $baselineMetadata = [IO.File]::ReadAllText((Join-Path $baselineCache "$packageId/$baselineVersion/.nupkg.metadata")) | ConvertFrom-Json
+            if ($baselineMetadata.source -ne 'https://api.nuget.org/v3/index.json') { throw 'Baseline must come from nuget.org.' }
+        }
+        Invoke-DotNet -Arguments @('build', $consumerProject, '--no-restore', '-c', $Configuration,
+            $baselineArgument, $frameworkArgument, '--verbosity', 'minimal')
+        $consumerOutput = Join-Path $consumerDirectory "bin/$Configuration/$ConsumerFramework"
+        $consumerBinary = Join-Path $consumerOutput 'PackageConsumer.dll'
+        $consumerDependencies = Join-Path $consumerOutput 'PackageConsumer.deps.json'
+        $binaryHash = (Get-FileHash -LiteralPath $consumerBinary -Algorithm SHA256).Hash
+        $dependencyHash = (Get-FileHash -LiteralPath $consumerDependencies -Algorithm SHA256).Hash
+        $baselineDependencies = [IO.File]::ReadAllText($consumerDependencies) | ConvertFrom-Json
+        if (!$baselineDependencies.libraries.PSObject.Properties["QuantumMatter.Application/$baselineVersion"]) {
+            throw 'Consumer dependencies do not reference the published baseline.'
+        }
+        foreach ($packageId in @('QuantumMatter.Core', 'QuantumMatter.Application', 'QuantumMatter.Infrastructure')) {
+            $candidateAssembly = Join-Path $cacheDirectory "$($packageId.ToLowerInvariant())/$packageVersion/lib/net9.0/$packageId.dll"
+            Copy-Item -LiteralPath $candidateAssembly -Destination (Join-Path $consumerOutput "$packageId.dll") -Force
+        }
+        Invoke-DotNet -Arguments @('run', '--project', $consumerProject, '--no-build', '--no-restore', '-c', $Configuration,
+            $baselineArgument, $frameworkArgument, '--', '--expected-sdk-version', $packageVersion)
+        if ($EnableCuda) {
+            Invoke-DotNet -Arguments @('run', '--project', $consumerProject, '--no-build', '--no-restore', '-c', $Configuration,
+                $baselineArgument, $frameworkArgument, '--', '--cuda', '--expected-sdk-version', $packageVersion)
+        }
+        if ((Get-FileHash -LiteralPath $consumerBinary -Algorithm SHA256).Hash -ne $binaryHash -or
+            (Get-FileHash -LiteralPath $consumerDependencies -Algorithm SHA256).Hash -ne $dependencyHash) {
+            throw 'The baseline consumer was rebuilt or its dependency manifest was changed.'
+        }
+        Write-Output "Binary compatibility passed: consumer compiled against $baselineVersion, executed with $packageVersion on $ConsumerFramework."
     }
     finally { Pop-Location }
     Write-Output "Validated package version $packageVersion from $packageDirectory"

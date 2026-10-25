@@ -21,12 +21,15 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.3xx'
+          dotnet-version: |
+            9.0.3xx
+            10.0.x
       - run: dotnet restore QuantumMatter.sln
       - run: dotnet test QuantumMatter.sln --no-restore -c Debug -p:EnableCudaTests=true --verbosity minimal
       - run: dotnet build QuantumMatter.sln --no-restore -c Release -p:EnableCudaTests=true --verbosity minimal
       - run: dotnet test QuantumMatter.sln --no-build --no-restore -c Release -p:EnableCudaTests=true --verbosity minimal
       - run: ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -EnableCuda
+      - run: ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -ConsumerFramework net10.0 -EnableCuda
       - name: Record driver and device
         run: nvidia-smi --query-gpu=name,driver_version,memory.total,compute_cap --format=csv | Out-File artifacts/nvidia.csv -Encoding utf8
       - uses: actions/upload-artifact@v4

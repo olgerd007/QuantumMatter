@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
     [ValidateSet('net9.0', 'net10.0')][string]$ConsumerFramework = 'net9.0',
+    [ValidatePattern('^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$')][string]$PackageVersion,
     [string]$ExpectedCommit,
     [switch]$EnableCuda
 )
@@ -9,7 +10,7 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $properties = [xml][IO.File]::ReadAllText((Join-Path $repositoryRoot 'Directory.Build.props'))
-$packageVersion = $properties.SelectSingleNode('/Project/PropertyGroup/Version').InnerText
+if (!$PackageVersion) { $PackageVersion = $properties.SelectSingleNode('/Project/PropertyGroup/Version').InnerText }
 $consumerDirectory = Join-Path $repositoryRoot ('artifacts/published-smoke/' + [guid]::NewGuid().ToString('N'))
 $env:DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE = 'true'
 $env:MSBuildEnableWorkloadResolver = 'false'
@@ -54,10 +55,10 @@ try {
         }
     }
     Invoke-DotNet -Arguments @('run', '--project', 'PackageConsumer.csproj', '--no-restore', '-c', 'Release',
-        $versionArgument, $frameworkArgument)
+        $versionArgument, $frameworkArgument, '--', '--expected-sdk-version', $PackageVersion)
     if ($EnableCuda) {
         Invoke-DotNet -Arguments @('run', '--project', 'PackageConsumer.csproj', '--no-build', '--no-restore',
-            '-c', 'Release', $versionArgument, $frameworkArgument, '--', '--cuda')
+            '-c', 'Release', $versionArgument, $frameworkArgument, '--', '--cuda', '--expected-sdk-version', $PackageVersion)
     }
     Write-Output "Published package version $packageVersion validated on $ConsumerFramework from nuget.org."
     Write-Output "Isolated consumer and cache: $consumerDirectory"
