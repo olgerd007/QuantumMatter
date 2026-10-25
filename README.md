@@ -6,16 +6,24 @@ Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
 ## SDK v1.0
 
-The selected release version is **1.0.0**. Three NuGet packages expose
+The SDK version is **1.0.0**. Three NuGet packages expose
 Core, Application and Infrastructure with XML documentation and tracked public APIs.
-Public feed publication and stable release promotion are pending.
+The [v1.0.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.0.0)
+is published on GitHub and NuGet. Fresh .NET 9 and .NET 10 consumers pass using
+only nuget.org, including CUDA execution and tagged-source metadata checks.
 Release publication is configured for nuget.org account olgerd007 using the same
 OIDC convention as XBullet.EasyTesting. The matching QuantumMatter trust policy is
-created; its first successful publish and permanent activation are pending.
+created and has successfully authenticated the first package publication.
+
+```sh
+dotnet add package QuantumMatter.Application --version 1.0.0
+dotnet add package QuantumMatter.Infrastructure --version 1.0.0
+```
 
 ```powershell
 ./scripts/Test-Packages.ps1 -Configuration Release
 ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -ConsumerFramework net10.0
+./scripts/Test-PublishedPackages.ps1 -ConsumerFramework net10.0
 ```
 
 PowerShell 7 and the .NET 9 SDK are required for package checks; the optional

@@ -17,10 +17,10 @@ and [release record](releases/1.0.0.md).
 | v0.5 | Parallel CPU execution | Functional criteria verified |
 | v0.6 | NVIDIA GPU acceleration | Functional criteria verified on NVIDIA hardware |
 | v0.7 | Quantum noise simulation | Functional criteria verified |
-| v1.0 | Stable quantum computing SDK | Version 1.0.0 and API baseline prepared; publication/platform checks pending |
+| v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
 
-Implementation coverage does not indicate a published release. No release tags
-exist in this checkout. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
+Earlier milestones were delivered together in the v1.0.0 release rather than
+separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
 17 gate kinds with controlled single-qubit forms, validated custom unitaries,
 terminal sampling, full-register collapse, memory limits, cancellation and
 stochastic noise trajectories with four single-qubit channels, protected by 664
@@ -36,9 +36,8 @@ and raw measurements are documented in the [CPU execution guide](cpu-performance
 The v0.6 backend, hardware test requirements and measured results are documented in
 the [GPU guide](gpu-execution.md). The v0.7 channels, trajectory representation,
 sampling uncertainty and explicit placement are defined in the [noise guide](noise.md).
-v1.0 SDK stabilization selects version 1.0.0. Three release packages
-include API inventories, XML documentation and an isolated consumer check. No
-milestone has been tagged or publicly published by this work.
+v1.0 is tagged and published as version 1.0.0. Three release packages include frozen
+API inventories, XML documentation and isolated local/public-feed consumer checks.
 
 Local v0.3 validation: restore, Debug/Release builds and all 117 tests, formatting
 verification, and the Bell-state demo pass on Windows x64 with .NET SDK 9.0.319.
@@ -242,18 +241,21 @@ maintained self-hosted runner. The Windows/Linux Debug/Release CI matrix and bot
 package consumer frameworks now pass remotely. NVIDIA validation is local hardware
 evidence; no remote self-hosted NVIDIA run is claimed.
 
-Stable 1.0.0 is prepared with a frozen 211-declaration API baseline and centralized
+Stable 1.0.0 is released with a frozen 211-declaration API baseline and centralized
 version 1.0.0. Framework lifecycle has been reviewed; CUDA support is Windows x64,
 with Linux CUDA experimental. Platform CI and committed-source symbol validation
-pass. NuGet ownership/OIDC publishing verification, reviewed promotion/tagging and actual
-publication remain pending. The [release record](releases/1.0.0.md) defines the exact
-remaining steps; do not mark v1.0 published based on local package success.
+pass. [PR #1](https://github.com/olgerd007/QuantumMatter/pull/1) was merged after
+successful CI; v1.0.0 was tagged and released. The release workflow successfully
+published all three packages and symbols through OIDC. Fresh .NET 9/10 consumers
+restored exclusively from nuget.org and passed CPU, algorithms, noise and real CUDA
+checks, with tagged-source metadata verified. The [release record](releases/1.0.0.md)
+contains the package/feed links and exact evidence. Milestone v1.0 is complete.
 
 Publication is configured for nuget.org user olgerd007 via the release-triggered
 publish-nuget.yml OIDC workflow, matching XBullet.EasyTesting. Its QuantumMatter
-trust policy settings match the user-provided NuGet account screenshot. First
-successful OIDC publication, permanent policy activation and package-prefix ownership
-verification remain pending.
+trust policy settings match the user-provided NuGet account screenshot. Successful
+OIDC publication meets NuGet's permanent-activation condition. Package IDs are now
+published under olgerd007; a reserved package-prefix claim is not made.
 
 ## Shared release checks
 
