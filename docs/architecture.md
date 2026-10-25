@@ -87,6 +87,14 @@ recomputed if FinalState is later evolved or measured.
 
 ## Resource and execution policy
 
+The v1.2 candidate adds host-side observation methods to StateVector and an immutable
+PauliString in Core. Marginal queries, subset projective collapse and Pauli expectations
+use constant auxiliary storage without additional backends or hardware dependencies.
+They operate after any backend completes and can precede another Evolve call. Partial
+measurement commits once after cancellable scans, retaining the full matching branch
+and spectator coherence. See the [observation guide](observations.md) for phase,
+normalization, ordering and cancellation contracts. QuantumCircuit remains unitary.
+
 For N = 2^n, simulation owns 16N bytes of amplitude data. Run additionally owns an
 8N-byte cumulative distribution. A 512 MiB default budget is checked before either
 allocation; callers can configure SimulationOptions.MemoryBudgetBytes. Direct

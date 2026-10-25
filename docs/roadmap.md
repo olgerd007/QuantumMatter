@@ -19,6 +19,7 @@ and [release record](releases/1.1.0.md).
 | v0.7 | Quantum noise simulation | Functional criteria verified |
 | v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
 | v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
+| v1.2 | Partial measurement and observables | Candidate implemented; local dual-runtime CPU/CUDA and package checks pass; remote CI/release review pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -282,6 +283,21 @@ is released, and all three packages and symbols are published on nuget.org.
 Fresh public-feed consumers pass CPU/CUDA checks on .NET 9/10 with the exact
 tagged-source commit verified. Milestone v1.1 is complete. See
 the [v1.1 validation record](releases/1.1.0.md).
+
+## v1.2 — Partial measurement and observables
+
+Acceptance criteria:
+
+- Query normalized marginal probabilities for ordered, nonempty qubit selections.
+- Projectively measure a subset while preserving spectator coherence and surviving phase.
+- Evaluate validated Pauli-string expectations without sampling or full matrices.
+- Specify qubit/output ordering, normalization, cancellation and constant-space behavior.
+- Verify independent projectors and dense Pauli oracles, invalid inputs, seeds and all backends.
+- Preserve all shipped APIs and validate packages and unchanged baseline consumers on .NET 9/10.
+
+Development uses version 1.2.0-rc.1. See the [observation guide](observations.md)
+and [candidate validation record](releases/1.2.0.md). Dynamic circuits and classical
+feedback require a later milestone; existing terminal sampling is unchanged.
 
 ## Shared release checks
 

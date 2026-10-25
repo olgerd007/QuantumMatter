@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0-rc.1 — Unreleased
+
+- Ordered partial-register measurement preserves phase and unmeasured coherence.
+- Normalized marginal probabilities and immutable Pauli-string expectations.
+- Constant-space host observations after scalar, parallel/SIMD or CUDA evolution.
+- Independent projector/Pauli oracle tests, examples and a separate new-API package consumer.
+- Existing shipped API contracts, terminal sampling and full-register collapse remain unchanged.
+
 ## 1.1.0 — 2026-10-25
 
 - Full xUnit coverage on .NET 9 and .NET 10 using the .NET 10 SDK; library assets
