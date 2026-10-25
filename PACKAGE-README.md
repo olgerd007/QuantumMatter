@@ -44,6 +44,11 @@ backend after use. v1.0 CUDA support is validated on Windows x64; Linux CUDA is
 experimental. SIMD is opt-in. Noise uses a separate trajectory API and CPU
 channel kernels; it is not represented by one final ensemble ket.
 
+The 1.4 candidate adds a separate NoisyDynamicCircuit and runner combining those
+channels with measurement, classical feedback and reset. See
+[the noisy dynamic guide](docs/noisy-dynamic-circuits.md) and
+[candidate validation](docs/releases/1.4.0.md). Existing circuit contracts are retained.
+
 Version 1.2 adds partial-register measurement, normalized marginals and
 Pauli-string expectations on host states; see docs/observations.md. These preserve
 the existing unitary circuit and terminal sampling contracts.

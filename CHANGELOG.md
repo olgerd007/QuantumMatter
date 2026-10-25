@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.0-rc.1 — Unreleased
+
+- Separate noisy dynamic programs combine explicit single-qubit channels with
+  ordered measurement, classical unitary conditions and stochastic reset.
+- Preserve classical history across noise placements and execute fresh histories
+  per shot using existing backend ports and dynamic result models.
+- Independent complex-amplitude, Kraus-density and interleaved-branch oracles,
+  runnable example, and a separate package consumer for .NET 9/10 and CUDA.
+- All 240 shipped API declarations, 1.x binding and existing workflows are preserved.
+
 ## 1.3.0 — 2026-10-25
 
 - Separate dynamic circuits with mid-circuit measurement and mapped classical writes.
