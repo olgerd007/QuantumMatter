@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsQuantumMatterLibrary>true</IsQuantumMatterLibrary>
+    <Description>Scalar CPU, parallel/SIMD CPU, NVIDIA CUDA and stochastic noise reference kernels.</Description>
+  </PropertyGroup>
+  <Import Project="../../build/QuantumMatter.Library.props" />
+  <ItemGroup>
+    <PackageReference Include="ILGPU" />
+    <ProjectReference Include="../QuantumMatter.Core/QuantumMatter.Core.csproj" />
+  </ItemGroup>
+</Project>

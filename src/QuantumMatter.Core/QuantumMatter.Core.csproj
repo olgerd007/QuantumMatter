@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsQuantumMatterLibrary>true</IsQuantumMatterLibrary>
+    <Description>Quantum circuit and state models, mathematical invariants, and backend extension contracts.</Description>
+  </PropertyGroup>
+  <Import Project="../../build/QuantumMatter.Library.props" />
+</Project>

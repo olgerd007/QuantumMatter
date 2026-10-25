@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        configuration: [Debug, Release]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            9.0.3xx
+            10.0.x
+      - run: dotnet restore QuantumMatter.sln
+      - run: dotnet build QuantumMatter.sln --no-restore --configuration ${{ matrix.configuration }} --verbosity minimal
+      - run: dotnet test QuantumMatter.sln --no-build --no-restore --configuration ${{ matrix.configuration }} --verbosity minimal
+      - name: Verify portable fallbacks without hardware intrinsics
+        if: matrix.configuration == 'Release'
+        env:
+          DOTNET_EnableHWIntrinsic: '0'
+        run: dotnet test QuantumMatter.sln --no-build --no-restore --configuration Release --verbosity minimal
+      - run: dotnet format QuantumMatter.sln --no-restore --verify-no-changes
+      - name: Validate SDK packages and clean .NET 9 consumer
+        if: matrix.configuration == 'Release'
+        shell: pwsh
+        run: ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild
+      - name: Validate .NET 10 consumer of net9.0 packages
+        if: matrix.configuration == 'Release'
+        shell: pwsh
+        run: ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -ConsumerFramework net10.0
+      - uses: actions/upload-artifact@v4
+        if: matrix.configuration == 'Release'
+        with:
+          name: packages-${{ matrix.os }}
+          path: artifacts/packages/*

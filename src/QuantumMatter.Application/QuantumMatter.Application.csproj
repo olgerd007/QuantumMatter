@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsQuantumMatterLibrary>true</IsQuantumMatterLibrary>
+    <Description>Quantum simulation workflows, algorithms, terminal sampling and noisy trajectory estimates.</Description>
+  </PropertyGroup>
+  <Import Project="../../build/QuantumMatter.Library.props" />
+  <ItemGroup>
+    <ProjectReference Include="../QuantumMatter.Core/QuantumMatter.Core.csproj" />
+  </ItemGroup>
+</Project>
