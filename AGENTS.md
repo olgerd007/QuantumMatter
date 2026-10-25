@@ -70,6 +70,11 @@ locators, catch-all exception handling, and unrelated abstractions.
   a coherent merge of branches. Run re-executes the program for every shot and counts
   explicit final classical memory, without implicit readout or ensemble FinalState.
   Preserve QuantumCircuit and NoisyCircuit semantics; see docs/dynamic-circuits.md.
+- NoisyDynamicCircuit composes private dynamic/noise segments. Carry classical memory
+  across placements but start it at zero for every new public execution. Channels
+  do not write classical bits; preserve explicit order and each history's conditional
+  state. Reuse Kraus sampling and dynamic measurement/reset logic; never average
+  amplitudes or implicitly add terminal readout. See docs/noisy-dynamic-circuits.md.
 - Do not expose arbitrary matrices without finite-value and U-dagger U = I validation,
   a documented tolerance, dimension validation, and tests for rejected nonunitaries.
 
@@ -137,6 +142,8 @@ Use samples/ObservationConsumer for additive v1.2 APIs; Test-Packages.ps1 must r
 it from fresh candidate packages separately from the unchanged baseline consumer.
 Use samples/DynamicConsumer for v1.3 APIs, in its own sibling directory. Keep
 existing public-feed validation modes usable for earlier releases.
+Use samples/NoisyDynamicConsumer for additive v1.4 APIs, in another sibling directory;
+public-feed checks opt in with -ValidateNoisyDynamicCircuits for compatible versions.
 Use the current docs/releases record for promotion; local package validation is not publication.
 
 ```sh

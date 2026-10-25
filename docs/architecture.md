@@ -216,3 +216,20 @@ Infrastructure supplies stateless CPU kernels for bit flip, phase flip,
 depolarization and amplitude damping. Any existing unitary backend can execute the
 segments, including CUDA with a host round trip per segment. Noise kernels are CPU
 only. See the [noise guide](noise.md) for contracts and estimator uncertainty.
+
+## Noisy dynamic composition
+
+The v1.4 candidate adds Core/Dynamic.NoisyDynamicCircuit, composing private
+DynamicCircuit segments and explicit single-placement NoisyCircuit segments.
+An internal continuation value carries the classical register across noise
+boundaries; public EvolveDynamic still initializes it to zero. Both instruction
+models keep their existing validation, snapshots, ordering and backend ownership.
+NoisyDynamicCircuit exposes no mutable internal segment.
+
+StateVector.EvolveNoisyDynamic validates both injected ports and register sizes
+before executing one conditional history. Application's separate
+NoisyDynamicStateVectorSimulator reuses the dynamic result models, performs the
+same amplitude-only budget check, and re-executes independent histories per shot.
+No backend interface or runtime dependency is added. Noise, measurements and
+classical decisions stay on the host; CUDA transfers at executed unitary segment
+boundaries. See the [noisy dynamic guide](noisy-dynamic-circuits.md).

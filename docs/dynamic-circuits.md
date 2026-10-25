@@ -107,6 +107,9 @@ The separate NoisyCircuit/trajectory API remains unchanged. Dynamic instructions
 and noise channels are not combined in this increment. A later combined model
 must preserve trajectory sampling, phase and memory contracts explicitly.
 
+The [v1.4 candidate](noisy-dynamic-circuits.md) introduces that composition through
+a separate NoisyDynamicCircuit and runner. DynamicCircuit itself remains unchanged.
+
 ## Validation and examples
 
 Tests force all four teleportation outcomes for basis states, real/complex

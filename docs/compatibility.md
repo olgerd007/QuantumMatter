@@ -51,6 +51,9 @@ require explicit inventory diffs. The reviewed 1.0.0 inventory is frozen in
 PublicAPI.Shipped.txt as the release contract. Version 1.2 adds seven reviewed
 declarations. Version 1.3 adds 22 dynamic-circuit declarations, giving 240 shipped
 declarations while preserving all 218 declarations shipped through 1.2.
+The v1.4 candidate adds fifteen Unshipped declarations for noisy dynamic circuits
+while preserving all 240 shipped declarations. Existing result types and backend
+ports are reused; see the [candidate record](releases/1.4.0.md).
 Since v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
 parameter-name compatibility is enabled. SDK package validation compares compiled
 assets at pack time. A separate smoke check compiles the consumer against the
