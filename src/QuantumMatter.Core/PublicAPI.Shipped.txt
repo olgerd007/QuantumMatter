@@ -53,6 +53,10 @@ QuantumMatter.Core.Noise.NoisyCircuit.ApplyNoise(QuantumMatter.Core.Noise.NoiseC
 QuantumMatter.Core.Noise.NoisyCircuit.NoisyCircuit(int qubits) -> void
 QuantumMatter.Core.Noise.NoisyCircuit.QubitCount.get -> int
 QuantumMatter.Core.Noise.NoisyCircuit.StepCount.get -> int
+QuantumMatter.Core.PauliString
+QuantumMatter.Core.PauliString.Operators.get -> string!
+QuantumMatter.Core.PauliString.PauliString(string! operators) -> void
+QuantumMatter.Core.PauliString.QubitCount.get -> int
 QuantumMatter.Core.QuantumCircuit
 QuantumMatter.Core.QuantumCircuit.CH(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
 QuantumMatter.Core.QuantumCircuit.CNot(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
@@ -97,7 +101,10 @@ QuantumMatter.Core.StateVector
 QuantumMatter.Core.StateVector.Amplitude(int basisIndex) -> System.Numerics.Complex
 QuantumMatter.Core.StateVector.Evolve(QuantumMatter.Core.QuantumCircuit! circuit, QuantumMatter.Core.IStateVectorBackend! backend, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
 QuantumMatter.Core.StateVector.EvolveTrajectory(QuantumMatter.Core.Noise.NoisyCircuit! circuit, QuantumMatter.Core.IStateVectorBackend! unitaryBackend, QuantumMatter.Core.Noise.INoiseChannelBackend! noiseBackend, System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Core.StateVector.ExpectationValue(QuantumMatter.Core.PauliString! observable, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> double
 QuantumMatter.Core.StateVector.Length.get -> int
+QuantumMatter.Core.StateVector.MarginalProbability(System.ReadOnlySpan<int> qubits, int outcome, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> double
+QuantumMatter.Core.StateVector.Measure(System.ReadOnlySpan<int> qubits, System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> int
 QuantumMatter.Core.StateVector.MeasureAll(System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> int
 QuantumMatter.Core.StateVector.Probability(int basisIndex) -> double
 QuantumMatter.Core.StateVector.QubitCount.get -> int

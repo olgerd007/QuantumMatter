@@ -102,7 +102,7 @@ Mid-circuit measurement, classical registers/control and circuit reset instructi
 are not implemented. StateVector.Reset restores a host state to |0...0>.
 Mixed-state noise has a separate stochastic trajectory API, described below.
 
-The v1.2 candidate also supports explicit partial measurement between evolution
+Version 1.2 also supports explicit partial measurement between evolution
 calls. For subset projector Pi_b, its outcome has probability ||Pi_b psi||^2/M
 and leaves state Pi_b psi/||Pi_b psi||. Unmeasured coherences and surviving phases
 are preserved. Pauli expectations use Re(psi^dagger P psi)/M, with rightmost

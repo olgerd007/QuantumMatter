@@ -1,7 +1,7 @@
 # Partial measurement and Pauli observables
 
-These additive APIs are part of the **1.2.0-rc.1 development candidate**, which is
-not published. Libraries retain net9.0 assets and support .NET 9/10 consumers.
+These additive APIs are included in **1.2.0**; the [release record](releases/1.2.0.md)
+tracks publication. Libraries retain net9.0 assets and support .NET 9/10 consumers.
 
 ```csharp
 var simulator = new StateVectorSimulator(new CpuStateVectorBackend());
