@@ -181,6 +181,21 @@ transfer-inclusive measurements are recorded in the GPU guide.
 A future asynchronous execution port may be justified for device queue orchestration;
 do not add one merely by wrapping the scalar CPU backend in Task.Run.
 
+## Dynamic circuits
+
+The v1.3 candidate adds Core/Dynamic.DynamicCircuit with private validated instructions
+and snapshots of appended unitary segments. StateVector.EvolveDynamic executes one
+conditional trajectory using existing evolution/partial-measurement methods, returning
+a packed classical register. Reset uses measurement and conditional X. No existing
+backend or circuit contract changes.
+
+Application/Dynamic owns allocation policy, independent shots and result lifetimes.
+Run reuses one amplitude array but resets quantum/classical state and executes every
+instruction per shot. It returns final classical counts without implicit quantum
+readout or an ensemble ket; SimulateTrajectory returns one conditional state and
+classical outcome. Classical decisions run on the host and CUDA transfers at each
+executed unitary-segment boundary. See the [dynamic guide](dynamic-circuits.md).
+
 ## Noise trajectories
 
 Core/Noise adds immutable NoiseChannel descriptions, an explicit NoisyCircuit builder

@@ -1,1 +1,11 @@
 #nullable enable
+QuantumMatter.Core.Dynamic.DynamicCircuit
+QuantumMatter.Core.Dynamic.DynamicCircuit.Append(QuantumMatter.Core.QuantumCircuit! circuit) -> QuantumMatter.Core.Dynamic.DynamicCircuit!
+QuantumMatter.Core.Dynamic.DynamicCircuit.ClassicalBitCount.get -> int
+QuantumMatter.Core.Dynamic.DynamicCircuit.DynamicCircuit(int qubits, int classicalBits) -> void
+QuantumMatter.Core.Dynamic.DynamicCircuit.If(int classicalMask, int expectedValue, QuantumMatter.Core.QuantumCircuit! circuit) -> QuantumMatter.Core.Dynamic.DynamicCircuit!
+QuantumMatter.Core.Dynamic.DynamicCircuit.Measure(System.ReadOnlySpan<int> qubits, System.ReadOnlySpan<int> classicalBits) -> QuantumMatter.Core.Dynamic.DynamicCircuit!
+QuantumMatter.Core.Dynamic.DynamicCircuit.QubitCount.get -> int
+QuantumMatter.Core.Dynamic.DynamicCircuit.Reset(int qubit) -> QuantumMatter.Core.Dynamic.DynamicCircuit!
+QuantumMatter.Core.Dynamic.DynamicCircuit.StepCount.get -> int
+QuantumMatter.Core.StateVector.EvolveDynamic(QuantumMatter.Core.Dynamic.DynamicCircuit! circuit, QuantumMatter.Core.IStateVectorBackend! backend, System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> int

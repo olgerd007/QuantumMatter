@@ -1,1 +1,13 @@
 #nullable enable
+QuantumMatter.Application.Dynamic.DynamicSimulationResult
+QuantumMatter.Application.Dynamic.DynamicSimulationResult.ClassicalBitCount.get -> int
+QuantumMatter.Application.Dynamic.DynamicSimulationResult.Counts.get -> System.Collections.Generic.IReadOnlyDictionary<string!, int>!
+QuantumMatter.Application.Dynamic.DynamicSimulationResult.Shots.get -> int
+QuantumMatter.Application.Dynamic.DynamicStateVectorSimulator
+QuantumMatter.Application.Dynamic.DynamicStateVectorSimulator.DynamicStateVectorSimulator(QuantumMatter.Core.IStateVectorBackend! backend, QuantumMatter.Application.SimulationOptions? options = null) -> void
+QuantumMatter.Application.Dynamic.DynamicStateVectorSimulator.Run(QuantumMatter.Core.Dynamic.DynamicCircuit! circuit, int shots = 1024, int? seed = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Application.Dynamic.DynamicSimulationResult!
+QuantumMatter.Application.Dynamic.DynamicStateVectorSimulator.SimulateTrajectory(QuantumMatter.Core.Dynamic.DynamicCircuit! circuit, int? seed = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Application.Dynamic.DynamicTrajectoryResult!
+QuantumMatter.Application.Dynamic.DynamicTrajectoryResult
+QuantumMatter.Application.Dynamic.DynamicTrajectoryResult.ClassicalBitCount.get -> int
+QuantumMatter.Application.Dynamic.DynamicTrajectoryResult.ClassicalOutcome.get -> int
+QuantumMatter.Application.Dynamic.DynamicTrajectoryResult.FinalState.get -> QuantumMatter.Core.StateVector!
