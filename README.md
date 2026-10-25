@@ -4,45 +4,37 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
-## v1.4 promotion
+## SDK v1.4
 
-Selected stable version **1.4.0** adds explicit noise channels to dynamic circuits with
-measurement, classical feedback and reset through a separate API. See the
-[noisy dynamic guide](docs/noisy-dynamic-circuits.md) and
-[validation record](docs/releases/1.4.0.md). Publication is pending; installation
-commands below continue to use v1.3.0.
+Version **1.4.0** adds explicit noise channels to dynamic circuits with measurement,
+classical feedback and reset. It preserves existing 1.x APIs and retains net9.0
+library assets for .NET 9/10 consumers. See the [noisy dynamic guide](docs/noisy-dynamic-circuits.md),
+[API additions](docs/api/1.4.0.md) and [validation record](docs/releases/1.4.0.md).
 
-## SDK v1.3
-
-Version **1.3.0** adds dynamic circuits, mid-circuit measurement, classical
-conditions and qubit reset. It preserves all existing 1.x APIs and retains net9.0
-library assets for .NET 9/10 consumers. See the [dynamic guide](docs/dynamic-circuits.md),
-[API additions](docs/api/1.3.0.md) and [validation record](docs/releases/1.3.0.md).
-
-The [v1.3.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.3.0)
-is published on GitHub and NuGet with matching symbols. Fresh public-feed baseline,
-observation and dynamic consumers pass on .NET 9/10, including CUDA, with the exact
-tagged-source metadata verified:
-[Core](https://www.nuget.org/packages/QuantumMatter.Core/1.3.0),
-[Application](https://www.nuget.org/packages/QuantumMatter.Application/1.3.0) and
-[Infrastructure](https://www.nuget.org/packages/QuantumMatter.Infrastructure/1.3.0).
+The [v1.4.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.4.0)
+is published on GitHub. NuGet accepted all three packages and matching symbols;
+indexing and fresh public-feed verification are pending:
+[Core](https://www.nuget.org/packages/QuantumMatter.Core/1.4.0),
+[Application](https://www.nuget.org/packages/QuantumMatter.Application/1.4.0) and
+[Infrastructure](https://www.nuget.org/packages/QuantumMatter.Infrastructure/1.4.0).
 
 ```sh
-dotnet add package QuantumMatter.Application --version 1.3.0
-dotnet add package QuantumMatter.Infrastructure --version 1.3.0
+dotnet add package QuantumMatter.Application --version 1.4.0
+dotnet add package QuantumMatter.Infrastructure --version 1.4.0
 ```
 
 The [v1.0.0](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.0.0),
-[v1.1.0](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.1.0) and
-[v1.2.0](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.2.0) releases
+[v1.1.0](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.1.0),
+[v1.2.0](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.2.0) and
+[v1.3.0](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.3.0) releases
 remain available. Publication uses nuget.org account olgerd007 and the
 QuantumMatter-specific OIDC Trusted Publishing policy.
 
 ```powershell
 ./scripts/Test-Packages.ps1 -Configuration Release
 ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -ConsumerFramework net10.0
-./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.3.0 -ValidateObservations -ValidateDynamicCircuits
-./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.3.0 -ConsumerFramework net10.0 -ValidateObservations -ValidateDynamicCircuits
+./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.4.0 -ValidateObservations -ValidateDynamicCircuits -ValidateNoisyDynamicCircuits
+./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.4.0 -ConsumerFramework net10.0 -ValidateObservations -ValidateDynamicCircuits -ValidateNoisyDynamicCircuits
 ```
 
 PowerShell 7, the .NET 10 SDK and .NET 9/10 runtimes are required for development checks.
@@ -50,8 +42,8 @@ The scripts pack to
 artifacts/packages and test a fresh package-only consumer with an isolated cache.
 Library targets remain net9.0. Packages validate against published 1.0.0 and run
 unchanged consumers compiled against that baseline. See the
-[versioned API reference](docs/api/1.3.0.md), [compatibility policy](docs/compatibility.md)
-and [release record](docs/releases/1.3.0.md).
+[versioned API reference](docs/api/1.4.0.md), [compatibility policy](docs/compatibility.md)
+and [release record](docs/releases/1.4.0.md).
 
 ## Build and run
 
@@ -147,6 +139,8 @@ foreach (var (bits, count) in result.Counts)
 - Finite dynamic circuits with mid-circuit measurement, classical mask/value
   conditions and qubit reset. Fresh trajectories count explicit classical memory;
   see the [dynamic guide](docs/dynamic-circuits.md).
+- Explicit noise channels combined with dynamic instructions through a separate
+  [noisy dynamic workflow](docs/noisy-dynamic-circuits.md), preserving classical history.
 
 The logical range is 1–30 qubits. For the unitary simulator, the default 512 MiB
 host-array budget permits up to 25 qubits for Simulate and 24 for Run; actual
@@ -156,8 +150,7 @@ Counts, snapshots, runtime overhead, and concurrent simulations require addition
 memory. Circuits and states are mutable and must not be modified concurrently.
 
 Correlated noise, density-matrix execution, general multi-target custom unitaries,
-broader SIMD kernels and dynamic loops are future work. Combined noise/dynamic
-programs are introduced separately in v1.4. StateVector.Reset restores
+broader SIMD kernels and dynamic loops are future work. StateVector.Reset restores
 an owned host state; DynamicCircuit.Reset is a
 stochastic single-qubit instruction.
 
