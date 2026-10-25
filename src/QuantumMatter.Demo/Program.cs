@@ -6,10 +6,10 @@ using QuantumMatter.Infrastructure;
 
 string example = args.Length == 0 ? "bell" : args[0].ToLowerInvariant();
 string backend = args.Length < 2 ? "scalar" : args[1].ToLowerInvariant();
-if (args.Length > 2 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "all")
+if (args.Length > 2 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "observations" or "all")
     || backend is not ("scalar" or "parallel" or "parallel-simd" or "cuda"))
 {
-    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|all] [scalar|parallel|parallel-simd|cuda]");
+    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|observations|all] [scalar|parallel|parallel-simd|cuda]");
     return 2;
 }
 
@@ -48,6 +48,9 @@ switch (example)
         break;
     case "noise":
         NoiseExamples.Run(new NoisyStateVectorSimulator(execution, new CpuNoiseChannelBackend()));
+        break;
+    case "observations":
+        ObservationExamples.Run(simulator);
         break;
     case "all":
         RunBell(simulator);

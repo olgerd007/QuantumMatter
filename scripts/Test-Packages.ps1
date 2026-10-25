@@ -15,6 +15,7 @@ $libraryProperties = [xml][IO.File]::ReadAllText((Join-Path $repositoryRoot 'bui
 $baselineVersion = $libraryProperties.SelectSingleNode('/Project/PropertyGroup/PackageValidationBaselineVersion').InnerText
 $packageDirectory = Join-Path $repositoryRoot 'artifacts/packages'
 $consumerDirectory = Join-Path $repositoryRoot ('artifacts/package-smoke/' + [guid]::NewGuid().ToString('N'))
+$observationDirectory = $consumerDirectory + '-observations'
 $cacheDirectory = Join-Path $consumerDirectory 'packages'
 $env:DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE = 'true'
 $env:MSBuildEnableWorkloadResolver = 'false'
@@ -39,7 +40,8 @@ try {
         try {
             foreach ($requiredEntry in @("lib/net9.0/$packageId.dll", "lib/net9.0/$packageId.xml", 'PACKAGE-README.md',
                 'LICENSE', 'CHANGELOG.md', 'THIRD-PARTY-NOTICES.md', 'docs/api/1.0.0.md', 'docs/releases/1.0.0.md',
-                'docs/releases/1.1.0.md', 'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
+                'docs/releases/1.1.0.md', 'docs/releases/1.2.0.md', 'docs/observations.md',
+                'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
                 if (!$archive.GetEntry($requiredEntry)) { throw "$packageId is missing $requiredEntry." }
             }
             $reader = [IO.StreamReader]::new($archive.GetEntry("$packageId.nuspec").Open())
@@ -69,16 +71,18 @@ try {
         }
     }
 
-    New-Item -ItemType Directory -Path $consumerDirectory -Force | Out-Null
-    Copy-Item -Path (Join-Path $repositoryRoot 'samples/PackageConsumer/*') -Destination $consumerDirectory
-    # Stop traversal into repository build/package configuration: only published package references are allowed.
-    [IO.File]::WriteAllText((Join-Path $consumerDirectory 'Directory.Build.props'), "<Project />`n")
-    [IO.File]::WriteAllText((Join-Path $consumerDirectory 'Directory.Packages.props'),
-        "<Project><PropertyGroup><ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally></PropertyGroup></Project>`n")
-    if ($ConsumerFramework -eq 'net10.0') {
-        [IO.File]::WriteAllText((Join-Path $consumerDirectory 'global.json'),
-            '{ "sdk": { "version": "10.0.100", "rollForward": "latestFeature" } }')
+    foreach ($directory in @($consumerDirectory, $observationDirectory)) {
+        New-Item -ItemType Directory -Path $directory -Force | Out-Null
+        # Stop traversal into repository build/package configuration: only package references are allowed.
+        [IO.File]::WriteAllText((Join-Path $directory 'Directory.Build.props'), "<Project />`n")
+        [IO.File]::WriteAllText((Join-Path $directory 'Directory.Packages.props'),
+            "<Project><PropertyGroup><ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally></PropertyGroup></Project>`n")
+        if ($ConsumerFramework -eq 'net10.0') {
+            [IO.File]::WriteAllText((Join-Path $directory 'global.json'),
+                '{ "sdk": { "version": "10.0.100", "rollForward": "latestFeature" } }')
+        }
     }
+    Copy-Item -Path (Join-Path $repositoryRoot 'samples/PackageConsumer/*') -Destination $consumerDirectory
     $escapedFeed = [Security.SecurityElement]::Escape($packageDirectory)
     $configurationPath = Join-Path $consumerDirectory 'NuGet.Config'
     [IO.File]::WriteAllText($configurationPath, @"
@@ -109,6 +113,19 @@ try {
         if ($EnableCuda) {
             Invoke-DotNet -Arguments @('run', '--project', $consumerProject, '--no-build', '--no-restore', '-c', $Configuration,
                 $versionArgument, $frameworkArgument, '--', '--cuda', '--expected-sdk-version', $packageVersion)
+        }
+
+        # New APIs have a separate package-only consumer; the baseline consumer stays limited to 1.0 APIs.
+        # Use a sibling directory so SDK default compile globs cannot include one consumer in the other.
+        Copy-Item -Path (Join-Path $repositoryRoot 'samples/ObservationConsumer/*') -Destination $observationDirectory
+        $observationProject = Join-Path $observationDirectory 'ObservationConsumer.csproj'
+        Invoke-DotNet -Arguments @('restore', $observationProject, '--configfile', $configurationPath,
+            '--packages', $cacheDirectory, $versionArgument, $frameworkArgument)
+        Invoke-DotNet -Arguments @('run', '--project', $observationProject, '--no-restore', '-c', $Configuration,
+            $versionArgument, $frameworkArgument)
+        if ($EnableCuda) {
+            Invoke-DotNet -Arguments @('run', '--project', $observationProject, '--no-build', '--no-restore', '-c', $Configuration,
+                $versionArgument, $frameworkArgument, '--', '--cuda')
         }
 
         # Recompile only the consumer against the published baseline, then replace just the SDK DLLs.
@@ -154,5 +171,6 @@ try {
     finally { Pop-Location }
     Write-Output "Validated package version $packageVersion from $packageDirectory"
     Write-Output "Isolated consumer and cache: $consumerDirectory"
+    Write-Output "Isolated new-API consumer: $observationDirectory"
 }
 finally { Pop-Location }
