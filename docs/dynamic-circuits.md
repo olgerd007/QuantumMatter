@@ -1,7 +1,7 @@
 # Dynamic circuits and classical control
 
-These APIs are part of **1.3.0-rc.1**, an unpublished development candidate.
-The stable v1.2 SDK remains available. The existing QuantumCircuit is still unitary;
+These APIs are included in **1.3.0**; the [release record](releases/1.3.0.md)
+tracks publication. The existing QuantumCircuit is still unitary;
 DynamicCircuit is a separate finite program with explicit measurement and feedback.
 
 ```csharp
@@ -125,6 +125,6 @@ dotnet run --project src/QuantumMatter.Demo -- dynamic cuda
 
 The demo teleports a complex state, inverts the receiver preparation to verify it
 on every shot, and shows that reset preserves the earlier classical record.
-See [measurement conventions](observations.md) and the [candidate record](releases/1.3.0.md).
+See [measurement conventions](observations.md) and the [release record](releases/1.3.0.md).
 Background: [dynamic circuits](https://quantum.cloud.ibm.com/docs/en/guides/execute-dynamic-circuits)
 and [teleportation](https://quantum.cloud.ibm.com/learning/en/modules/computer-science/quantum-teleportation).
