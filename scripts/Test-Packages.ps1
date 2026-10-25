@@ -40,7 +40,8 @@ try {
         try {
             foreach ($requiredEntry in @("lib/net9.0/$packageId.dll", "lib/net9.0/$packageId.xml", 'PACKAGE-README.md',
                 'LICENSE', 'CHANGELOG.md', 'THIRD-PARTY-NOTICES.md', 'docs/api/1.0.0.md', 'docs/releases/1.0.0.md',
-                'docs/releases/1.1.0.md', 'docs/releases/1.2.0.md', 'docs/observations.md',
+                'docs/releases/1.1.0.md', 'docs/releases/1.2.0.md', 'docs/releases/1.2.0-notes.md',
+                'docs/api/1.2.0.md', 'docs/observations.md',
                 'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
                 if (!$archive.GetEntry($requiredEntry)) { throw "$packageId is missing $requiredEntry." }
             }
