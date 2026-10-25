@@ -100,7 +100,9 @@ locators, catch-all exception handling, and unrelated abstractions.
 
 ## Build and style
 
-Use the SDK selected by global.json and preserve net9.0. Nullable references and
+Use the .NET 10 SDK selected by global.json and preserve net9.0 library assets.
+The test project targets net9.0 and net10.0; install both runtimes and run both
+complete suites, including hardware tests on each when validating CUDA. Nullable references and
 warnings-as-errors apply to every project via Directory.Build.props. Put package
 versions in Directory.Packages.props and explain any added dependency.
 
@@ -115,7 +117,11 @@ explicitly; never automatically rewrite a shipped inventory to hide a break.
 Run scripts/Test-Packages.ps1 for SDK changes. It must consume fresh local packages,
 not project references or a stale global package cache. Test .NET 10 consumer
 compatibility when claiming it, without silently changing the net9.0 library target.
-Use docs/releases/1.0.0.md for promotion; local package validation is not publication.
+Keep PackageValidationBaselineVersion at the reviewed published baseline and retain
+the 1.x assembly binding version. Test-Packages.ps1 must also execute a consumer
+compiled against that baseline with candidate DLLs, without rebuilding the app.
+Keep samples/PackageConsumer limited to APIs available in the 1.0.0 baseline.
+Use the current docs/releases record for promotion; local package validation is not publication.
 
 ```sh
 dotnet restore QuantumMatter.sln

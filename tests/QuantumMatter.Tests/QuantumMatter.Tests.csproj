@@ -1,5 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup><IsPackable>false</IsPackable></PropertyGroup>
+  <PropertyGroup>
+    <!-- Override the library default; the same net9.0 SDK assemblies run on both runtimes. -->
+    <TargetFramework />
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
+    <!-- Framework runs share a physical GPU when hardware tests are enabled. -->
+    <TestTfmsInParallel>false</TestTfmsInParallel>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(EnableCudaTests)' == 'true'">
     <DefineConstants>$(DefineConstants);CUDA_TESTS</DefineConstants>
   </PropertyGroup>

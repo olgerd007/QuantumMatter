@@ -1,4 +1,6 @@
 using System.Numerics;
+using System.Reflection;
+using System.Runtime.Versioning;
 using QuantumMatter.Application;
 using QuantumMatter.Application.Algorithms;
 using QuantumMatter.Application.Noise;
@@ -6,12 +8,37 @@ using QuantumMatter.Core;
 using QuantumMatter.Core.Noise;
 using QuantumMatter.Infrastructure;
 
-if (args.Length > 1 || (args.Length == 1 && args[0] != "--cuda"))
+bool enableCuda = false;
+string? expectedVersion = null;
+for (int index = 0; index < args.Length; index++)
 {
-    Console.Error.WriteLine("Usage: PackageConsumer [--cuda]");
-    return 2;
+    if (args[index] == "--cuda" && !enableCuda)
+    {
+        enableCuda = true;
+    }
+    else if (args[index] == "--expected-sdk-version" && expectedVersion is null && index + 1 < args.Length)
+    {
+        expectedVersion = args[++index];
+    }
+    else
+    {
+        Console.Error.WriteLine("Usage: PackageConsumer [--cuda] [--expected-sdk-version VERSION]");
+        return 2;
+    }
 }
 
+if (expectedVersion is not null)
+{
+    foreach (Assembly assembly in new[] { typeof(StateVector).Assembly, typeof(StateVectorSimulator).Assembly, typeof(CpuStateVectorBackend).Assembly })
+    {
+        string actual = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()!.InformationalVersion.Split('+')[0];
+        Require(actual == expectedVersion, $"Expected {expectedVersion}, loaded {assembly.GetName().Name} {actual}.");
+    }
+}
+
+var targetFramework = new FrameworkName(Assembly.GetExecutingAssembly().GetCustomAttribute<TargetFrameworkAttribute>()!.FrameworkName);
+Require(Environment.Version.Major == targetFramework.Version.Major, "Consumer must execute on its declared major runtime.");
+Console.WriteLine($"Package consumer runtime: {System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}.");
 ValidateBackend(new CpuStateVectorBackend());
 ValidateBackend(new ParallelCpuStateVectorBackend(new ParallelCpuOptions
 {
@@ -19,7 +46,7 @@ ValidateBackend(new ParallelCpuStateVectorBackend(new ParallelCpuOptions
     MinimumParallelQubits = 1,
     EnableSimd = true
 }));
-if (args.Length == 1)
+if (enableCuda)
 {
     using var cuda = new CudaStateVectorBackend();
     ValidateBackend(cuda);

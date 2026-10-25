@@ -18,6 +18,7 @@ and [release record](releases/1.0.0.md).
 | v0.6 | NVIDIA GPU acceleration | Functional criteria verified on NVIDIA hardware |
 | v0.7 | Quantum noise simulation | Functional criteria verified |
 | v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
+| v1.1 | Full .NET 9/10 validation and compatibility | Candidate implemented; local dual-runtime/CUDA and binary consumer checks pass; remote validation pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -256,6 +257,25 @@ publish-nuget.yml OIDC workflow, matching XBullet.EasyTesting. Its QuantumMatter
 trust policy settings match the user-provided NuGet account screenshot. Successful
 OIDC publication meets NuGet's permanent-activation condition. Package IDs are now
 published under olgerd007; a reserved package-prefix claim is not made.
+
+## v1.1 — Full .NET 9/10 validation and release hardening
+
+Acceptance criteria:
+
+- Build with the .NET 10 SDK and run the complete suite on actual .NET 9 and .NET 10
+  runtimes under Windows/Linux Debug and Release.
+- Keep net9.0 package assets, existing mathematical conventions, all 211 shipped
+  API declarations and the 1.x assembly binding version compatible with 1.0.0.
+- Validate each package against its published 1.0.0 baseline at pack time.
+- Compile a consumer against published 1.0.0, inject candidate SDK DLLs and run it
+  on both runtimes without recompiling the consumer or modifying its dependency manifest.
+- Run CUDA conformance and package/binary consumers on both runtimes with real hardware.
+- Verify that intentional compatibility breaks are rejected and record actual evidence.
+
+Candidate 1.1.0-rc.1 implements these checks. Local Debug/Release suites pass 666
+cases per runtime with real CUDA. Fresh and baseline-compiled consumers pass on
+both runtimes, including CUDA. Remote CI and release promotion are pending. See
+the [v1.1 validation record](releases/1.1.0.md).
 
 ## Shared release checks
 

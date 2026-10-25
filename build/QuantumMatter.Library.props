@@ -9,9 +9,11 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>PACKAGE-README.md</PackageReadmeFile>
     <PackageTags>quantum;simulation;state-vector;dotnet</PackageTags>
-    <PackageReleaseNotes>First stable SDK: CPU/CUDA state vectors, algorithms and stochastic noise trajectories. See CHANGELOG.md and docs/releases/1.0.0.md in the package.</PackageReleaseNotes>
+    <PackageReleaseNotes>Full .NET 9/10 validation and compatibility checks against SDK 1.0.0. See CHANGELOG.md and docs/releases/1.1.0.md in the package.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion>
+    <ApiCompatEnableRuleCannotChangeParameterName>true</ApiCompatEnableRuleCannotChangeParameterName>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

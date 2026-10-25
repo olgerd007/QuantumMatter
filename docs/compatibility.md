@@ -1,9 +1,10 @@
 # SDK compatibility and support policy
 
-## v1.0 framework/platform scope
+## Framework/platform scope
 
-The SDK targets net9.0 as requested by the project. The repository uses the SDK
-selected by global.json. Framework lifecycle was reviewed for v1.0 on 2026-10-25:
+The libraries target net9.0 as requested by the project. Starting with v1.1, the
+repository uses the .NET 10 SDK selected by global.json and tests target both
+net9.0 and net10.0. Install both runtimes. Framework lifecycle was reviewed on 2026-10-25:
 Microsoft support for .NET 9 ends November 10, 2026. .NET 10 LTS consumers are
 recommended for new applications; Microsoft supports that runtime through
 November 14, 2028. See [Microsoft's support policy](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core).
@@ -14,8 +15,8 @@ net9.0 asset requires a major version and migration guidance.
 
 | Surface | Release target | Validation evidence |
 | --- | --- | --- |
-| Scalar/parallel CPU and reference noise | Windows x64 and Linux x64, .NET 9 | Local Windows suite and remote Windows/Linux Debug/Release CI pass |
-| .NET 10 consumer of net9.0 packages | Windows/Linux x64 | Local Windows smoke including CUDA and remote Windows/Linux consumers pass; not the full suite retargeted to .NET 10 |
+| Scalar/parallel CPU and reference noise | Windows x64 and Linux x64, .NET 9/10 | Local full suites pass on both runtimes; v1.1 dual-runtime Windows/Linux CI pending |
+| .NET 10 runtime using net9.0 packages | Windows/Linux x64 | Full local .NET 10 suite and package consumers pass, including CUDA and precompiled 1.0.0 consumer; v1.1 remote checks pending |
 | SIMD | Portable Vector&lt;double&gt; Hadamard when hardware/layout permits | Local accelerated and disabled-intrinsics suites; scalar fallback |
 | CUDA | Windows x64, compatible NVIDIA device/driver | Local RTX 4070 Ti SUPER, SM_89, driver 610.88/CUDA API 13.3; Linux CUDA is experimental and outside v1.0 support |
 | Other OS/CPU architectures | Unverified | No release support claim |
@@ -28,7 +29,8 @@ restores ILGPU 1.5.3 even for CPU selection; Core/Application do not depend on I
 
 ## Versioning
 
-All three SDK packages share semantic version 1.0.0. Use matching package versions.
+All three SDK packages share a semantic version. Stable 1.0.0 is published;
+1.1.0-rc.1 is the unpublished development candidate. Use matching package versions.
 The release record distinguishes prepared artifacts from public publication.
 The 1.x compatibility policy is:
 
@@ -46,10 +48,14 @@ PublicApiAnalyzers 3.3.4 is a pinned, build-only dependency compatible with the 
 compiler. It tracks the three libraries' PublicAPI files and nullability; changes
 require explicit inventory diffs. The reviewed 1.0.0 inventory is frozen in
 PublicAPI.Shipped.txt as the release contract; this does not assert publication.
-After 1.0.0 publication, configure PackageValidationBaselineVersion to 1.0.0 for
-subsequent versions. SDK package
-validation checks compatible assets at pack time; there is no previous stable
-package baseline to compare for this first release. References:
+For v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
+parameter-name compatibility is enabled. SDK package validation compares compiled
+assets at pack time. A separate smoke check compiles the consumer against the
+published baseline, replaces only SDK DLLs with candidate DLLs and runs it without
+rebuilding the app or its dependency manifest. The 1.x AssemblyVersion remains
+1.0.0.0 for binding compatibility; FileVersion follows the current release.
+These checks supplement numerical tests; they do not prove every possible caller
+workflow or arbitrary-depth floating-point behavior. References:
 [API analyzer](https://github.com/dotnet/roslyn/blob/main/src/RoslynAnalyzers/PublicApiAnalyzers/PublicApiAnalyzers.Help.md),
 [package validation](https://learn.microsoft.com/en-us/dotnet/fundamentals/package-validation/overview).
 
