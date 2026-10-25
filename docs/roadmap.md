@@ -22,6 +22,7 @@ and [release record](releases/1.4.0.md).
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
 | v1.3 | Dynamic circuits and classical control | Released as v1.3.0; platform CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.4 | Noisy dynamic circuits | Released as v1.4.0; platform CI, NuGet publication and all four fresh CPU/CUDA consumers verified |
+| v1.5 | Hamiltonians and variational gradients | Candidate locally verified on .NET 9/10 and CUDA; platform CI and release pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -356,6 +357,25 @@ exact release commit verified. Milestone v1.4 is complete.
 Local validation passes all 763 CUDA-enabled tests per runtime in Debug/Release,
 portable fallback suites, zero-warning builds and formatting. All four fresh-package
 consumers and unchanged 1.0.0-compiled consumers pass on both runtimes, including CUDA.
+
+## v1.5 — Hamiltonians and variational gradients
+
+Acceptance criteria:
+
+- Immutable real Pauli sums with normalized energy queries and explicit empty/duplicate semantics.
+- Parameterized uncontrolled Rx/Ry/Rz rotations with constant snapshots and shared/unused parameters.
+- Occurrence-wise parameter-shift gradients, independent dense derivative oracles and numerical edge cases.
+- Reuse existing unitary backends, host-array budgets and cancellation without dense production matrices.
+- Preserve all 255 shipped APIs and validate five fresh consumers and unchanged baseline binaries on .NET 9/10.
+- Document host/device boundaries, numerical limits and the absence of optimizer/noisy-gradient policies.
+
+The user selected this scope for candidate 1.5.0-rc.1. It adds 28 Unshipped API
+declarations without a new project, dependency or backend port. See the
+[variational guide](variational.md) and [validation record](releases/1.5.0.md).
+Local validation passes all 781 CUDA-enabled cases per runtime/configuration,
+portable fallback suites, zero-warning builds, formatting, all five fresh-package
+consumers and unchanged baseline binaries on .NET 9/10. CPU-only runs pass 693
+cases plus one GPU skip per runtime. Remote CI and stable publication remain pending.
 
 ## Shared release checks
 

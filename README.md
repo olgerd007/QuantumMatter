@@ -4,6 +4,12 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
+## v1.5 candidate
+
+Candidate **1.5.0-rc.1** adds Pauli Hamiltonians, parameterized rotations and
+occurrence-wise energy gradients. See the [variational guide](docs/variational.md)
+and [validation record](docs/releases/1.5.0.md). Stable promotion and publication are pending.
+
 ## SDK v1.4
 
 Version **1.4.0** adds explicit noise channels to dynamic circuits with measurement,

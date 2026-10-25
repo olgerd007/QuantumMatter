@@ -80,7 +80,8 @@ For normalized states a Pauli expectation lies in [-1,1], up to floating-point
 roundoff; values are not clamped. No sampling error is introduced. The Bell state
 (|00>+|11>)/sqrt(2) has <XX>=<ZZ>=+1 and <YY>=-1. The +i eigenstate of Y has
 <Y>=+1, distinguishing coherent phase from measurement probabilities.
-Weighted sums can be formed by callers from individual expectations. A noisy
+Weighted sums can be formed by callers from individual expectations; the
+[v1.5 candidate](variational.md) adds explicit Hamiltonians and energy queries. A noisy
 trajectory expectation describes that conditional pure state, not an ensemble;
 do not interpret one trajectory as a mixed-state expectation.
 

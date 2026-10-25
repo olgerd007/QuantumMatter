@@ -75,6 +75,14 @@ locators, catch-all exception handling, and unrelated abstractions.
   do not write classical bits; preserve explicit order and each history's conditional
   state. Reuse Kraus sampling and dynamic measurement/reset logic; never average
   amplitudes or implicitly add terminal readout. See docs/noisy-dynamic-circuits.md.
+- Pauli Hamiltonians are immutable finite real sums with matching Pauli widths.
+  Preserve ordered duplicate/zero terms and normalized energy-query semantics.
+  Variational templates parameterize only uncontrolled Rx/Ry/Rz gates. For shared
+  parameters, sum occurrence-wise shift contributions, never shift every occurrence
+  together. Compose shifts without losing offsets at large angles; difference
+  expectations termwise before weighting. Budget parameter/gradient/term buffers,
+  preserve caller-owned backends, and use independent dense derivative oracles.
+  See docs/variational.md.
 - Do not expose arbitrary matrices without finite-value and U-dagger U = I validation,
   a documented tolerance, dimension validation, and tests for rejected nonunitaries.
 
@@ -144,6 +152,8 @@ Use samples/DynamicConsumer for v1.3 APIs, in its own sibling directory. Keep
 existing public-feed validation modes usable for earlier releases.
 Use samples/NoisyDynamicConsumer for additive v1.4 APIs, in another sibling directory;
 public-feed checks opt in with -ValidateNoisyDynamicCircuits for compatible versions.
+Use samples/VariationalConsumer for v1.5 APIs in a fifth sibling directory; public
+checks opt in with -ValidateVariational while preserving older consumer sources.
 Use the current docs/releases record for promotion; local package validation is not publication.
 
 ```sh

@@ -233,3 +233,19 @@ same amplitude-only budget check, and re-executes independent histories per shot
 No backend interface or runtime dependency is added. Noise, measurements and
 classical decisions stay on the host; CUDA transfers at executed unitary segment
 boundaries. See the [noisy dynamic guide](noisy-dynamic-circuits.md).
+
+## Variational building blocks
+
+The v1.5 candidate adds immutable Core/Observables Pauli Hamiltonians and a
+Core/Variational parameterized template. Constant operations are snapshotted;
+binding creates validated QuantumCircuit operations for existing backends. Public
+ExpectationValue remains unchanged; ExpectationEnergy adds weighted Hamiltonians
+without ambiguous overloads. No full operator matrix is allocated in production.
+
+Application/Variational injects the existing unitary backend and options, reuses
+one state for base/shifted executions, and returns immutable energy/gradient results.
+Shared parameters are differentiated occurrence by occurrence. Termwise differences
+preserve small gradients under large identity offsets; composed same-axis shifts
+avoid lost angle increments. The host budget includes parameter/gradient/term arrays;
+backend device/staging budgets remain separate. No new infrastructure dependency
+or backend port is introduced. See the [variational guide](variational.md).
