@@ -19,8 +19,9 @@ library assets for .NET 9/10 consumers. See the [dynamic guide](docs/dynamic-cir
 [API additions](docs/api/1.3.0.md) and [validation record](docs/releases/1.3.0.md).
 
 The [v1.3.0 release](https://github.com/olgerd007/QuantumMatter/releases/tag/v1.3.0)
-is published on GitHub. NuGet has accepted all three packages and matching symbols;
-indexing and fresh public-feed verification are pending:
+is published on GitHub and NuGet with matching symbols. Fresh public-feed baseline,
+observation and dynamic consumers pass on .NET 9/10, including CUDA, with the exact
+tagged-source metadata verified:
 [Core](https://www.nuget.org/packages/QuantumMatter.Core/1.3.0),
 [Application](https://www.nuget.org/packages/QuantumMatter.Application/1.3.0) and
 [Infrastructure](https://www.nuget.org/packages/QuantumMatter.Infrastructure/1.3.0).
