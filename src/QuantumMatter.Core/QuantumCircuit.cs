@@ -91,6 +91,9 @@ public sealed class QuantumCircuit
         return copy;
     }
 
+    // Template binding supplies only operations already validated by the circuit/template builders.
+    internal void AppendValidated(GateOperation operation) => _operations.Add(operation);
+
     private QuantumCircuit Add(GateKind kind, int target, int? control = null, double angle = 0,
         int? secondControl = null, SingleQubitUnitary? unitary = null)
     {

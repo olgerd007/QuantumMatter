@@ -125,6 +125,15 @@ groups a sum of weighted outer products, even when overwrites merge earlier reco
 Never coherently combine those histories or sample all shots from one noise branch.
 See the [noisy dynamic guide](noisy-dynamic-circuits.md).
 
+The v1.5 candidate defines H=sum_k c_k P_k for finite real coefficients and
+matching Pauli strings. Energy queries return sum_k c_k*Re(psi^dagger P_k psi)/M
+without modifying state. For each uncontrolled Pauli rotation occurrence,
+the parameter derivative uses half the +pi/2 versus -pi/2 expectation difference.
+Shared parameters sum all occurrence contributions by the product rule. Shifts
+are composed as same-axis rotations, and term expectations are differenced before
+weighting, preserving phase and avoiding loss from large constant offsets.
+See the [variational guide](variational.md) for numerical limits and reference equations.
+
 ## Numerical validation
 
 The reference backend uses double-precision Complex arithmetic and does not
