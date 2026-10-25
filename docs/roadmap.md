@@ -22,7 +22,7 @@ and [release record](releases/1.4.0.md).
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
 | v1.3 | Dynamic circuits and classical control | Released as v1.3.0; platform CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.4 | Noisy dynamic circuits | Released as v1.4.0; platform CI, NuGet publication and all four fresh CPU/CUDA consumers verified |
-| v1.5 | Hamiltonians and variational gradients | Candidate locally verified on .NET 9/10 and CUDA; platform CI and release pending |
+| v1.5 | Hamiltonians and variational gradients | Candidate locally verified on .NET 9/10 and CUDA; platform CI tracked in PR #15, release pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -375,7 +375,8 @@ declarations without a new project, dependency or backend port. See the
 Local validation passes all 781 CUDA-enabled cases per runtime/configuration,
 portable fallback suites, zero-warning builds, formatting, all five fresh-package
 consumers and unchanged baseline binaries on .NET 9/10. CPU-only runs pass 693
-cases plus one GPU skip per runtime. Remote CI and stable publication remain pending.
+cases plus one GPU skip per runtime. Platform CI is tracked in
+[PR #15](https://github.com/olgerd007/QuantumMatter/pull/15); stable publication remains pending.
 
 ## Shared release checks
 
