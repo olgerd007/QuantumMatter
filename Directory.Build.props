@@ -1,0 +1,18 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <Version Condition="'$(Version)' == ''">1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+    <!-- Local artifacts can contain uncommitted files; do not attach an inaccurate HEAD source link. -->
+    <EnableSourceControlManagerQueries Condition="'$(CI)' != 'true'">false</EnableSourceControlManagerQueries>
+    <EnableSourceLink Condition="'$(CI)' != 'true'">false</EnableSourceLink>
+    <IncludeSourceRevisionInInformationalVersion Condition="'$(CI)' != 'true'">false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+</Project>

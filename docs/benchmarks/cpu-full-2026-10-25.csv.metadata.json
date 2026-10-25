@@ -1,0 +1,41 @@
+{
+  "timestampUtc": "2026-10-24T23:34:09.6020255+00:00",
+  "profile": "full",
+  "cpu": "AMD Ryzen 9 7900X 12-Core Processor",
+  "logicalProcessors": 24,
+  "os": "Microsoft Windows 10.0.26200",
+  "architecture": "X64",
+  "runtime": ".NET 9.0.21",
+  "buildSdk": "9.0.319",
+  "vectorDoubleLanes": 4,
+  "vectorAccelerated": true,
+  "simdLayoutSupported": true,
+  "avx2": true,
+  "avx512": true,
+  "tieredCompilation": "0",
+  "precision": "double Complex",
+  "sizes": [
+    12,
+    16,
+    18,
+    20
+  ],
+  "depths": [
+    16,
+    64
+  ],
+  "mixes": [
+    "hadamard-low",
+    "hadamard-high",
+    "mixed-low",
+    "mixed-high"
+  ],
+  "repetitions": 5,
+  "warmupsPerBackendAndCase": 2,
+  "forcedParallelThresholdQubits": 1,
+  "timing": "Execute only; input reset, allocation, warmup and validation excluded",
+  "allocations": "Process-wide managed allocation delta, including worker threads; median per Execute",
+  "workingSet": "Cumulative process high-water mark, not an isolated per-backend peak",
+  "ordering": "Rotate backend order on every repetition",
+  "source": "Local working tree; commit/release not implied"
+}
