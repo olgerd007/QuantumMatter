@@ -1,0 +1,37 @@
+name: NVIDIA hardware validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cuda:
+    # Register this label on a maintained Windows NVIDIA runner before dispatching.
+    runs-on: [self-hosted, Windows, X64, quantummatter-gpu]
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE: 'true'
+      MSBuildEnableWorkloadResolver: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.3xx'
+      - run: dotnet restore QuantumMatter.sln
+      - run: dotnet test QuantumMatter.sln --no-restore -c Debug -p:EnableCudaTests=true --verbosity minimal
+      - run: dotnet build QuantumMatter.sln --no-restore -c Release -p:EnableCudaTests=true --verbosity minimal
+      - run: dotnet test QuantumMatter.sln --no-build --no-restore -c Release -p:EnableCudaTests=true --verbosity minimal
+      - run: ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -EnableCuda
+      - name: Record driver and device
+        run: nvidia-smi --query-gpu=name,driver_version,memory.total,compute_cap --format=csv | Out-File artifacts/nvidia.csv -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nvidia-validation
+          path: |
+            artifacts/nvidia.csv
+            artifacts/packages/*

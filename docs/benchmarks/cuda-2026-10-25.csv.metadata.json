@@ -1,0 +1,39 @@
+{
+  "timestampUtc": "2026-10-25T07:54:56.7511165+00:00",
+  "Device": {
+    "Index": 0,
+    "Name": "NVIDIA GeForce RTX 4070 Ti SUPER",
+    "Architecture": "SM_89",
+    "CudaDriverVersion": "13.3",
+    "MemoryBytes": 17170956288
+  },
+  "os": "Microsoft Windows 10.0.26200",
+  "runtime": ".NET 9.0.21",
+  "buildSdk": "9.0.319",
+  "logicalProcessors": 24,
+  "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "tieredCompilation": "0",
+  "precision": "IEEE double real and imaginary; ILGPU 1.5.3 MathMode.Default; no renormalization",
+  "sizes": [
+    12,
+    18,
+    22
+  ],
+  "depths": [
+    16,
+    64
+  ],
+  "mixes": [
+    "hadamard-low",
+    "hadamard-high",
+    "mixed-low",
+    "mixed-high"
+  ],
+  "repetitions": 5,
+  "warmupsPerCase": 2,
+  "totalTiming": "ExecuteProfiled including staging conversion, allocation/free, upload, gate dispatch/sync, download, commit and CUDA event overhead; excludes context/JIT, input reset and oracle checks",
+  "deviceTiming": "CUDA event interval around gate sequence; excludes transfer and allocation; includes launch gaps and synchronization every 32 gates; not summed isolated kernel durations",
+  "allocations": "Calling-thread managed allocation; includes staging array, excludes driver/context/native and device memory",
+  "normSummation": "Kahan compensated sum of squared real and imaginary components; avoids large-register summation drift",
+  "memory": "One 16N device state \u002B one 16N host staging array; context/driver metadata separate; no amplitude scratch arrays"
+}

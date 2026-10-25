@@ -1,0 +1,113 @@
+#nullable enable
+const QuantumMatter.Core.SingleQubitUnitary.ValidationTolerance = 1E-12 -> double
+const QuantumMatter.Core.StateVector.DefaultMemoryBudgetBytes = 536870912 -> long
+QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.CNot = 9 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.H = 0 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.I = 11 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Phase = 14 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Rx = 6 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Ry = 7 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Rz = 8 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.S = 4 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Sdg = 12 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Swap = 10 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.T = 5 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Tdg = 13 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Toffoli = 16 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Unitary = 15 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.X = 1 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Y = 2 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateKind.Z = 3 -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateOperation
+QuantumMatter.Core.GateOperation.Angle.get -> double
+QuantumMatter.Core.GateOperation.Angle.init -> void
+QuantumMatter.Core.GateOperation.Control.get -> int
+QuantumMatter.Core.GateOperation.Control.init -> void
+QuantumMatter.Core.GateOperation.Deconstruct(out QuantumMatter.Core.GateKind kind, out int target, out int control, out double angle) -> void
+QuantumMatter.Core.GateOperation.GateOperation() -> void
+QuantumMatter.Core.GateOperation.GateOperation(QuantumMatter.Core.GateKind Kind, int Target, int Control = -1, double Angle = 0, int SecondControl = -1, QuantumMatter.Core.SingleQubitUnitary? Unitary = null) -> void
+QuantumMatter.Core.GateOperation.Kind.get -> QuantumMatter.Core.GateKind
+QuantumMatter.Core.GateOperation.Kind.init -> void
+QuantumMatter.Core.GateOperation.SecondControl.get -> int
+QuantumMatter.Core.GateOperation.SecondControl.init -> void
+QuantumMatter.Core.GateOperation.Target.get -> int
+QuantumMatter.Core.GateOperation.Target.init -> void
+QuantumMatter.Core.GateOperation.Unitary.get -> QuantumMatter.Core.SingleQubitUnitary?
+QuantumMatter.Core.GateOperation.Unitary.init -> void
+QuantumMatter.Core.IStateVectorBackend
+QuantumMatter.Core.IStateVectorBackend.Execute(QuantumMatter.Core.QuantumCircuit! circuit, System.Memory<System.Numerics.Complex> amplitudes, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Core.Noise.INoiseChannelBackend
+QuantumMatter.Core.Noise.INoiseChannelBackend.Apply(QuantumMatter.Core.Noise.NoiseChannel! channel, int target, System.Memory<System.Numerics.Complex> amplitudes, System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Core.Noise.NoiseChannel
+QuantumMatter.Core.Noise.NoiseChannel.Kind.get -> QuantumMatter.Core.Noise.NoiseKind
+QuantumMatter.Core.Noise.NoiseChannel.Probability.get -> double
+QuantumMatter.Core.Noise.NoiseKind
+QuantumMatter.Core.Noise.NoiseKind.AmplitudeDamping = 3 -> QuantumMatter.Core.Noise.NoiseKind
+QuantumMatter.Core.Noise.NoiseKind.BitFlip = 0 -> QuantumMatter.Core.Noise.NoiseKind
+QuantumMatter.Core.Noise.NoiseKind.Depolarizing = 2 -> QuantumMatter.Core.Noise.NoiseKind
+QuantumMatter.Core.Noise.NoiseKind.PhaseFlip = 1 -> QuantumMatter.Core.Noise.NoiseKind
+QuantumMatter.Core.Noise.NoisyCircuit
+QuantumMatter.Core.Noise.NoisyCircuit.Append(QuantumMatter.Core.QuantumCircuit! circuit) -> QuantumMatter.Core.Noise.NoisyCircuit!
+QuantumMatter.Core.Noise.NoisyCircuit.ApplyNoise(QuantumMatter.Core.Noise.NoiseChannel! channel, int target) -> QuantumMatter.Core.Noise.NoisyCircuit!
+QuantumMatter.Core.Noise.NoisyCircuit.NoisyCircuit(int qubits) -> void
+QuantumMatter.Core.Noise.NoisyCircuit.QubitCount.get -> int
+QuantumMatter.Core.Noise.NoisyCircuit.StepCount.get -> int
+QuantumMatter.Core.QuantumCircuit
+QuantumMatter.Core.QuantumCircuit.CH(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CNot(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Controlled(QuantumMatter.Core.GateKind kind, int control, int target, double angle = 0) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.ControlledU(int control, int target, QuantumMatter.Core.SingleQubitUnitary! unitary) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CPhase(int control, int target, double angle) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CRx(int control, int target, double angle) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CRy(int control, int target, double angle) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CRz(int control, int target, double angle) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CS(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CSdg(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CT(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CTdg(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CY(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.CZ(int control, int target) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.H(int q) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.I(int q) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Operations.get -> System.Collections.Generic.IReadOnlyList<QuantumMatter.Core.GateOperation>!
+QuantumMatter.Core.QuantumCircuit.Phase(int q, double angle) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.QuantumCircuit(int qubits) -> void
+QuantumMatter.Core.QuantumCircuit.QubitCount.get -> int
+QuantumMatter.Core.QuantumCircuit.Rx(int q, double angle) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Ry(int q, double angle) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Rz(int q, double angle) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.S(int q) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Sdg(int q) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Swap(int a, int b) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.T(int q) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Tdg(int q) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Toffoli(int firstControl, int secondControl, int target) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.U(int target, QuantumMatter.Core.SingleQubitUnitary! unitary) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.X(int q) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Y(int q) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.QuantumCircuit.Z(int q) -> QuantumMatter.Core.QuantumCircuit!
+QuantumMatter.Core.SingleQubitUnitary
+QuantumMatter.Core.SingleQubitUnitary.Adjoint() -> QuantumMatter.Core.SingleQubitUnitary!
+QuantumMatter.Core.SingleQubitUnitary.M00.get -> System.Numerics.Complex
+QuantumMatter.Core.SingleQubitUnitary.M01.get -> System.Numerics.Complex
+QuantumMatter.Core.SingleQubitUnitary.M10.get -> System.Numerics.Complex
+QuantumMatter.Core.SingleQubitUnitary.M11.get -> System.Numerics.Complex
+QuantumMatter.Core.StateVector
+QuantumMatter.Core.StateVector.Amplitude(int basisIndex) -> System.Numerics.Complex
+QuantumMatter.Core.StateVector.Evolve(QuantumMatter.Core.QuantumCircuit! circuit, QuantumMatter.Core.IStateVectorBackend! backend, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Core.StateVector.EvolveTrajectory(QuantumMatter.Core.Noise.NoisyCircuit! circuit, QuantumMatter.Core.IStateVectorBackend! unitaryBackend, QuantumMatter.Core.Noise.INoiseChannelBackend! noiseBackend, System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Core.StateVector.Length.get -> int
+QuantumMatter.Core.StateVector.MeasureAll(System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> int
+QuantumMatter.Core.StateVector.Probability(int basisIndex) -> double
+QuantumMatter.Core.StateVector.QubitCount.get -> int
+QuantumMatter.Core.StateVector.Reset(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Core.StateVector.Snapshot() -> System.Numerics.Complex[]!
+QuantumMatter.Core.StateVector.StateVector(int qubits, long memoryBudgetBytes = 536870912) -> void
+static QuantumMatter.Core.Noise.NoiseChannel.AmplitudeDamping(double gamma) -> QuantumMatter.Core.Noise.NoiseChannel!
+static QuantumMatter.Core.Noise.NoiseChannel.BitFlip(double probability) -> QuantumMatter.Core.Noise.NoiseChannel!
+static QuantumMatter.Core.Noise.NoiseChannel.Depolarizing(double probability) -> QuantumMatter.Core.Noise.NoiseChannel!
+static QuantumMatter.Core.Noise.NoiseChannel.PhaseFlip(double probability) -> QuantumMatter.Core.Noise.NoiseChannel!
+static QuantumMatter.Core.SingleQubitUnitary.Create(System.Numerics.Complex m00, System.Numerics.Complex m01, System.Numerics.Complex m10, System.Numerics.Complex m11) -> QuantumMatter.Core.SingleQubitUnitary!
+static QuantumMatter.Core.SingleQubitUnitary.Create(System.Numerics.Complex[,]! matrix) -> QuantumMatter.Core.SingleQubitUnitary!
+static QuantumMatter.Core.StateVector.RequiredBytes(int qubits) -> long
