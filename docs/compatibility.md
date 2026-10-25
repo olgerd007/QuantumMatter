@@ -29,9 +29,8 @@ restores ILGPU 1.5.3 even for CPU selection; Core/Application do not depend on I
 
 ## Versioning
 
-All three SDK packages share a semantic version. Version 1.1.0 is selected for
-stable promotion; see the release record for publication status. Stable 1.0.0
-remains available. Use matching package versions.
+All three SDK packages share semantic version 1.1.0, published on nuget.org.
+Stable 1.0.0 remains available. Use matching package versions.
 The release record distinguishes prepared artifacts from public publication.
 The 1.x compatibility policy is:
 
@@ -89,7 +88,7 @@ licenses/notices. Packages carry documentation and license files. Consumers own
 injected backend lifetimes, especially IDisposable CUDA contexts. Core/Application
 have no container, logging, network or persistence dependencies.
 
-Release 1.0.0 packages and symbols are published on nuget.org under user
+Release 1.1.0 packages and symbols are published on nuget.org under user
 olgerd007, using the same OIDC Trusted Publishing approach as
 XBullet.EasyTesting. The user-provided screenshot confirms QuantumMatter's own
 repository/workflow policy and QuantumMatter.* scope. Its first OIDC
