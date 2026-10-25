@@ -5,8 +5,8 @@ scope targets, with no delivery dates assigned. A version is ready to release on
 when its acceptance criteria and the shared release checks below pass.
 
 The v0.x validation paragraphs below are historical records of local milestone
-work. Current cross-platform CI and publication status are in the v1.4 section
-and [release record](releases/1.4.0.md).
+work. Current cross-platform CI and publication status are in the v1.5 section
+and [release record](releases/1.5.0.md).
 
 | Version | Goal | Current implementation coverage |
 | --- | --- | --- |
@@ -22,7 +22,7 @@ and [release record](releases/1.4.0.md).
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
 | v1.3 | Dynamic circuits and classical control | Released as v1.3.0; platform CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.4 | Noisy dynamic circuits | Released as v1.4.0; platform CI, NuGet publication and all four fresh CPU/CUDA consumers verified |
-| v1.5 | Hamiltonians and variational gradients | Implementation merged after eight CI jobs; stable 1.5.0 promotion and publication in progress |
+| v1.5 | Hamiltonians and variational gradients | Released as v1.5.0; platform CI, NuGet publication and all five fresh CPU/CUDA consumers verified |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -376,7 +376,11 @@ Local validation passes all 781 CUDA-enabled cases per runtime/configuration,
 portable fallback suites, zero-warning builds, formatting, all five fresh-package
 consumers and unchanged baseline binaries on .NET 9/10. CPU-only runs pass 693
 cases plus one GPU skip per runtime. All eight platform CI jobs pass in
-[PR #15](https://github.com/olgerd007/QuantumMatter/pull/15); stable publication remains pending.
+[PR #15](https://github.com/olgerd007/QuantumMatter/pull/15). Stable promotion
+[PR #16](https://github.com/olgerd007/QuantumMatter/pull/16) also passes all eight jobs.
+The v1.5.0 tagged-source workflow passes Windows/Linux validation and publishes all
+three packages and symbols through OIDC. All five fresh nuget.org-only consumers
+pass on .NET 9/10 with real CUDA and exact tagged-source metadata verified.
 
 ## Shared release checks
 
