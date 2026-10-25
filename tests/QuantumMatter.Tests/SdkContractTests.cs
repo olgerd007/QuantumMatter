@@ -1,3 +1,5 @@
+using System.Reflection;
+using System.Runtime.Versioning;
 using QuantumMatter.Application;
 using QuantumMatter.Application.Noise;
 using QuantumMatter.Core;
@@ -9,6 +11,23 @@ namespace QuantumMatter.Tests;
 
 public sealed class SdkContractTests
 {
+    [Fact]
+    public void Tests_execute_on_the_declared_runtime_without_major_version_roll_forward()
+    {
+        // VSTest's host reports its own TFM; the test assembly declares the runtime under test.
+        var target = new FrameworkName(typeof(SdkContractTests).Assembly.GetCustomAttribute<TargetFrameworkAttribute>()!.FrameworkName);
+        Assert.Equal(target.Version.Major, Environment.Version.Major);
+    }
+
+    [Fact]
+    public void Both_runtime_suites_use_the_net9_library_assets()
+    {
+        foreach (Assembly assembly in new[] { typeof(StateVector).Assembly, typeof(StateVectorSimulator).Assembly, typeof(CpuStateVectorBackend).Assembly })
+        {
+            Assert.Equal(".NETCoreApp,Version=v9.0", assembly.GetCustomAttribute<TargetFrameworkAttribute>()!.FrameworkName);
+        }
+    }
+
     [Theory]
     [InlineData(-1)]
     [InlineData(2)]

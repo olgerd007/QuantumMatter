@@ -50,6 +50,14 @@ Tests stay in one project with focused files. Hardware integration cases are
 explicitly enabled with EnableCudaTests=true and require real NVIDIA execution.
 Significant use cases can be tested without the demo.
 
+The v1.1 development toolchain uses the .NET 10 SDK. Tests target net9.0 and net10.0
+while all library projects retain net9.0, so both full suites exercise the same
+package asset on their declared runtimes. Framework runs are sequential when
+invoked together because hardware suites share a physical GPU. Package validation
+compares compiled assets to published 1.0.0; a baseline-compiled consumer also runs
+with candidate DLLs to exercise binary binding without recompilation. No new runtime
+abstraction or domain/infrastructure dependency is introduced by these checks.
+
 ## Ownership and extension contract
 
 StateVector owns one private Complex array. Amplitude and Probability expose values;

@@ -13,6 +13,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         configuration: [Debug, Release]
+        framework: [net9.0, net10.0]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -23,23 +24,29 @@ jobs:
             10.0.x
       - run: dotnet restore QuantumMatter.sln
       - run: dotnet build QuantumMatter.sln --no-restore --configuration ${{ matrix.configuration }} --verbosity minimal
-      - run: dotnet test QuantumMatter.sln --no-build --no-restore --configuration ${{ matrix.configuration }} --verbosity minimal
+      - run: dotnet test tests/QuantumMatter.Tests/QuantumMatter.Tests.csproj --no-build --no-restore --configuration ${{ matrix.configuration }} --framework ${{ matrix.framework }} --logger "trx;LogFilePrefix=tests" --results-directory artifacts/test-results --verbosity minimal
       - name: Verify portable fallbacks without hardware intrinsics
         if: matrix.configuration == 'Release'
         env:
           DOTNET_EnableHWIntrinsic: '0'
-        run: dotnet test QuantumMatter.sln --no-build --no-restore --configuration Release --verbosity minimal
+        run: dotnet test tests/QuantumMatter.Tests/QuantumMatter.Tests.csproj --no-build --no-restore --configuration Release --framework ${{ matrix.framework }} --verbosity minimal
       - run: dotnet format QuantumMatter.sln --no-restore --verify-no-changes
       - name: Validate SDK packages and clean .NET 9 consumer
-        if: matrix.configuration == 'Release'
+        if: matrix.configuration == 'Release' && matrix.framework == 'net9.0'
         shell: pwsh
         run: ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild
       - name: Validate .NET 10 consumer of net9.0 packages
-        if: matrix.configuration == 'Release'
+        if: matrix.configuration == 'Release' && matrix.framework == 'net9.0'
         shell: pwsh
         run: ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -ConsumerFramework net10.0
       - uses: actions/upload-artifact@v4
-        if: matrix.configuration == 'Release'
+        if: matrix.configuration == 'Release' && matrix.framework == 'net9.0'
         with:
           name: packages-${{ matrix.os }}
           path: artifacts/packages/*
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.os }}-${{ matrix.configuration }}-${{ matrix.framework }}
+          path: artifacts/test-results/*.trx
+          if-no-files-found: warn

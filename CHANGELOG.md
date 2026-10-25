@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0-rc.1 — Unreleased
+
+- Full xUnit coverage on .NET 9 and .NET 10 using the .NET 10 SDK; library assets
+  remain net9.0 and the 211 shipped API declarations are unchanged.
+- Explicit Windows/Linux Debug/Release runtime matrix and sequential dual-runtime
+  NVIDIA validation; runtime guards reject unintended major-version roll-forward.
+- Package validation against published 1.0.0, including parameter-name checks.
+- Binary smoke checks execute an unchanged consumer compiled against published
+  1.0.0 with candidate DLLs on each runtime, including optional CUDA.
+- Public-feed checks accept an explicit package version to verify prior releases.
+
 ## 1.0.0 — 2026-10-25
 
 First stable SDK, assembled from milestones v0.1–v0.7. See the

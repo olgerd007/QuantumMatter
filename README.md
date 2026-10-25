@@ -4,6 +4,14 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
+## v1.1 development
+
+The development candidate is **1.1.0-rc.1**, not yet published. It uses the .NET 10
+SDK to run the complete suite on .NET 9 and .NET 10, preserving net9.0 library assets
+and the 1.0 public APIs. Packages validate against published 1.0.0 and run consumers
+compiled against that baseline with candidate assemblies. See the
+[v1.1 validation record](docs/releases/1.1.0.md).
+
 ## SDK v1.0
 
 The SDK version is **1.0.0**. Three NuGet packages expose
@@ -23,18 +31,18 @@ dotnet add package QuantumMatter.Infrastructure --version 1.0.0
 ```powershell
 ./scripts/Test-Packages.ps1 -Configuration Release
 ./scripts/Test-Packages.ps1 -Configuration Release -SkipBuild -ConsumerFramework net10.0
-./scripts/Test-PublishedPackages.ps1 -ConsumerFramework net10.0
+./scripts/Test-PublishedPackages.ps1 -PackageVersion 1.0.0 -ConsumerFramework net10.0
 ```
 
-PowerShell 7 and the .NET 9 SDK are required for package checks; the optional
-net10.0 consumer check additionally needs a .NET 10 SDK. The scripts pack to
+PowerShell 7, the .NET 10 SDK and .NET 9/10 runtimes are required for development checks.
+The scripts pack to
 artifacts/packages and test a fresh package-only consumer with an isolated cache.
 Library targets remain net9.0. See the [versioned API reference](docs/api/1.0.0.md),
 [compatibility policy](docs/compatibility.md) and [release record](docs/releases/1.0.0.md).
 
 ## Build and run
 
-Install a .NET 9 SDK in the 9.0.3xx feature band selected by global.json.
+Install the .NET 10 SDK selected by global.json and both .NET 9/10 runtimes.
 
 ```sh
 dotnet restore QuantumMatter.sln
@@ -174,5 +182,6 @@ injection. See the audit document for migration details.
 The test suite includes complex gate-column checks, independent dense-matrix
 comparisons, exhaustive two-qubit truth tables, long-circuit inverse/norm tests,
 and resource, validation, cancellation, and measurement regressions.
-CI builds and tests Debug and Release on Windows and Linux and verifies formatting.
+CI builds and tests Debug and Release on Windows and Linux under both runtimes,
+verifies formatting and validates source/binary compatibility with published 1.0.0.
 Use feature branches for significant changes and never push directly to main.
