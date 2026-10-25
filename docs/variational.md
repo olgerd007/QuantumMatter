@@ -1,6 +1,6 @@
 # Pauli Hamiltonians and variational gradients
 
-The **1.5.0-rc.1 candidate** adds real Pauli Hamiltonians, parameterized rotation
+Version **1.5.0** adds real Pauli Hamiltonians, parameterized rotation
 templates, and pure-state energy/gradient evaluation. It preserves existing circuit,
 measurement, noise, dynamic and backend contracts. See the [release record](releases/1.5.0.md).
 
@@ -143,5 +143,5 @@ empty/unused parameters, snapshots, immutable results, exact budgets and failure
 
 Test-Packages.ps1 runs samples/VariationalConsumer in a fifth sibling directory
 from fresh packages, leaving all four earlier consumer sources unchanged.
-Test-PublishedPackages.ps1 opts into this candidate's APIs with -ValidateVariational;
+Test-PublishedPackages.ps1 opts into these APIs with -ValidateVariational;
 omit that flag for older releases. See the [compatibility policy](compatibility.md).

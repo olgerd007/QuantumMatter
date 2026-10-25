@@ -1,8 +1,1 @@
 #nullable enable
-QuantumMatter.Application.Variational.VariationalEnergyEvaluator
-QuantumMatter.Application.Variational.VariationalEnergyEvaluator.Evaluate(QuantumMatter.Core.Variational.ParameterizedCircuit! circuit, QuantumMatter.Core.Observables.PauliHamiltonian! hamiltonian, System.ReadOnlySpan<double> parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> double
-QuantumMatter.Application.Variational.VariationalEnergyEvaluator.EvaluateWithGradient(QuantumMatter.Core.Variational.ParameterizedCircuit! circuit, QuantumMatter.Core.Observables.PauliHamiltonian! hamiltonian, System.ReadOnlySpan<double> parameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Application.Variational.VariationalEnergyResult!
-QuantumMatter.Application.Variational.VariationalEnergyEvaluator.VariationalEnergyEvaluator(QuantumMatter.Core.IStateVectorBackend! backend, QuantumMatter.Application.SimulationOptions? options = null) -> void
-QuantumMatter.Application.Variational.VariationalEnergyResult
-QuantumMatter.Application.Variational.VariationalEnergyResult.Energy.get -> double
-QuantumMatter.Application.Variational.VariationalEnergyResult.Gradient.get -> System.Collections.Generic.IReadOnlyList<double>!

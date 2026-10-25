@@ -54,9 +54,10 @@ declarations while preserving all 218 declarations shipped through 1.2.
 Version 1.4 adds fifteen declarations for noisy dynamic circuits, giving 255 shipped
 declarations while preserving all 240 earlier declarations. Existing result types
 and backend ports are reused; see the [release record](releases/1.4.0.md).
-The v1.5 candidate adds 28 Unshipped declarations for Hamiltonians and variational
-building blocks while preserving all 255 shipped declarations. No existing
-ExpectationValue overload or backend port changes; see the [candidate record](releases/1.5.0.md).
+Version 1.5 adds 28 declarations for Hamiltonians and variational building blocks,
+giving 283 shipped declarations while preserving all 255 earlier declarations.
+No existing ExpectationValue overload or backend port changes; see the
+[release record](releases/1.5.0.md). Stable 1.5.0 publication is being prepared.
 Since v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
 parameter-name compatibility is enabled. SDK package validation compares compiled
 assets at pack time. A separate smoke check compiles the consumer against the
