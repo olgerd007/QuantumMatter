@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><IsPackable>false</IsPackable></PropertyGroup>
+  <PropertyGroup Condition="'$(EnableCudaTests)' == 'true'">
+    <DefineConstants>$(DefineConstants);CUDA_TESTS</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
+    <ProjectReference Include="../../src/QuantumMatter.Core/QuantumMatter.Core.csproj" />
+    <ProjectReference Include="../../src/QuantumMatter.Application/QuantumMatter.Application.csproj" />
+    <ProjectReference Include="../../src/QuantumMatter.Infrastructure/QuantumMatter.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

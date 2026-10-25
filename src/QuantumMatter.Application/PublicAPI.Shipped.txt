@@ -1,0 +1,47 @@
+#nullable enable
+const QuantumMatter.Application.Algorithms.DeutschJozsa.MaximumCircuitOperations = 1000000 -> int
+const QuantumMatter.Application.Algorithms.DeutschJozsa.MaximumInputQubits = 16 -> int
+const QuantumMatter.Application.Algorithms.GroverSearch.MaximumCircuitOperations = 1000000 -> int
+const QuantumMatter.Application.Algorithms.GroverSearch.MaximumInputQubits = 16 -> int
+QuantumMatter.Application.Algorithms.DeutschJozsa
+QuantumMatter.Application.Algorithms.GroverSearch
+QuantumMatter.Application.Algorithms.QuantumFourierTransform
+QuantumMatter.Application.Noise.NoisyProbabilityResult
+QuantumMatter.Application.Noise.NoisyProbabilityResult.Estimate(int basisIndex) -> QuantumMatter.Application.Noise.ProbabilityEstimate
+QuantumMatter.Application.Noise.NoisyProbabilityResult.Length.get -> int
+QuantumMatter.Application.Noise.NoisyProbabilityResult.QubitCount.get -> int
+QuantumMatter.Application.Noise.NoisyProbabilityResult.Trajectories.get -> int
+QuantumMatter.Application.Noise.NoisySimulationResult
+QuantumMatter.Application.Noise.NoisySimulationResult.Counts.get -> System.Collections.Generic.IReadOnlyDictionary<string!, int>!
+QuantumMatter.Application.Noise.NoisySimulationResult.Shots.get -> int
+QuantumMatter.Application.Noise.NoisyStateVectorSimulator
+QuantumMatter.Application.Noise.NoisyStateVectorSimulator.EstimateProbabilities(QuantumMatter.Core.Noise.NoisyCircuit! circuit, int trajectories = 1024, int? seed = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Application.Noise.NoisyProbabilityResult!
+QuantumMatter.Application.Noise.NoisyStateVectorSimulator.NoisyStateVectorSimulator(QuantumMatter.Core.IStateVectorBackend! unitaryBackend, QuantumMatter.Core.Noise.INoiseChannelBackend! noiseBackend, QuantumMatter.Application.SimulationOptions? options = null) -> void
+QuantumMatter.Application.Noise.NoisyStateVectorSimulator.Run(QuantumMatter.Core.Noise.NoisyCircuit! circuit, int shots = 1024, int? seed = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Application.Noise.NoisySimulationResult!
+QuantumMatter.Application.Noise.NoisyStateVectorSimulator.SimulateTrajectory(QuantumMatter.Core.Noise.NoisyCircuit! circuit, int? seed = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Core.StateVector!
+QuantumMatter.Application.Noise.ProbabilityEstimate
+QuantumMatter.Application.Noise.ProbabilityEstimate.Probability.get -> double
+QuantumMatter.Application.Noise.ProbabilityEstimate.Probability.init -> void
+QuantumMatter.Application.Noise.ProbabilityEstimate.ProbabilityEstimate() -> void
+QuantumMatter.Application.Noise.ProbabilityEstimate.ProbabilityEstimate(double Probability, double StandardError) -> void
+QuantumMatter.Application.Noise.ProbabilityEstimate.StandardError.get -> double
+QuantumMatter.Application.Noise.ProbabilityEstimate.StandardError.init -> void
+QuantumMatter.Application.SimulationOptions
+QuantumMatter.Application.SimulationOptions.MemoryBudgetBytes.get -> long
+QuantumMatter.Application.SimulationOptions.MemoryBudgetBytes.init -> void
+QuantumMatter.Application.SimulationResult
+QuantumMatter.Application.SimulationResult.Counts.get -> System.Collections.Generic.IReadOnlyDictionary<string!, int>!
+QuantumMatter.Application.SimulationResult.Counts.init -> void
+QuantumMatter.Application.SimulationResult.FinalState.get -> QuantumMatter.Core.StateVector!
+QuantumMatter.Application.SimulationResult.FinalState.init -> void
+QuantumMatter.Application.SimulationResult.SimulationResult(QuantumMatter.Core.StateVector! FinalState, System.Collections.Generic.IReadOnlyDictionary<string!, int>! Counts) -> void
+QuantumMatter.Application.StateVectorSimulator
+QuantumMatter.Application.StateVectorSimulator.Run(QuantumMatter.Core.QuantumCircuit! circuit, int shots = 1024, int? seed = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Application.SimulationResult!
+QuantumMatter.Application.StateVectorSimulator.Simulate(QuantumMatter.Core.QuantumCircuit! circuit, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Core.StateVector!
+QuantumMatter.Application.StateVectorSimulator.StateVectorSimulator(QuantumMatter.Core.IStateVectorBackend! backend, QuantumMatter.Application.SimulationOptions? options = null) -> void
+static QuantumMatter.Application.Algorithms.DeutschJozsa.CreateCircuit(System.Collections.Generic.IReadOnlyList<bool>! truthTable, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Core.QuantumCircuit!
+static QuantumMatter.Application.Algorithms.GroverSearch.CreateCircuit(int inputQubits, int markedBasisIndex, int? iterations = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Core.QuantumCircuit!
+static QuantumMatter.Application.Algorithms.GroverSearch.RecommendedIterations(int inputQubits) -> int
+static QuantumMatter.Application.Algorithms.QuantumFourierTransform.Append(QuantumMatter.Core.QuantumCircuit! circuit, bool inverse = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Core.QuantumCircuit!
+static QuantumMatter.Application.Algorithms.QuantumFourierTransform.Append(QuantumMatter.Core.QuantumCircuit! circuit, System.Collections.Generic.IReadOnlyList<int>! qubits, bool inverse = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Core.QuantumCircuit!
+static QuantumMatter.Application.Algorithms.QuantumFourierTransform.CreateCircuit(int qubits, bool inverse = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Core.QuantumCircuit!

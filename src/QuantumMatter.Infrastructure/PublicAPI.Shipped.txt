@@ -1,0 +1,54 @@
+#nullable enable
+QuantumMatter.Infrastructure.CpuNoiseChannelBackend
+QuantumMatter.Infrastructure.CpuNoiseChannelBackend.Apply(QuantumMatter.Core.Noise.NoiseChannel! channel, int target, System.Memory<System.Numerics.Complex> amplitudes, System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Infrastructure.CpuNoiseChannelBackend.CpuNoiseChannelBackend() -> void
+QuantumMatter.Infrastructure.CpuStateVectorBackend
+QuantumMatter.Infrastructure.CpuStateVectorBackend.CpuStateVectorBackend() -> void
+QuantumMatter.Infrastructure.CpuStateVectorBackend.Execute(QuantumMatter.Core.QuantumCircuit! circuit, System.Memory<System.Numerics.Complex> amplitudes, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Infrastructure.CudaBackendOptions
+QuantumMatter.Infrastructure.CudaBackendOptions.DeviceIndex.get -> int
+QuantumMatter.Infrastructure.CudaBackendOptions.DeviceIndex.init -> void
+QuantumMatter.Infrastructure.CudaBackendOptions.DeviceMemoryBudgetBytes.get -> long
+QuantumMatter.Infrastructure.CudaBackendOptions.DeviceMemoryBudgetBytes.init -> void
+QuantumMatter.Infrastructure.CudaBackendOptions.EnableProfiling.get -> bool
+QuantumMatter.Infrastructure.CudaBackendOptions.EnableProfiling.init -> void
+QuantumMatter.Infrastructure.CudaBackendOptions.StagingMemoryBudgetBytes.get -> long
+QuantumMatter.Infrastructure.CudaBackendOptions.StagingMemoryBudgetBytes.init -> void
+QuantumMatter.Infrastructure.CudaDeviceInfo
+QuantumMatter.Infrastructure.CudaDeviceInfo.Architecture.get -> string!
+QuantumMatter.Infrastructure.CudaDeviceInfo.Architecture.init -> void
+QuantumMatter.Infrastructure.CudaDeviceInfo.CudaDeviceInfo(int Index, string! Name, string! Architecture, string! CudaDriverVersion, long MemoryBytes) -> void
+QuantumMatter.Infrastructure.CudaDeviceInfo.CudaDriverVersion.get -> string!
+QuantumMatter.Infrastructure.CudaDeviceInfo.CudaDriverVersion.init -> void
+QuantumMatter.Infrastructure.CudaDeviceInfo.Index.get -> int
+QuantumMatter.Infrastructure.CudaDeviceInfo.Index.init -> void
+QuantumMatter.Infrastructure.CudaDeviceInfo.MemoryBytes.get -> long
+QuantumMatter.Infrastructure.CudaDeviceInfo.MemoryBytes.init -> void
+QuantumMatter.Infrastructure.CudaDeviceInfo.Name.get -> string!
+QuantumMatter.Infrastructure.CudaDeviceInfo.Name.init -> void
+QuantumMatter.Infrastructure.CudaExecutionProfile
+QuantumMatter.Infrastructure.CudaExecutionProfile.CudaExecutionProfile(System.TimeSpan DeviceEvolutionTime, long StateBytes, int KernelLaunches) -> void
+QuantumMatter.Infrastructure.CudaExecutionProfile.DeviceEvolutionTime.get -> System.TimeSpan
+QuantumMatter.Infrastructure.CudaExecutionProfile.DeviceEvolutionTime.init -> void
+QuantumMatter.Infrastructure.CudaExecutionProfile.KernelLaunches.get -> int
+QuantumMatter.Infrastructure.CudaExecutionProfile.KernelLaunches.init -> void
+QuantumMatter.Infrastructure.CudaExecutionProfile.StateBytes.get -> long
+QuantumMatter.Infrastructure.CudaExecutionProfile.StateBytes.init -> void
+QuantumMatter.Infrastructure.CudaStateVectorBackend
+QuantumMatter.Infrastructure.CudaStateVectorBackend.CudaStateVectorBackend(QuantumMatter.Infrastructure.CudaBackendOptions? options = null) -> void
+QuantumMatter.Infrastructure.CudaStateVectorBackend.Device.get -> QuantumMatter.Infrastructure.CudaDeviceInfo!
+QuantumMatter.Infrastructure.CudaStateVectorBackend.Dispose() -> void
+QuantumMatter.Infrastructure.CudaStateVectorBackend.Execute(QuantumMatter.Core.QuantumCircuit! circuit, System.Memory<System.Numerics.Complex> amplitudes, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Infrastructure.CudaStateVectorBackend.ExecuteProfiled(QuantumMatter.Core.QuantumCircuit! circuit, System.Memory<System.Numerics.Complex> amplitudes, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Infrastructure.CudaExecutionProfile!
+QuantumMatter.Infrastructure.ParallelCpuOptions
+QuantumMatter.Infrastructure.ParallelCpuOptions.EnableSimd.get -> bool
+QuantumMatter.Infrastructure.ParallelCpuOptions.EnableSimd.init -> void
+QuantumMatter.Infrastructure.ParallelCpuOptions.MaxDegreeOfParallelism.get -> int
+QuantumMatter.Infrastructure.ParallelCpuOptions.MaxDegreeOfParallelism.init -> void
+QuantumMatter.Infrastructure.ParallelCpuOptions.MinimumParallelQubits.get -> int
+QuantumMatter.Infrastructure.ParallelCpuOptions.MinimumParallelQubits.init -> void
+QuantumMatter.Infrastructure.ParallelCpuStateVectorBackend
+QuantumMatter.Infrastructure.ParallelCpuStateVectorBackend.Execute(QuantumMatter.Core.QuantumCircuit! circuit, System.Memory<System.Numerics.Complex> amplitudes, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
+QuantumMatter.Infrastructure.ParallelCpuStateVectorBackend.ParallelCpuStateVectorBackend(QuantumMatter.Infrastructure.ParallelCpuOptions? options = null) -> void
+static QuantumMatter.Infrastructure.CudaStateVectorBackend.GetDevices() -> System.Collections.Generic.IReadOnlyList<QuantumMatter.Infrastructure.CudaDeviceInfo!>!
+static QuantumMatter.Infrastructure.ParallelCpuStateVectorBackend.IsSimdSupported.get -> bool

@@ -1,0 +1,28 @@
+<Project>
+  <PropertyGroup Condition="'$(IsQuantumMatterLibrary)' == 'true'">
+    <IsPackable>true</IsPackable>
+    <Authors>olgerd007</Authors>
+    <PackageProjectUrl>https://github.com/olgerd007/QuantumMatter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/olgerd007/QuantumMatter</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>PACKAGE-README.md</PackageReadmeFile>
+    <PackageTags>quantum;simulation;state-vector;dotnet</PackageTags>
+    <PackageReleaseNotes>First stable SDK: CPU/CUDA state vectors, algorithms and stochastic noise trajectories. See CHANGELOG.md and docs/releases/1.0.0.md in the package.</PackageReleaseNotes>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(IsQuantumMatterLibrary)' == 'true'">
+    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" PrivateAssets="all" />
+    <None Include="$(MSBuildThisFileDirectory)../PACKAGE-README.md" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)../LICENSE" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)../CHANGELOG.md" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)../THIRD-PARTY-NOTICES.md" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)../licenses/*.txt" Pack="true" PackagePath="licenses/" />
+    <None Include="$(MSBuildThisFileDirectory)../docs/**/*.md" Pack="true" PackagePath="docs/" />
+    <None Include="$(MSBuildProjectDirectory)/PublicAPI.*.txt" Pack="true" PackagePath="api/" />
+  </ItemGroup>
+</Project>
