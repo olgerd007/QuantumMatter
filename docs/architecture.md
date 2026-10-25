@@ -183,7 +183,7 @@ do not add one merely by wrapping the scalar CPU backend in Task.Run.
 
 ## Dynamic circuits
 
-The v1.3 candidate adds Core/Dynamic.DynamicCircuit with private validated instructions
+Version 1.3 adds Core/Dynamic.DynamicCircuit with private validated instructions
 and snapshots of appended unitary segments. StateVector.EvolveDynamic executes one
 conditional trajectory using existing evolution/partial-measurement methods, returning
 a packed classical register. Reset uses measurement and conditional X. No existing
