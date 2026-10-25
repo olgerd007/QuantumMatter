@@ -50,10 +50,11 @@ channels with measurement, classical feedback and reset. See
 [release validation](docs/releases/1.4.0.md) and [API additions](docs/api/1.4.0.md).
 Existing circuit contracts are retained.
 
-The 1.5 candidate adds Pauli Hamiltonians, parameterized Rx/Ry/Rz templates and
+Version 1.5 adds Pauli Hamiltonians, parameterized Rx/Ry/Rz templates and
 pure-state energies/gradients. Shared parameters use occurrence-wise shifts;
 reductions remain on the host after unitary backend execution. See the
-[variational guide](docs/variational.md) and [candidate validation](docs/releases/1.5.0.md).
+[variational guide](docs/variational.md), [API additions](docs/api/1.5.0.md) and
+[release validation](docs/releases/1.5.0.md).
 
 Version 1.2 adds partial-register measurement, normalized marginals and
 Pauli-string expectations on host states; see docs/observations.md. These preserve
