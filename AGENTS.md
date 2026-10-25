@@ -64,6 +64,12 @@ locators, catch-all exception handling, and unrelated abstractions.
   conventions, conditional normalization, sampling uncertainty and array budgets.
   Do not introduce mid-circuit measurement, classical control, reset, or noise by
   silently changing these contracts.
+- DynamicCircuit is a separate finite Core/Dynamic model. Each trajectory starts
+  classical bits at zero; measurement overwrites mapped destinations, and If uses
+  (register & mask) == value. Reset is a measurement/conditional-X trajectory, never
+  a coherent merge of branches. Run re-executes the program for every shot and counts
+  explicit final classical memory, without implicit readout or ensemble FinalState.
+  Preserve QuantumCircuit and NoisyCircuit semantics; see docs/dynamic-circuits.md.
 - Do not expose arbitrary matrices without finite-value and U-dagger U = I validation,
   a documented tolerance, dimension validation, and tests for rejected nonunitaries.
 
@@ -129,6 +135,8 @@ compiled against that baseline with candidate DLLs, without rebuilding the app.
 Keep samples/PackageConsumer limited to APIs available in the 1.0.0 baseline.
 Use samples/ObservationConsumer for additive v1.2 APIs; Test-Packages.ps1 must run
 it from fresh candidate packages separately from the unchanged baseline consumer.
+Use samples/DynamicConsumer for v1.3 APIs, in its own sibling directory. Keep
+existing public-feed validation modes usable for earlier releases.
 Use the current docs/releases record for promotion; local package validation is not publication.
 
 ```sh

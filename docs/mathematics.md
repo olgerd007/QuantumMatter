@@ -98,8 +98,8 @@ Run performs independent terminal shots from the uncollapsed final pure state.
 It uses a cumulative array and strict upper-bound binary search. Counts sum to
 the requested number of positive shots and use zero-padded n-bit strings.
 Run does not insert measurement into a circuit and does not collapse FinalState.
-Mid-circuit measurement, classical registers/control and circuit reset instructions
-are not implemented. StateVector.Reset restores a host state to |0...0>.
+QuantumCircuit has no mid-circuit measurement, classical registers/control or
+reset instructions. StateVector.Reset restores a host state to |0...0>.
 Mixed-state noise has a separate stochastic trajectory API, described below.
 
 Version 1.2 also supports explicit partial measurement between evolution
@@ -109,6 +109,14 @@ are preserved. Pauli expectations use Re(psi^dagger P psi)/M, with rightmost
 Pauli label on q0. These new normalized queries do not modify stored amplitudes;
 the existing Probability method still returns raw squared magnitude. See the
 [observation guide](observations.md) for selection ordering and implementation costs.
+
+The v1.3 candidate introduces a separate DynamicCircuit with explicit mid-circuit
+measurement and classical feedback. Each history follows the Born rule and executes
+only unitary segments matching its classical register. Reset of qubit q samples
+R0=|0><0| or R1=|0><1| locally, yielding Rj psi/||Rj psi|| with Born weight; the
+ensemble channel is sum_j Rj rho Rj^dagger. It is not a coherent sum of branches.
+Run repeats the full history independently for each shot and counts only explicitly
+written classical bits. See the [dynamic guide](dynamic-circuits.md).
 
 ## Numerical validation
 

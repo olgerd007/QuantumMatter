@@ -20,6 +20,7 @@ and [release record](releases/1.2.0.md).
 | v1.0 | Stable quantum computing SDK | Released as v1.0.0; NuGet publication, platform CI and fresh public-feed consumers verified |
 | v1.1 | Full .NET 9/10 validation and compatibility | Released as v1.1.0; runtime CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.2 | Partial measurement and observables | Released as v1.2.0; platform CI, NuGet publication and fresh CPU/CUDA observation consumers verified |
+| v1.3 | Dynamic circuits and classical control | Candidate implemented; local dual-runtime CPU/CUDA and package checks pass; PR checks track CI; release review pending |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -303,7 +304,22 @@ for all three packages and symbols. Fresh nuget.org-only consumers pass both exi
 and new observation checks on .NET 9/10 with real CUDA and the exact source commit
 verified. Milestone v1.2 is complete. Evidence is in the [release record](releases/1.2.0.md).
 See the [observation guide](observations.md). Dynamic circuits and classical
-feedback require a later milestone; existing terminal sampling is unchanged.
+feedback are introduced separately in the v1.3 candidate; existing terminal sampling is unchanged.
+
+## v1.3 — Dynamic circuits and classical control
+
+Acceptance criteria:
+
+- Separate finite dynamic programs from the existing unitary/noise circuit contracts.
+- Measure ordered subsets into explicit classical destinations, including overwrite semantics.
+- Support mask/value conditions on snapshotted unitary segments and stochastic qubit reset.
+- Re-execute independent histories per shot; count explicit classical memory without an ensemble ket.
+- Verify teleportation phases on all backends, reset Kraus density matrices and exact branch oracles.
+- Preserve shipped APIs, allocation/cancellation contracts, .NET 9/10 coverage and baseline consumers.
+
+Candidate version is 1.3.0-rc.1. See the [dynamic guide](dynamic-circuits.md) and
+[validation record](releases/1.3.0.md). This increment excludes loops, arbitrary
+classical expressions, combined noise/dynamic programs and device-resident feedback.
 
 ## Shared release checks
 

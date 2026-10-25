@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0-rc.1 — Unreleased
+
+- Separate dynamic circuits with mid-circuit measurement and mapped classical writes.
+- Mask/value conditions on snapshotted unitary segments and measurement-based qubit reset.
+- Fresh per-shot trajectories, explicit classical counts and conditional-state results.
+- Phase-sensitive teleportation and independent reset/feedback branch oracles.
+- Dynamic demo and isolated package consumer on the existing .NET 9/10 backend contracts.
+
 ## 1.2.0 — 2026-10-25
 
 - Ordered partial-register measurement preserves phase and unmeasured coherence.

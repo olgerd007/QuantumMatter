@@ -4,6 +4,7 @@ param(
     [ValidatePattern('^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$')][string]$PackageVersion,
     [string]$ExpectedCommit,
     [switch]$ValidateObservations,
+    [switch]$ValidateDynamicCircuits,
     [switch]$EnableCuda
 )
 
@@ -62,27 +63,30 @@ try {
         Invoke-DotNet -Arguments @('run', '--project', 'PackageConsumer.csproj', '--no-build', '--no-restore',
             '-c', 'Release', $versionArgument, $frameworkArgument, '--', '--cuda', '--expected-sdk-version', $PackageVersion)
     }
-    if ($ValidateObservations) {
+    $additionalSamples = @()
+    if ($ValidateObservations) { $additionalSamples += @{ Name = 'ObservationConsumer'; Suffix = '-observations' } }
+    if ($ValidateDynamicCircuits) { $additionalSamples += @{ Name = 'DynamicConsumer'; Suffix = '-dynamic' } }
+    foreach ($sample in $additionalSamples) {
         # Keep sources separate from the baseline consumer's default compile globs.
-        $observationDirectory = $consumerDirectory + '-observations'
-        New-Item -ItemType Directory -Path $observationDirectory | Out-Null
-        Copy-Item -Path (Join-Path $repositoryRoot 'samples/ObservationConsumer/*') -Destination $observationDirectory
+        $sampleDirectory = $consumerDirectory + $sample.Suffix
+        New-Item -ItemType Directory -Path $sampleDirectory | Out-Null
+        Copy-Item -Path (Join-Path $repositoryRoot "samples/$($sample.Name)/*") -Destination $sampleDirectory
         foreach ($boundaryFile in @('Directory.Build.props', 'Directory.Packages.props', 'NuGet.Config')) {
-            Copy-Item -LiteralPath (Join-Path $consumerDirectory $boundaryFile) -Destination $observationDirectory
+            Copy-Item -LiteralPath (Join-Path $consumerDirectory $boundaryFile) -Destination $sampleDirectory
         }
         if ($ConsumerFramework -eq 'net10.0') {
-            Copy-Item -LiteralPath (Join-Path $consumerDirectory 'global.json') -Destination $observationDirectory
+            Copy-Item -LiteralPath (Join-Path $consumerDirectory 'global.json') -Destination $sampleDirectory
         }
-        $observationProject = Join-Path $observationDirectory 'ObservationConsumer.csproj'
-        Invoke-DotNet -Arguments @('restore', $observationProject, '--configfile', 'NuGet.Config',
+        $sampleProject = Join-Path $sampleDirectory "$($sample.Name).csproj"
+        Invoke-DotNet -Arguments @('restore', $sampleProject, '--configfile', 'NuGet.Config',
             '--packages', $cacheDirectory, '--no-http-cache', $versionArgument, $frameworkArgument)
-        Invoke-DotNet -Arguments @('run', '--project', $observationProject, '--no-restore', '-c', 'Release',
+        Invoke-DotNet -Arguments @('run', '--project', $sampleProject, '--no-restore', '-c', 'Release',
             $versionArgument, $frameworkArgument)
         if ($EnableCuda) {
-            Invoke-DotNet -Arguments @('run', '--project', $observationProject, '--no-build', '--no-restore', '-c', 'Release',
+            Invoke-DotNet -Arguments @('run', '--project', $sampleProject, '--no-build', '--no-restore', '-c', 'Release',
                 $versionArgument, $frameworkArgument, '--', '--cuda')
         }
-        Write-Output "Published observation APIs validated on $ConsumerFramework."
+        Write-Output "Published $($sample.Name) APIs validated on $ConsumerFramework."
     }
     Write-Output "Published package version $packageVersion validated on $ConsumerFramework from nuget.org."
     Write-Output "Isolated consumer and cache: $consumerDirectory"
