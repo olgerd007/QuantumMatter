@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.0-rc.1 — Unreleased
+## 1.4.0 — 2026-10-25
 
 - Separate noisy dynamic programs combine explicit single-qubit channels with
   ordered measurement, classical unitary conditions and stochastic reset.

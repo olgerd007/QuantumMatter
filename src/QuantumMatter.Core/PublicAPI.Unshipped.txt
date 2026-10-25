@@ -1,12 +1,1 @@
 #nullable enable
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit.Append(QuantumMatter.Core.QuantumCircuit! circuit) -> QuantumMatter.Core.Dynamic.NoisyDynamicCircuit!
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit.ApplyNoise(QuantumMatter.Core.Noise.NoiseChannel! channel, int target) -> QuantumMatter.Core.Dynamic.NoisyDynamicCircuit!
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit.ClassicalBitCount.get -> int
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit.If(int classicalMask, int expectedValue, QuantumMatter.Core.QuantumCircuit! circuit) -> QuantumMatter.Core.Dynamic.NoisyDynamicCircuit!
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit.Measure(System.ReadOnlySpan<int> qubits, System.ReadOnlySpan<int> classicalBits) -> QuantumMatter.Core.Dynamic.NoisyDynamicCircuit!
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit.NoisyDynamicCircuit(int qubits, int classicalBits) -> void
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit.QubitCount.get -> int
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit.Reset(int qubit) -> QuantumMatter.Core.Dynamic.NoisyDynamicCircuit!
-QuantumMatter.Core.Dynamic.NoisyDynamicCircuit.StepCount.get -> int
-QuantumMatter.Core.StateVector.EvolveNoisyDynamic(QuantumMatter.Core.Dynamic.NoisyDynamicCircuit! circuit, QuantumMatter.Core.IStateVectorBackend! unitaryBackend, QuantumMatter.Core.Noise.INoiseChannelBackend! noiseBackend, System.Random! random, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> int

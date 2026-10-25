@@ -1,5 +1,1 @@
 #nullable enable
-QuantumMatter.Application.Dynamic.NoisyDynamicStateVectorSimulator
-QuantumMatter.Application.Dynamic.NoisyDynamicStateVectorSimulator.NoisyDynamicStateVectorSimulator(QuantumMatter.Core.IStateVectorBackend! unitaryBackend, QuantumMatter.Core.Noise.INoiseChannelBackend! noiseBackend, QuantumMatter.Application.SimulationOptions? options = null) -> void
-QuantumMatter.Application.Dynamic.NoisyDynamicStateVectorSimulator.Run(QuantumMatter.Core.Dynamic.NoisyDynamicCircuit! circuit, int shots = 1024, int? seed = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Application.Dynamic.DynamicSimulationResult!
-QuantumMatter.Application.Dynamic.NoisyDynamicStateVectorSimulator.SimulateTrajectory(QuantumMatter.Core.Dynamic.NoisyDynamicCircuit! circuit, int? seed = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Application.Dynamic.DynamicTrajectoryResult!
