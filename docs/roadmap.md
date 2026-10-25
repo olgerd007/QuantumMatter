@@ -4,6 +4,10 @@ These milestones define the proposed release sequence for QuantumMatter. They ar
 scope targets, with no delivery dates assigned. A version is ready to release only
 when its acceptance criteria and the shared release checks below pass.
 
+The v0.x validation paragraphs below are historical records of local milestone
+work. Current cross-platform CI and publication status are in the v1.0 section
+and [release record](releases/1.0.0.md).
+
 | Version | Goal | Current implementation coverage |
 | --- | --- | --- |
 | v0.1 | Basic state-vector simulator | Functional criteria verified |
@@ -223,7 +227,7 @@ Acceptance criteria:
   plus a documented hardware validation process and performance baselines.
 - Resolve release-blocking correctness defects and document remaining limitations.
 
-The local candidate implements centralized package metadata, MIT/third-party license
+The prepared release implements centralized package metadata, MIT/third-party license
 assets, full public XML documentation and compiler-enforced API inventories. SDK
 package validation and an isolated, hash-checked package consumer cover scalar,
 parallel/SIMD, algorithms, cancellation, budgets, noise and optional real CUDA.
@@ -234,12 +238,14 @@ Local Debug/Release hardware-enabled suites pass 664 tests, with zero build warn
 or errors. The API negative check deliberately removes one declaration, verifies
 RS0016 rejects it, and restores the inventory. The Windows/Linux CI matrix now
 includes both consumer frameworks; a separate manual NVIDIA workflow requires a
-maintained self-hosted runner. These workflows have not run remotely.
+maintained self-hosted runner. The Windows/Linux Debug/Release CI matrix and both
+package consumer frameworks now pass remotely. NVIDIA validation is local hardware
+evidence; no remote self-hosted NVIDIA run is claimed.
 
 Stable 1.0.0 is prepared with a frozen 211-declaration API baseline and centralized
 version 1.0.0. Framework lifecycle has been reviewed; CUDA support is Windows x64,
-with Linux CUDA experimental. Platform/committed-source validation, NuGet
-ownership/OIDC publishing verification, reviewed promotion/tagging and actual
+with Linux CUDA experimental. Platform CI and committed-source symbol validation
+pass. NuGet ownership/OIDC publishing verification, reviewed promotion/tagging and actual
 publication remain pending. The [release record](releases/1.0.0.md) defines the exact
 remaining steps; do not mark v1.0 published based on local package success.
 

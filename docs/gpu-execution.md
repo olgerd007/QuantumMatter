@@ -28,8 +28,8 @@ and [release notes](https://ilgpu.net/releases/).
 Actual local validation: NVIDIA GeForce RTX 4070 Ti SUPER, 16,376 MiB reported VRAM,
 compute capability 8.9 (SM_89), NVIDIA driver 610.88, CUDA driver API 13.3, Windows
 build 26200, AMD Ryzen 9 7900X, .NET SDK 9.0.319/runtime 9.0.21. No toolkit was installed.
-Linux builds are covered by the repository CI definition, but this work did not
-execute remote CI or validate CUDA hardware on Linux.
+Windows/Linux CPU builds, tests and package consumers pass remote CI for v1.0.
+CUDA hardware has not been validated on Linux; it remains experimental.
 
 ## Selection and ownership
 
