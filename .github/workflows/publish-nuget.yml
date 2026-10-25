@@ -75,7 +75,8 @@ jobs:
           NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
         run: |
           set -euo pipefail
-          for package in artifacts/packages/*.nupkg artifacts/packages/*.snupkg; do
+          # dotnet pushes the matching snupkg automatically with each nupkg.
+          for package in artifacts/packages/*.nupkg; do
             dotnet nuget push "$package" \
               --api-key "$NUGET_API_KEY" \
               --source https://api.nuget.org/v3/index.json \

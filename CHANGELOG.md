@@ -1,9 +1,9 @@
 # Changelog
 
-## 1.0.0 — Unreleased
+## 1.0.0 — 2026-10-25
 
-First stable SDK, assembled from milestones v0.1–v0.7. Publication is pending;
-this entry describes the selected release content.
+First stable SDK, assembled from milestones v0.1–v0.7. See the
+[release record](docs/releases/1.0.0.md) for validation and publication evidence.
 
 - Three packages preserve the Core/Application/Infrastructure dependency direction.
 - Validated circuits and custom unitaries support 17 gate kinds and controlled forms.
@@ -32,4 +32,4 @@ this entry describes the selected release content.
 Noise kernels are CPU only; hybrid CUDA trajectories transfer per unitary segment.
 No mid-circuit measurement/classical feedback, correlated channels, density-matrix
 backend, arbitrary multi-target unitaries or automatic hardware calibration.
-Cross-platform CI and release promotion remain required. See docs/releases/1.0.0.md.
+Windows/Linux CPU CI passes; Linux CUDA remains experimental.
