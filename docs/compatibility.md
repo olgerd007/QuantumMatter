@@ -82,11 +82,11 @@ licenses/notices. Packages carry documentation and license files. Consumers own
 injected backend lifetimes, especially IDisposable CUDA contexts. Core/Application
 have no container, logging, network or persistence dependencies.
 
-Local release packages are not signed or publicly published. The selected feed
-is nuget.org, user olgerd007, using the same OIDC Trusted Publishing approach as
+Release 1.0.0 packages and symbols are published on nuget.org under user
+olgerd007, using the same OIDC Trusted Publishing approach as
 XBullet.EasyTesting. The user-provided screenshot confirms QuantumMatter's own
-repository/workflow policy and QuantumMatter.* scope. Its first successful OIDC
-publish, permanent activation and package-prefix ownership checks remain pending.
-Protected release CI and release tags must be reviewed before stable promotion.
-No guarantee is made about reserved feed names until ownership is checked by the
-maintainer.
+repository/workflow policy and QuantumMatter.* scope. Its first OIDC
+publish has succeeded. Fresh .NET 9/10 public-feed consumers pass, including CUDA
+and tagged-source metadata checks. Evidence is recorded in the release record.
+The policy scope does not itself reserve the QuantumMatter prefix; no reserved-prefix
+claim is made. Changes continue through feature branches and reviewed release tags.
