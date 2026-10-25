@@ -29,9 +29,9 @@ restores ILGPU 1.5.3 even for CPU selection; Core/Application do not depend on I
 
 ## Versioning
 
-All three SDK packages share a semantic version. Stable version 1.2.0 is selected;
-the [release record](releases/1.2.0.md) tracks publication. Published 1.0.0 and
-1.1.0 remain available. Use matching package versions.
+All three SDK packages share semantic version 1.2.0, published on nuget.org. The
+[release record](releases/1.2.0.md) contains publication and public-feed verification evidence.
+Published 1.0.0 and 1.1.0 remain available. Use matching package versions.
 The release record distinguishes prepared artifacts from public publication.
 The 1.x compatibility policy is:
 
@@ -50,7 +50,7 @@ compiler. It tracks the three libraries' PublicAPI files and nullability; change
 require explicit inventory diffs. The reviewed 1.0.0 inventory is frozen in
 PublicAPI.Shipped.txt as the release contract. Version 1.2 adds seven reviewed
 declarations, giving 218 shipped declarations without removing the 1.0 baseline.
-For v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
+Since v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
 parameter-name compatibility is enabled. SDK package validation compares compiled
 assets at pack time. A separate smoke check compiles the consumer against the
 published baseline, replaces only SDK DLLs with candidate DLLs and runs it without
@@ -90,11 +90,12 @@ licenses/notices. Packages carry documentation and license files. Consumers own
 injected backend lifetimes, especially IDisposable CUDA contexts. Core/Application
 have no container, logging, network or persistence dependencies.
 
-Release 1.1.0 packages and symbols are published on nuget.org under user
+Release 1.2.0 packages and symbols are published on nuget.org under user
 olgerd007, using the same OIDC Trusted Publishing approach as
 XBullet.EasyTesting. The user-provided screenshot confirms QuantumMatter's own
 repository/workflow policy and QuantumMatter.* scope. Its first OIDC
-publish has succeeded. Fresh .NET 9/10 public-feed consumers pass, including CUDA
-and tagged-source metadata checks. Evidence is recorded in the release record.
+publish has succeeded. Fresh .NET 9/10 public-feed consumers pass both existing and
+new observation checks, including real CUDA and exact tagged-source metadata.
+The release record distinguishes that evidence from successful upload acceptance.
 The policy scope does not itself reserve the QuantumMatter prefix; no reserved-prefix
 claim is made. Changes continue through feature branches and reviewed release tags.
