@@ -61,5 +61,13 @@ public sealed class PqcLabTests
         Assert.Null(result.ProviderType);
         Assert.Null(result.PublicKeyBytes);
     }
+
+    [Fact]
+    public void Optional_SLH_helper_runs_checks_or_explicitly_reports_unsupported()
+    {
+        PrimitiveResult result = SlhDsaExperiment.Run(1, 0, CancellationToken.None);
+        Assert.Contains(result.Status, new[] { "passed", "unsupported" });
+        Assert.Equal(result.Status == "passed" ? 3 : 0, result.Measurements.Count);
+    }
 }
 #endif

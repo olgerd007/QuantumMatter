@@ -21,7 +21,9 @@ This privacy rule takes precedence over benchmark provenance guidance.
 
 1. Read the affected code, tests, docs/architecture.md, and docs/mathematics.md.
 2. State the goal, affected files/layers, mathematical assumptions, risks, and validation plan.
-3. Use a codex/<purpose> feature branch for significant work. Never push directly to main.
+3. Name new branches `feature/<purpose>` with a short, lowercase, hyphen-separated purpose
+   (for example, `feature/avx512-optimization`). Use feature branches for significant work.
+   Never push directly to main.
 4. Protect existing behavior with tests before risky refactoring. Implement the smallest complete change.
 5. Run restore, build, the complete test suite, and formatting verification from the repository root.
 6. Inspect the diff for correctness, boundary violations, numerical regressions, and unrelated edits.
