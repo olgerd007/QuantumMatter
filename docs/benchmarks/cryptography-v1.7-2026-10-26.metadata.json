@@ -1,7 +1,7 @@
 {
   "release": "1.7.0-rc.1",
   "date": "2026-10-26",
-  "sourceBaseCommit": "56b04abc585f449e1cc87d8351be574e1c0a6e63",
+  "sourceBaseCommit": "96e2e2db62e6d9cc09b478fe0936d3b702280180",
   "uncommittedWorkingTree": true,
   "quantumCommand": "dotnet run --project src/QuantumMatter.Demo -c Release --no-build -- cryptography",
   "quantumSettings": "Scalar CPU; BB84: 100000 signals/setting, 25% disclosure, seed 42. CHSH: 10000 shots/setting, seed 42. Grover: 2 rounds, 1024 samples, seed 42. Shor: N15/a2/t8, 512 samples, seed42.",

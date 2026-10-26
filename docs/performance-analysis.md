@@ -15,7 +15,7 @@ ParallelCpuOptions.EnableGateBlocking property, default false; its get/init acce
 are explicitly listed in PublicAPI.Unshipped without changing shipped inventory.
 
 In an anonymized environment, interleaved comparisons against source revision
-`56b04abc585f449e1cc87d8351be574e1c0a6e63` demonstrate improvements in the targeted
+`96e2e2db62e6d9cc09b478fe0936d3b702280180` demonstrate improvements in the targeted
 kernels. They do not establish a universal optimum across circuits or hardware.
 Eight workers are frequently slower than four; small circuits can be slower with
 parallel scheduling. Defaults remain four workers at most, a 16-qubit threshold,
@@ -109,8 +109,8 @@ Each CSV has a `.baseline.txt` sidecar identifying the source baseline.
 
 ```powershell
 dotnet restore QuantumMatter.sln
-./scripts/Compare-CpuKernels.ps1 -BaselineRef 56b04abc585f449e1cc87d8351be574e1c0a6e63 -Profile full -Output artifacts/cpu-comparison.csv
-./scripts/Compare-CpuKernels.ps1 -BaselineRef 56b04abc585f449e1cc87d8351be574e1c0a6e63 -Profile kernels -Output artifacts/cpu-kernels-comparison.csv
+./scripts/Compare-CpuKernels.ps1 -BaselineRef 96e2e2db62e6d9cc09b478fe0936d3b702280180 -Profile full -Output artifacts/cpu-comparison.csv
+./scripts/Compare-CpuKernels.ps1 -BaselineRef 96e2e2db62e6d9cc09b478fe0936d3b702280180 -Profile kernels -Output artifacts/cpu-kernels-comparison.csv
 ```
 
 The script builds CPU sources from the selected Git revision into an isolated,
@@ -177,7 +177,7 @@ this is separate from the simulator's existing host budget. Scheduler, process a
 circuit overhead are outside this array budget. Peak working set is cumulative.
 
 ```powershell
-./scripts/Compare-CpuKernels.ps1 -BaselineRef 56b04abc585f449e1cc87d8351be574e1c0a6e63 -Profile memory -Output artifacts/cpu-memory-comparison.csv
+./scripts/Compare-CpuKernels.ps1 -BaselineRef 96e2e2db62e6d9cc09b478fe0936d3b702280180 -Profile memory -Output artifacts/cpu-memory-comparison.csv
 ```
 
 ### Optional multi-gate cache blocking

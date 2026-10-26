@@ -21,6 +21,12 @@ add them to commits or upload them as public workflow artifacts. Existing curren
 reports have been anonymized; that does not rewrite earlier Git history or alter
 previously published packages/artifacts.
 
+History rewrites must inspect all branch/tag histories and remap internal benchmark
+baseline references. They change commit identifiers and invalidate old commit
+signatures even when code, authorship and merge relationships are preserved.
+Publishing a rewritten history requires coordinated replacement of public refs;
+other clones and hosting-managed cached views need separate attention.
+
 Run the same check used by CI before publishing:
 
 ```powershell
