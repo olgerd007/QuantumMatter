@@ -5,8 +5,8 @@ scope targets, with no delivery dates assigned. A version is ready to release on
 when its acceptance criteria and the shared release checks below pass.
 
 The v0.x validation paragraphs below are historical records of local milestone
-work. Current cross-platform CI and publication status are in the v1.5 section
-and [release record](releases/1.5.0.md).
+work. Current cross-platform CI and publication status are in the v1.6 section
+and [release record](releases/1.6.0.md).
 
 | Version | Goal | Current implementation coverage |
 | --- | --- | --- |
@@ -23,7 +23,7 @@ and [release record](releases/1.5.0.md).
 | v1.3 | Dynamic circuits and classical control | Released as v1.3.0; platform CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.4 | Noisy dynamic circuits | Released as v1.4.0; platform CI, NuGet publication and all four fresh CPU/CUDA consumers verified |
 | v1.5 | Hamiltonians and variational gradients | Released as v1.5.0; platform CI, NuGet publication and all five fresh CPU/CUDA consumers verified |
-| v1.6 | Deterministic pure-state VQE | Implementation merged after eight CI jobs; stable promotion and publication in progress |
+| v1.6 | Deterministic pure-state VQE | Released as v1.6.0; platform CI, NuGet publication and all six fresh CPU/CUDA consumers verified |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -401,7 +401,11 @@ passes 720 cases plus an explicit hardware skip per runtime. All six fresh candi
 consumers and unchanged baseline binaries pass on .NET 9/10, including CUDA.
 The existing v1.5 public-feed modes also pass on .NET 10. All eight platform CI jobs
 pass in merged [PR #18](https://github.com/olgerd007/QuantumMatter/pull/18).
-Stable promotion/publication remain separate from these implementation checks.
+Stable promotion [PR #19](https://github.com/olgerd007/QuantumMatter/pull/19) passes
+all eight CI jobs and is merged. The tagged-source workflow passes Windows/Linux
+validation and OIDC publication of all three packages and symbols. All six fresh
+nuget.org-only consumers pass on .NET 9/10 with actual CUDA and exact tagged-source
+metadata verified. Milestone v1.6 is complete.
 
 ## Shared release checks
 
