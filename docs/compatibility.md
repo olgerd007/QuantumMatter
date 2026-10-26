@@ -58,9 +58,9 @@ Version 1.5 adds 28 declarations for Hamiltonians and variational building block
 giving 283 shipped declarations while preserving all 255 earlier declarations.
 No existing ExpectationValue overload or backend port changes; see the
 [release record](releases/1.5.0.md).
-The v1.6 candidate adds 33 Unshipped Application declarations for VQE while preserving
-all 283 shipped declarations. Core and backend ports are unchanged; see the
-[candidate record](releases/1.6.0.md).
+Version 1.6 adds 33 Application declarations for VQE, for 316 shipped declarations
+while preserving all 283 earlier declarations. Core and backend ports are unchanged;
+see the [release record](releases/1.6.0.md). Stable 1.6.0 publication is being prepared.
 Since v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
 parameter-name compatibility is enabled. SDK package validation compares compiled
 assets at pack time. A separate smoke check compiles the consumer against the

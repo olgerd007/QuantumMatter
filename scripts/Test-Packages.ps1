@@ -50,6 +50,7 @@ try {
                 'docs/noisy-dynamic-circuits.md', 'docs/releases/1.4.0.md',
                 'docs/api/1.4.0.md', 'docs/releases/1.4.0-notes.md',
                 'docs/variational.md', 'docs/releases/1.5.0.md', 'docs/vqe.md', 'docs/releases/1.6.0.md',
+                'docs/api/1.6.0.md', 'docs/releases/1.6.0-notes.md',
                 'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
                 if (!$archive.GetEntry($requiredEntry)) { throw "$packageId is missing $requiredEntry." }
             }
