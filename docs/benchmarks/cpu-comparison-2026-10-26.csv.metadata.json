@@ -1,0 +1,32 @@
+{
+  "timestampUtc": "2026-10-26T18:45:29.8226334\u002B00:00",
+  "profile": "full",
+  "tieredCompilation": "0",
+  "precision": "double Complex",
+  "sizes": [
+    12,
+    16,
+    18,
+    20
+  ],
+  "depths": [
+    16,
+    64
+  ],
+  "mixes": [
+    "hadamard-low",
+    "hadamard-high",
+    "mixed-low",
+    "mixed-high"
+  ],
+  "repetitions": 5,
+  "warmupsPerBackendAndCase": 2,
+  "forcedParallelThresholdQubits": 1,
+  "timing": "Execute only; input reset, allocation, warmup and validation excluded",
+  "allocations": "Process-wide managed allocation delta, including worker threads; median per Execute",
+  "workingSet": "Cumulative process high-water mark, not an isolated per-backend peak",
+  "ordering": "Rotate backend order on every repetition and reverse on odd repetitions",
+  "source": "Local working tree; commit/release not implied",
+  "baselineAssembly": "QuantumMatter.CpuBaseline.dll",
+  "privacy": "Host hardware and installation details omitted; measurements and requested settings retained."
+}

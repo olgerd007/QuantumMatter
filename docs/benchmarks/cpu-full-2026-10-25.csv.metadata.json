@@ -1,5 +1,5 @@
 {
-  "timestampUtc": "2026-10-24T23:34:09.6020255+00:00",
+  "timestampUtc": "2026-10-24T23:34:09.6020255\u002B00:00",
   "profile": "full",
   "tieredCompilation": "0",
   "precision": "double Complex",
@@ -27,5 +27,5 @@
   "workingSet": "Cumulative process high-water mark, not an isolated per-backend peak",
   "ordering": "Rotate backend order on every repetition",
   "source": "Local working tree; commit/release not implied",
-  "privacy": "Host hardware and installation details omitted; measurements retained."
+  "privacy": "Host hardware and installation details omitted; measurements and requested settings retained."
 }

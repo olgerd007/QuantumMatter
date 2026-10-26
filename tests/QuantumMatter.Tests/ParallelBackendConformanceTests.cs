@@ -32,3 +32,28 @@ public sealed class ParallelSimdThreeWorkerConformanceTests : StateVectorBackend
     protected override IStateVectorBackend CreateBackend() => new ParallelCpuStateVectorBackend(
         new ParallelCpuOptions { MaxDegreeOfParallelism = 3, MinimumParallelQubits = 1, EnableSimd = true });
 }
+
+public sealed class BlockedSimdThreeWorkerConformanceTests : StateVectorBackendConformanceTests
+{
+    protected override IStateVectorBackend CreateBackend() => new ParallelCpuStateVectorBackend(
+        new ParallelCpuOptions { MaxDegreeOfParallelism = 3, MinimumParallelQubits = 1, EnableSimd = true, EnableGateBlocking = true });
+}
+
+public sealed class Avx512OneWorkerConformanceTests : StateVectorBackendConformanceTests
+{
+    protected override IStateVectorBackend CreateBackend() => new ParallelCpuStateVectorBackend(
+        new ParallelCpuOptions { MaxDegreeOfParallelism = 1, MinimumParallelQubits = 1, EnableSimd = true, EnableAvx512 = true });
+}
+
+public sealed class BlockedAvx512ThreeWorkerConformanceTests : StateVectorBackendConformanceTests
+{
+    protected override IStateVectorBackend CreateBackend() => new ParallelCpuStateVectorBackend(
+        new ParallelCpuOptions
+        {
+            MaxDegreeOfParallelism = 3,
+            MinimumParallelQubits = 1,
+            EnableSimd = true,
+            EnableAvx512 = true,
+            EnableGateBlocking = true
+        });
+}

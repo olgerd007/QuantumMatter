@@ -9,6 +9,8 @@ param(
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+& (Join-Path $PSScriptRoot 'Test-ReportPrivacy.ps1')
+if ($LASTEXITCODE -ne 0) { throw 'Public report privacy verification failed; package creation stopped.' }
 $versionFile = [xml][IO.File]::ReadAllText((Join-Path $repositoryRoot 'Directory.Build.props'))
 $packageVersion = $versionFile.SelectSingleNode('/Project/PropertyGroup/Version').InnerText
 $libraryProperties = [xml][IO.File]::ReadAllText((Join-Path $repositoryRoot 'build/QuantumMatter.Library.props'))
@@ -184,11 +186,11 @@ try {
         Write-Output "Binary compatibility passed: consumer compiled against $baselineVersion, executed with $packageVersion on $ConsumerFramework."
     }
     finally { Pop-Location }
-    Write-Output "Validated package version $packageVersion from $packageDirectory"
-    Write-Output "Isolated consumer and cache: $consumerDirectory"
-    Write-Output "Isolated new-API consumer: $observationDirectory"
-    Write-Output "Isolated dynamic consumer: $dynamicDirectory"
-    Write-Output "Isolated noisy dynamic consumer: $noisyDynamicDirectory"
-    Write-Output "Isolated variational consumer: $variationalDirectory"
+    Write-Output "Validated package version $packageVersion from $([IO.Path]::GetRelativePath($repositoryRoot, $packageDirectory))"
+    Write-Output "Isolated consumer and cache: $([IO.Path]::GetRelativePath($repositoryRoot, $consumerDirectory))"
+    Write-Output "Isolated new-API consumer: $([IO.Path]::GetRelativePath($repositoryRoot, $observationDirectory))"
+    Write-Output "Isolated dynamic consumer: $([IO.Path]::GetRelativePath($repositoryRoot, $dynamicDirectory))"
+    Write-Output "Isolated noisy dynamic consumer: $([IO.Path]::GetRelativePath($repositoryRoot, $noisyDynamicDirectory))"
+    Write-Output "Isolated variational consumer: $([IO.Path]::GetRelativePath($repositoryRoot, $variationalDirectory))"
 }
 finally { Pop-Location }

@@ -5,9 +5,9 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AnalysisLevel>latest</AnalysisLevel>
-    <Version Condition="'$(Version)' == ''">1.5.0</Version>
+    <Version Condition="'$(Version)' == ''">1.7.0-rc.1</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.5.0.0</FileVersion>
+    <FileVersion>1.7.0.0</FileVersion>
     <Deterministic>true</Deterministic>
     <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
     <!-- Local artifacts can contain uncommitted files; do not attach an inaccurate HEAD source link. -->

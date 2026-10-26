@@ -15,10 +15,10 @@ if (args.Length == 1)
 {
     using var cuda = new CudaStateVectorBackend();
     Validate(cuda);
-    Console.WriteLine($"Dynamic consumer validated CUDA on {cuda.Device.Name}.");
+    Console.WriteLine("Dynamic consumer validated CUDA.");
 }
 
-Console.WriteLine($"Dynamic package consumer passed on {System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}.");
+Console.WriteLine("Dynamic package consumer passed.");
 return 0;
 
 static void Validate(IStateVectorBackend backend)

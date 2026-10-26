@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.7.0-rc.1 — 2026-10-26 (unpublished candidate)
+
+- Educational BB84/intercept-resend and independent noisy histories, disclosed-bit
+  statistics, Hoeffding intervals and explicitly idealized key-rate bounds.
+- Bell/CHSH correlations, reversible toy-cipher Grover search, and small Shor
+  order finding with synthesized modular permutations and continued fractions.
+- Separate .NET 10 PQC provider tool with imported-key and tampering checks,
+  twelve selected pinned NIST known-answer cases, and raw measurement reports.
+- Optional experimental SLH-DSA provider checks; unsupported providers are explicit.
+- Quantum experiments remain internal demo tooling; no cryptography SDK API or
+  runtime dependency is added, and net9.0 library assets/1.x binding are retained.
+- Expanded opt-in CPU SIMD kernels, bounded same-target cache blocking and an
+  opt-in AVX-512 path with portable fallback. Added ParallelCpuOptions controls
+  EnableGateBlocking and EnableAvx512; shipped inventory is preserved. See
+  [CPU evidence](docs/performance-analysis.md) and the
+  [AVX-512/CUDA comparison](docs/avx512-cuda-performance.md).
+
 ## 1.5.0 — 2026-10-25
 
 - Immutable real Pauli Hamiltonians and normalized energy expectations without dense matrices.

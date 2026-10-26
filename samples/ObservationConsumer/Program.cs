@@ -13,10 +13,10 @@ if (args.Length == 1)
 {
     using var cuda = new CudaStateVectorBackend();
     Validate(cuda);
-    Console.WriteLine($"Observation consumer validated CUDA on {cuda.Device.Name}.");
+    Console.WriteLine("Observation consumer validated CUDA.");
 }
 
-Console.WriteLine($"Observation package consumer passed on {System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}.");
+Console.WriteLine("Observation package consumer passed.");
 return 0;
 
 static void Validate(IStateVectorBackend backend)

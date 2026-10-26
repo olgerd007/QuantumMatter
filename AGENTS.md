@@ -7,6 +7,16 @@ Use System.Numerics.Complex (double precision) and xUnit. Do not replace numeric
 execution with an existing quantum computing library. Keep changes incremental and
 prefer explicit code to speculative abstractions.
 
+## Public repository privacy
+
+Do not commit machine-identifying CPU/GPU models, detected processor counts,
+physical RAM/VRAM capacities, device identifiers, driver/OS installation fingerprints,
+or absolute host paths in reports, metadata, logs or documentation. Reporting tools
+must omit these details by default. Keep local diagnostic captures only under the
+ignored artifacts/ directory. Requested worker limits, algorithm memory costs,
+target frameworks, precision and anonymized measurements may be recorded.
+This privacy rule takes precedence over benchmark provenance guidance.
+
 ## Workflow
 
 1. Read the affected code, tests, docs/architecture.md, and docs/mathematics.md.
