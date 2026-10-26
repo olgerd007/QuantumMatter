@@ -1,6 +1,6 @@
 # Deterministic pure-state VQE
 
-The **1.6.0-rc.1 candidate** adds Application/Variational.VqeSolver. It composes
+Version **1.6.0** adds Application/Variational.VqeSolver. It composes
 the existing [energy/gradient evaluator](variational.md) with deterministic
 gradient descent and bounded Armijo backtracking. Core, backend ports and all 283
 earlier API declarations remain unchanged. See the [validation record](releases/1.6.0.md).
@@ -98,7 +98,7 @@ Shared parameters are charged per occurrence, not distinct parameter index.
 
 The solver injects a caller-owned IStateVectorBackend and immutable VqeOptions and
 SimulationOptions. CUDA disposal remains with the caller. No new backend port,
-project, dependency or generic optimizer abstraction is introduced. Finish template
+runtime project, runtime dependency or generic optimizer abstraction is introduced. Finish template
 construction first and do not mutate inputs during Solve. Calls own separate
 arrays/results; concurrent execution still requires a suitable backend.
 
