@@ -228,4 +228,4 @@ comparisons, exhaustive two-qubit truth tables, long-circuit inverse/norm tests,
 and resource, validation, cancellation, and measurement regressions.
 CI builds and tests Debug and Release on Windows and Linux under both runtimes,
 verifies formatting and validates source/binary compatibility with published 1.0.0.
-Use feature branches for significant changes and never push directly to main.
+Use feature/<purpose> branches for significant changes and never push directly to main.
