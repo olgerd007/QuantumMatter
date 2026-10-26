@@ -4,6 +4,13 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
+## v1.6 candidate
+
+Candidate **1.6.0-rc.1** adds deterministic pure-state VQE with bounded backtracking,
+explicit termination reasons, immutable results and circuit-execution budgets.
+See the [VQE guide](docs/vqe.md) and [validation record](docs/releases/1.6.0.md).
+Stable promotion and publication are pending; v1.5.0 remains the published stable SDK.
+
 ## SDK v1.5
 
 Version **1.5.0** adds Pauli Hamiltonians, parameterized rotations and

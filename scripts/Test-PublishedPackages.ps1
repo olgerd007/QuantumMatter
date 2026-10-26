@@ -7,6 +7,7 @@ param(
     [switch]$ValidateDynamicCircuits,
     [switch]$ValidateNoisyDynamicCircuits,
     [switch]$ValidateVariational,
+    [switch]$ValidateVqe,
     [switch]$EnableCuda
 )
 
@@ -70,6 +71,7 @@ try {
     if ($ValidateDynamicCircuits) { $additionalSamples += @{ Name = 'DynamicConsumer'; Suffix = '-dynamic' } }
     if ($ValidateNoisyDynamicCircuits) { $additionalSamples += @{ Name = 'NoisyDynamicConsumer'; Suffix = '-noisy-dynamic' } }
     if ($ValidateVariational) { $additionalSamples += @{ Name = 'VariationalConsumer'; Suffix = '-variational' } }
+    if ($ValidateVqe) { $additionalSamples += @{ Name = 'VqeConsumer'; Suffix = '-vqe' } }
     foreach ($sample in $additionalSamples) {
         # Keep sources separate from the baseline consumer's default compile globs.
         $sampleDirectory = $consumerDirectory + $sample.Suffix

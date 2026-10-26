@@ -83,6 +83,11 @@ locators, catch-all exception handling, and unrelated abstractions.
   expectations termwise before weighting. Budget parameter/gradient/term buffers,
   preserve caller-owned backends, and use independent dense derivative oracles.
   See docs/variational.md.
+- VQE uses Application/Variational and the existing evaluator. Preserve bounded
+  Armijo acceptance, occurrence-wise circuit counts, immutable accepted iterates
+  and conservative overlapping-array budgets. Stationarity is not a global-ground-
+  state guarantee; distinguish limits/stalls and propagate cancellation/failures.
+  Validate analytic energies and independent dense eigenpair residuals. See docs/vqe.md.
 - Do not expose arbitrary matrices without finite-value and U-dagger U = I validation,
   a documented tolerance, dimension validation, and tests for rejected nonunitaries.
 
@@ -155,6 +160,8 @@ public-feed checks opt in with -ValidateNoisyDynamicCircuits for compatible vers
 Use samples/VariationalConsumer for v1.5 APIs in a fifth sibling directory; public
 checks opt in with -ValidateVariational while preserving older consumer sources.
 Use the current docs/releases record for promotion; local package validation is not publication.
+Use samples/VqeConsumer for v1.6 APIs in a sixth sibling directory; public-feed
+checks opt in with -ValidateVqe while preserving all earlier consumer sources/modes.
 
 ```sh
 dotnet restore QuantumMatter.sln
