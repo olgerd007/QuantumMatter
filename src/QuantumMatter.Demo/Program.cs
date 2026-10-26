@@ -8,10 +8,10 @@ using QuantumMatter.Infrastructure;
 
 string example = args.Length == 0 ? "bell" : args[0].ToLowerInvariant();
 string backend = args.Length < 2 ? "scalar" : args[1].ToLowerInvariant();
-if (args.Length > 2 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "observations" or "dynamic" or "noisy-dynamic" or "variational" or "all")
+if (args.Length > 2 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "observations" or "dynamic" or "noisy-dynamic" or "variational" or "vqe" or "all")
     || backend is not ("scalar" or "parallel" or "parallel-simd" or "cuda"))
 {
-    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|observations|dynamic|noisy-dynamic|variational|all] [scalar|parallel|parallel-simd|cuda]");
+    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|observations|dynamic|noisy-dynamic|variational|vqe|all] [scalar|parallel|parallel-simd|cuda]");
     return 2;
 }
 
@@ -62,6 +62,9 @@ switch (example)
         break;
     case "variational":
         VariationalExamples.Run(new VariationalEnergyEvaluator(execution));
+        break;
+    case "vqe":
+        VqeExamples.Run(new VqeSolver(execution));
         break;
     case "all":
         RunBell(simulator);

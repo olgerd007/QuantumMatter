@@ -56,6 +56,10 @@ reductions remain on the host after unitary backend execution. See the
 [variational guide](docs/variational.md), [API additions](docs/api/1.5.0.md) and
 [release validation](docs/releases/1.5.0.md).
 
+The 1.6 candidate adds deterministic pure-state VQE with bounded backtracking,
+explicit execution/update limits, termination reasons and immutable results.
+See the [VQE guide](docs/vqe.md) and [candidate validation](docs/releases/1.6.0.md).
+
 Version 1.2 adds partial-register measurement, normalized marginals and
 Pauli-string expectations on host states; see docs/observations.md. These preserve
 the existing unitary circuit and terminal sampling contracts.
