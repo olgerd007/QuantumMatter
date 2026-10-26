@@ -1,5 +1,9 @@
 # Mathematical conventions
 
+The [VQE guide](vqe.md) defines the v1.6 candidate's gradient-stationarity test,
+Armijo sufficient-decrease rule, occurrence-wise execution accounting and finite
+precision limits. It preserves the state, gate and measurement conventions below.
+
 ## State and indexing
 
 An n-qubit pure state is the column vector
