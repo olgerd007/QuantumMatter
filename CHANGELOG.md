@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.6.0-rc.1 — Unreleased
+## 1.6.0 — 2026-10-26
 
 - Deterministic pure-state VQE using the existing energy/gradient evaluator.
 - Bounded Armijo backtracking with explicit stationarity, iteration/evaluation limits and stalled search.

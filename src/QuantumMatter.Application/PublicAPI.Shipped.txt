@@ -68,3 +68,36 @@ QuantumMatter.Application.Variational.VariationalEnergyEvaluator.VariationalEner
 QuantumMatter.Application.Variational.VariationalEnergyResult
 QuantumMatter.Application.Variational.VariationalEnergyResult.Energy.get -> double
 QuantumMatter.Application.Variational.VariationalEnergyResult.Gradient.get -> System.Collections.Generic.IReadOnlyList<double>!
+QuantumMatter.Application.Variational.VqeOptions
+QuantumMatter.Application.Variational.VqeOptions.BacktrackingFactor.get -> double
+QuantumMatter.Application.Variational.VqeOptions.BacktrackingFactor.init -> void
+QuantumMatter.Application.Variational.VqeOptions.GradientTolerance.get -> double
+QuantumMatter.Application.Variational.VqeOptions.GradientTolerance.init -> void
+QuantumMatter.Application.Variational.VqeOptions.InitialStepSize.get -> double
+QuantumMatter.Application.Variational.VqeOptions.InitialStepSize.init -> void
+QuantumMatter.Application.Variational.VqeOptions.MaximumCircuitEvaluations.get -> long
+QuantumMatter.Application.Variational.VqeOptions.MaximumCircuitEvaluations.init -> void
+QuantumMatter.Application.Variational.VqeOptions.MaximumIterations.get -> int
+QuantumMatter.Application.Variational.VqeOptions.MaximumIterations.init -> void
+QuantumMatter.Application.Variational.VqeOptions.MaximumLineSearchIterations.get -> int
+QuantumMatter.Application.Variational.VqeOptions.MaximumLineSearchIterations.init -> void
+QuantumMatter.Application.Variational.VqeOptions.MinimumStepSize.get -> double
+QuantumMatter.Application.Variational.VqeOptions.MinimumStepSize.init -> void
+QuantumMatter.Application.Variational.VqeOptions.SufficientDecrease.get -> double
+QuantumMatter.Application.Variational.VqeOptions.SufficientDecrease.init -> void
+QuantumMatter.Application.Variational.VqeResult
+QuantumMatter.Application.Variational.VqeResult.CircuitEvaluationCount.get -> long
+QuantumMatter.Application.Variational.VqeResult.Energy.get -> double
+QuantumMatter.Application.Variational.VqeResult.EnergyEvaluationCount.get -> long
+QuantumMatter.Application.Variational.VqeResult.GradientEvaluationCount.get -> int
+QuantumMatter.Application.Variational.VqeResult.IterationCount.get -> int
+QuantumMatter.Application.Variational.VqeResult.Parameters.get -> System.Collections.Generic.IReadOnlyList<double>!
+QuantumMatter.Application.Variational.VqeResult.TerminationReason.get -> QuantumMatter.Application.Variational.VqeTerminationReason
+QuantumMatter.Application.Variational.VqeSolver
+QuantumMatter.Application.Variational.VqeSolver.Solve(QuantumMatter.Core.Variational.ParameterizedCircuit! circuit, QuantumMatter.Core.Observables.PauliHamiltonian! hamiltonian, System.ReadOnlySpan<double> initialParameters, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Application.Variational.VqeResult!
+QuantumMatter.Application.Variational.VqeSolver.VqeSolver(QuantumMatter.Core.IStateVectorBackend! backend, QuantumMatter.Application.Variational.VqeOptions? options = null, QuantumMatter.Application.SimulationOptions? simulationOptions = null) -> void
+QuantumMatter.Application.Variational.VqeTerminationReason
+QuantumMatter.Application.Variational.VqeTerminationReason.EvaluationLimitReached = 2 -> QuantumMatter.Application.Variational.VqeTerminationReason
+QuantumMatter.Application.Variational.VqeTerminationReason.GradientToleranceReached = 0 -> QuantumMatter.Application.Variational.VqeTerminationReason
+QuantumMatter.Application.Variational.VqeTerminationReason.IterationLimitReached = 1 -> QuantumMatter.Application.Variational.VqeTerminationReason
+QuantumMatter.Application.Variational.VqeTerminationReason.LineSearchStalled = 3 -> QuantumMatter.Application.Variational.VqeTerminationReason

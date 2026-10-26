@@ -23,7 +23,7 @@ and [release record](releases/1.5.0.md).
 | v1.3 | Dynamic circuits and classical control | Released as v1.3.0; platform CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.4 | Noisy dynamic circuits | Released as v1.4.0; platform CI, NuGet publication and all four fresh CPU/CUDA consumers verified |
 | v1.5 | Hamiltonians and variational gradients | Released as v1.5.0; platform CI, NuGet publication and all five fresh CPU/CUDA consumers verified |
-| v1.6 | Deterministic pure-state VQE | Locally verified on .NET 9/10 and CUDA; platform CI and stable publication tracked separately |
+| v1.6 | Deterministic pure-state VQE | Implementation merged after eight CI jobs; stable promotion and publication in progress |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -388,7 +388,7 @@ pass on .NET 9/10 with real CUDA and exact tagged-source metadata verified.
 The user selected a reusable VQE workflow using the existing parameter-shift
 evaluator, one gradient-descent policy with backtracking, validated stopping and
 execution limits, immutable results and independent one-/two-qubit examples.
-The candidate adds 33 Application declarations while preserving all 283 shipped
+Version 1.6 adds 33 Application declarations while preserving all 283 earlier
 APIs, backend ports and 1.x binding. See the [VQE guide](vqe.md) and
 [validation record](releases/1.6.0.md). A sixth sibling package consumer covers the
 new APIs on .NET 9/10; all earlier consumer sources remain unchanged.
@@ -399,8 +399,9 @@ Local validation passes all 810 CUDA-enabled cases per runtime/configuration,
 disabled-intrinsics suites, zero-warning builds and formatting. CPU-only Release
 passes 720 cases plus an explicit hardware skip per runtime. All six fresh candidate
 consumers and unchanged baseline binaries pass on .NET 9/10, including CUDA.
-The existing v1.5 public-feed modes also pass on .NET 10. Platform CI and stable
-promotion/publication remain separate from these local checks.
+The existing v1.5 public-feed modes also pass on .NET 10. All eight platform CI jobs
+pass in merged [PR #18](https://github.com/olgerd007/QuantumMatter/pull/18).
+Stable promotion/publication remain separate from these implementation checks.
 
 ## Shared release checks
 

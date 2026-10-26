@@ -9,7 +9,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>PACKAGE-README.md</PackageReadmeFile>
     <PackageTags>quantum;simulation;state-vector;dotnet</PackageTags>
-    <PackageReleaseNotes>1.6 candidate: deterministic VQE with bounded backtracking, immutable results and explicit stopping/evaluation accounting. See CHANGELOG.md and docs/releases/1.6.0.md in the package.</PackageReleaseNotes>
+    <PackageReleaseNotes>1.6: deterministic VQE with bounded backtracking, immutable results and explicit stopping/evaluation accounting. See CHANGELOG.md and docs/releases/1.6.0.md in the package.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <EnablePackageValidation>true</EnablePackageValidation>
     <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion>

@@ -250,7 +250,7 @@ avoid lost angle increments. The host budget includes parameter/gradient/term ar
 backend device/staging budgets remain separate. No new infrastructure dependency
 or backend port is introduced. See the [variational guide](variational.md).
 
-The v1.6 candidate composes that evaluator in Application/Variational.VqeSolver.
+Version 1.6 composes that evaluator in Application/Variational.VqeSolver.
 One deterministic gradient-descent/backtracking policy keeps optimization out of
 Core and Infrastructure; no generic optimizer port is needed for one policy.
 Options/results are immutable. Execution counts include every shifted preparation,
