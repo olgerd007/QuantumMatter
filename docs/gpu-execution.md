@@ -6,6 +6,11 @@ StateVectorSimulator, algorithms, measurement, and terminal sampling keep their
 existing contracts. GPU execution is explicitly selected; it never silently falls
 back to CPU.
 
+The [current AVX-512/CUDA comparison](avx512-cuda-performance.md) validates the complete
+hardware suites on .NET 9/.NET 10 and compares ordinary transfer-inclusive CUDA
+Execute with optimized parallel/SIMD CPU variants. The historical v0.6 measurements
+below compare CUDA with scalar CPU and should not be used as the current CPU gap.
+
 ## Requirements and dependency
 
 Use .NET 9 in a 64-bit Windows or Linux process with a CUDA-capable NVIDIA GPU,
@@ -25,8 +30,10 @@ ILGPU dynamically compiles C# kernels to PTX and uses the NVIDIA driver. See the
 [ILGPU kernel example](https://github.com/m4rs-mt/ILGPU/blob/v1.5.3/Samples/SimpleKernel/Program.cs)
 and [release notes](https://ilgpu.net/releases/).
 
-Actual local validation: compatible CUDA device, 16,376 MiB reported VRAM,
-[device capability omitted], compatible driver, compatible CUDA driver API, anonymized operating system, anonymized CPU, project-selected SDK/runtime .NET 9. No toolkit was installed.
+Local validation used a compatible CUDA device in an anonymized Windows x64
+environment. Host/device models, physical capacities and installation fingerprints
+are deliberately withheld. Device discovery was followed by actual execution;
+it was not treated as hardware conformance by itself.
 Windows/Linux CPU builds, tests and package consumers pass remote CI for v1.0.
 CUDA hardware has not been validated on Linux; it remains experimental.
 
@@ -173,7 +180,7 @@ Selected medians from the 2026-10-25 run (64 gates, mixed-low):
 | 22 | 225.0143 | 60.3135 | 35.9552 | 3.73x |
 
 Small registers are slower on CUDA. Large-register timings vary substantially on
-this shared desktop/WDDM GPU, especially at 64 gates; the raw report retains min,
+the shared execution environment, especially at 64 gates; the raw report retains min,
 median and max. No automatic crossover threshold is inferred. Across all measured
 cases, maximum absolute amplitude difference was 2.78e-17 and maximum norm error
 was 8.89e-15. Each 22-qubit execution used a 64 MiB device array and 64 MiB host
@@ -181,6 +188,6 @@ staging array; reported managed allocation includes staging but excludes native
 driver/context memory.
 
 Raw evidence: [CSV](benchmarks/cuda-2026-10-25.csv) and
-[hardware/method metadata](benchmarks/cuda-2026-10-25.csv.metadata.json).
+[anonymized method metadata](benchmarks/cuda-2026-10-25.csv.metadata.json).
 Kernel event semantics follow ILGPU's
 [profiling marker implementation](https://github.com/m4rs-mt/ILGPU/blob/v1.5.3/Src/ILGPU/Runtime/ProfilingMarker.cs).

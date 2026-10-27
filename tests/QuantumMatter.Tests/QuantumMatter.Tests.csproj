@@ -17,5 +17,9 @@
     <ProjectReference Include="../../src/QuantumMatter.Core/QuantumMatter.Core.csproj" />
     <ProjectReference Include="../../src/QuantumMatter.Application/QuantumMatter.Application.csproj" />
     <ProjectReference Include="../../src/QuantumMatter.Infrastructure/QuantumMatter.Infrastructure.csproj" />
+    <ProjectReference Include="../../src/QuantumMatter.Demo/QuantumMatter.Demo.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <ProjectReference Include="../../experiments/QuantumMatter.CryptographyLab/QuantumMatter.CryptographyLab.csproj" />
   </ItemGroup>
 </Project>

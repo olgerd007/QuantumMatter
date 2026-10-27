@@ -1,5 +1,26 @@
 # Architecture
 
+## v1.8 security tooling
+
+The existing net10.0 CryptographyLab hosts a bounded in-process session model,
+canonical framing, one-attempt handshake state, owned derived key material and
+ordered AEAD records. A provisioned server signature pin supplies unilateral
+authentication; clients remain anonymous. CLI requirement policy is separate from
+primitive measurement and session execution. All types are internal tooling and
+no runtime library references the lab. The SDK API inventories and dependency
+direction are preserved. See the [security lab guide](authenticated-pqc.md).
+
+## v1.7 experiment tooling
+
+Internal Demo/Cryptography workflows compose existing circuit, trajectory,
+measurement and algorithm APIs for BB84, CHSH, toy-key Grover and bounded Shor
+order finding. No cryptography SDK port or public API is added. The separately
+justified experiments/QuantumMatter.CryptographyLab project targets net10.0 for
+platform PQC providers and pinned NIST fixture checks. It has no quantum-library
+dependency and is never referenced by a runtime library; net10.0 tests reference
+it conditionally. All three SDK libraries keep their net9.0 assets and inward
+dependency direction. See the [experiment guide](cryptography.md).
+
 QuantumMatter is a synchronous numerical library built from scratch for .NET 9.
 Projects, assemblies, and namespaces use the QuantumMatter prefix consistently.
 
@@ -34,8 +55,9 @@ paths, diagonal phase multiplication, and the SWAP permutation. Angles are evalu
 per gate, outside amplitude loops. No dense operator is allocated in production.
 
 ParallelCpuStateVectorBackend adds bounded data parallelism behind the same port,
-with configurable thresholds, reference fallback, and an opt-in portable SIMD
-Hadamard kernel. Prepared gates, range ownership, and hardware handling remain in
+with configurable thresholds, reference fallback, an opt-in portable SIMD
+Hadamard kernel, and AVX kernels for uncontrolled matrix, diagonal and exchange gates.
+Prepared gates, range ownership, and hardware handling remain in
 Infrastructure. The [CPU execution guide](cpu-performance.md) records its resource
 policy, race-free partitioning, benchmark method, and actual local measurements.
 
@@ -142,10 +164,29 @@ hardware details stay out of Core and Application. No structure-of-arrays scratc
 or full-register copying is required. See the CPU execution guide for defaults,
 constraints, and reproducible raw results.
 
+The subsequent CPU optimization adds double-precision AVX matrix, diagonal and X
+paths, including adjacent q0 pairs. Other targets vectorize contiguous halves of
+each pair block. Controlled gates and SWAP retain the scalar range kernels;
+high-stride H uses the portable kernel. Optional EnableGateBlocking reuses tiles
+across up to 32 adjacent uncontrolled same-target gates without combining matrices.
+Each tile has one writer and retains gate order; groups join before other operations.
+Scheduling owns one reusable worker delegate
+per execution, with a join before changing its gate/range fields. No execution
+object is retained by the backend. See the [performance analysis](performance-analysis.md)
+for interleaved source-baseline measurements and remaining bottlenecks.
+
+An additional opt-in EnableAvx512 path handles uncontrolled high-stride gates with
+four complex lanes per half-block, guarded by AVX-512 F, Vector512 acceleration
+and the verified layout. Smaller strides and unsupported machines retain existing
+paths. The [AVX-512/CUDA comparison](avx512-cuda-performance.md) records real CUDA
+conformance on both runtimes and interleaved, transfer-inclusive GPU measurements
+against the optimized CPU variants.
+
 Run the same gate-column, permutation, dense-oracle, phase, inverse, norm, sampling,
 and cancellation tests for every backend. Add reproducible benchmarks by register
-size, target stride, gate mix, and circuit depth, recording CPU/ISA, SDK, elapsed
-time, throughput, allocations, and peak working memory. Parallelize only above
+size, target stride, gate mix, and circuit depth, recording requested kernel/ISA, target framework, elapsed
+time, throughput, allocations, and peak working memory. Keep host-identifying details
+out of public reports. Parallelize only above
 measured thresholds and ensure each amplitude pair has one writer.
 
 ## NVIDIA GPU execution

@@ -18,7 +18,7 @@ net9.0 asset requires a major version and migration guidance.
 | Scalar/parallel CPU and reference noise | Windows x64 and Linux x64, .NET 9/10 | Local full suites and all eight Windows/Linux Debug/Release runtime CI jobs pass |
 | .NET 10 runtime using net9.0 packages | Windows/Linux x64 | Full suite and fresh/precompiled 1.0.0 consumers pass on Windows/Linux; CUDA additionally validated locally on Windows |
 | SIMD | Portable Vector&lt;double&gt; Hadamard when hardware/layout permits | Local accelerated and disabled-intrinsics suites; scalar fallback |
-| CUDA | Windows x64, compatible NVIDIA device/driver | Local compatible CUDA device, [device capability omitted], compatible driver; Linux CUDA is experimental and outside v1.x support |
+| CUDA | Windows x64, compatible NVIDIA device/driver | Real CUDA validation in an anonymized environment; Linux CUDA is experimental and outside v1.x support |
 | Other OS/CPU architectures | Unverified | No release support claim |
 | Native AOT, trimming, browser/WASM | Unverified | No release support claim; CUDA uses dynamic compilation |
 

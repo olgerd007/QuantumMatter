@@ -136,7 +136,8 @@ Acceptance criteria:
 - Add SIMD kernels where measurements justify them, with hardware detection
   and a portable fallback.
 - Publish reproducible comparisons by register size, circuit depth, and gate mix,
-  including hardware, precision, allocations, and parallelization thresholds.
+  including requested kernel settings, precision, allocations and parallelization
+  thresholds. Public reports omit host identities and installation fingerprints.
 
 No speedup is assumed for small registers. Backend selection must reflect measured
 costs and retain a reliable scalar execution path.

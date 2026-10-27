@@ -19,3 +19,13 @@ are development dependencies. None is a runtime dependency of the SDK packages.
 Consult the restored packages' own license notices when redistributing tooling.
 
 NVIDIA drivers are supplied separately by NVIDIA and are not redistributed here.
+
+## NIST ACVP experiment fixtures
+
+The standalone cryptography lab embeds selected public synthetic NIST ACVP-Server
+test vectors from commit 975de31eb83d87039ec88934fdc47d8c312b892d. NIST is the
+source; the full required notice is preserved in licenses/NIST-ACVP.txt. On
+2026-10-26, the fixture subset was selected, fields renamed and unused data
+removed; numerical values and expected results are unchanged. Provenance and
+source hashes accompany the fixture in experiments/QuantumMatter.CryptographyLab/Vectors.
+These fixtures add no runtime dependency to the SDK libraries.

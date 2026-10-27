@@ -7,6 +7,11 @@ public sealed record ParallelCpuOptions
     public int MaxDegreeOfParallelism { get; init; } = Math.Min(Environment.ProcessorCount, 4);
     /// <summary>Parallelization threshold in [1,30] qubits, default 16.</summary>
     public int MinimumParallelQubits { get; init; } = 16;
-    /// <summary>Enables supported SIMD Hadamard kernels with portable fallback.</summary>
+    /// <summary>Enables supported SIMD gate kernels with portable scalar and Hadamard fallbacks.</summary>
     public bool EnableSimd { get; init; }
+    /// <summary>Requests supported 512-bit SIMD kernels when EnableSimd is true; disabled by default, with portable fallback.</summary>
+    public bool EnableAvx512 { get; init; }
+    /// <summary>Reuses tiles across up to 32 adjacent uncontrolled same-target gates; disabled by default.</summary>
+    /// <remarks>High-target tiles use at most 16 KiB of stack workspace per active worker, outside the state-array budget.</remarks>
+    public bool EnableGateBlocking { get; init; }
 }

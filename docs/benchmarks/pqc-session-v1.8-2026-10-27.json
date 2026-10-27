@@ -1,0 +1,423 @@
+{
+  "TimestampUtc": "2026-10-27T03:31:42.8572661+00:00",
+  "TargetFramework": "net10.0",
+  "Configuration": "Release",
+  "MessageBytes": 1024,
+  "Repetitions": 3,
+  "Warmup": 1,
+  "Methodology": "Anonymous single-thread provider measurements; host hardware and installation details are not collected. Allocations cover managed current-thread bytes only. Raw times exclude warmup; no timing-based security inference. ML-KEM/ML-DSA also check selected pinned NIST ACVP vectors; this is not full ACVP certification or cross-provider interoperability validation.",
+  "Primitives": [
+    {
+      "Algorithm": "ML-KEM-512",
+      "Status": "passed",
+      "ProviderType": "System.Security.Cryptography.MLKemImplementation",
+      "PublicKeyBytes": 800,
+      "PrivateKeyBytes": 1632,
+      "CiphertextOrSignatureBytes": 768,
+      "Notes": "Two pinned NIST ACVP decapsulation cases passed (valid/implicit-rejection). Raw keys/ciphertexts; imported-key round trip, malformed length and AEAD checks passed; not an authenticated peer protocol.",
+      "Measurements": [
+        {
+          "Operation": "key-generation",
+          "Microseconds": [
+            39.4,
+            37,
+            38.5
+          ],
+          "ManagedAllocatedBytes": [
+            72,
+            72,
+            72
+          ],
+          "P50Microseconds": 38.5,
+          "P95Microseconds": 39.4
+        },
+        {
+          "Operation": "encapsulation",
+          "Microseconds": [
+            9.9,
+            10,
+            9.8
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 9.9,
+          "P95Microseconds": 10
+        },
+        {
+          "Operation": "decapsulation",
+          "Microseconds": [
+            14.7,
+            14.5,
+            14.5
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 14.5,
+          "P95Microseconds": 14.7
+        }
+      ]
+    },
+    {
+      "Algorithm": "ML-KEM-768",
+      "Status": "passed",
+      "ProviderType": "System.Security.Cryptography.MLKemImplementation",
+      "PublicKeyBytes": 1184,
+      "PrivateKeyBytes": 2400,
+      "CiphertextOrSignatureBytes": 1088,
+      "Notes": "Two pinned NIST ACVP decapsulation cases passed (valid/implicit-rejection). Raw keys/ciphertexts; imported-key round trip, malformed length and AEAD checks passed; not an authenticated peer protocol.",
+      "Measurements": [
+        {
+          "Operation": "key-generation",
+          "Microseconds": [
+            55.8,
+            59.4,
+            58.4
+          ],
+          "ManagedAllocatedBytes": [
+            72,
+            72,
+            72
+          ],
+          "P50Microseconds": 58.4,
+          "P95Microseconds": 59.4
+        },
+        {
+          "Operation": "encapsulation",
+          "Microseconds": [
+            12.9,
+            13,
+            12.8
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 12.9,
+          "P95Microseconds": 13
+        },
+        {
+          "Operation": "decapsulation",
+          "Microseconds": [
+            19.4,
+            19.4,
+            19.4
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 19.4,
+          "P95Microseconds": 19.4
+        }
+      ]
+    },
+    {
+      "Algorithm": "ML-KEM-1024",
+      "Status": "passed",
+      "ProviderType": "System.Security.Cryptography.MLKemImplementation",
+      "PublicKeyBytes": 1568,
+      "PrivateKeyBytes": 3168,
+      "CiphertextOrSignatureBytes": 1568,
+      "Notes": "Two pinned NIST ACVP decapsulation cases passed (valid/implicit-rejection). Raw keys/ciphertexts; imported-key round trip, malformed length and AEAD checks passed; not an authenticated peer protocol.",
+      "Measurements": [
+        {
+          "Operation": "key-generation",
+          "Microseconds": [
+            77.3,
+            78.9,
+            83
+          ],
+          "ManagedAllocatedBytes": [
+            72,
+            72,
+            72
+          ],
+          "P50Microseconds": 78.9,
+          "P95Microseconds": 83
+        },
+        {
+          "Operation": "encapsulation",
+          "Microseconds": [
+            17.4,
+            17.3,
+            17.3
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 17.3,
+          "P95Microseconds": 17.4
+        },
+        {
+          "Operation": "decapsulation",
+          "Microseconds": [
+            25.7,
+            25.7,
+            25.8
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 25.7,
+          "P95Microseconds": 25.8
+        }
+      ]
+    },
+    {
+      "Algorithm": "ML-DSA-44",
+      "Status": "passed",
+      "ProviderType": "System.Security.Cryptography.MLDsaImplementation",
+      "PublicKeyBytes": 1312,
+      "PrivateKeyBytes": 2560,
+      "CiphertextOrSignatureBytes": 2420,
+      "Notes": "Two pinned NIST ACVP verification cases passed (valid/invalid). Raw keys/signature; imported keys and message/signature tampering checked. This is not full ACVP certification.",
+      "Measurements": [
+        {
+          "Operation": "key-generation",
+          "Microseconds": [
+            300.5,
+            373.7,
+            427
+          ],
+          "ManagedAllocatedBytes": [
+            72,
+            72,
+            72
+          ],
+          "P50Microseconds": 373.7,
+          "P95Microseconds": 427
+        },
+        {
+          "Operation": "sign",
+          "Microseconds": [
+            85.6,
+            155.3,
+            84.8
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 85.6,
+          "P95Microseconds": 155.3
+        },
+        {
+          "Operation": "verify",
+          "Microseconds": [
+            39.1,
+            38.9,
+            38.8
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 38.9,
+          "P95Microseconds": 39.1
+        }
+      ]
+    },
+    {
+      "Algorithm": "ML-DSA-65",
+      "Status": "passed",
+      "ProviderType": "System.Security.Cryptography.MLDsaImplementation",
+      "PublicKeyBytes": 1952,
+      "PrivateKeyBytes": 4032,
+      "CiphertextOrSignatureBytes": 3309,
+      "Notes": "Two pinned NIST ACVP verification cases passed (valid/invalid). Raw keys/signature; imported keys and message/signature tampering checked. This is not full ACVP certification.",
+      "Measurements": [
+        {
+          "Operation": "key-generation",
+          "Microseconds": [
+            548.4,
+            1030.5,
+            556.9
+          ],
+          "ManagedAllocatedBytes": [
+            72,
+            72,
+            72
+          ],
+          "P50Microseconds": 556.9,
+          "P95Microseconds": 1030.5
+        },
+        {
+          "Operation": "sign",
+          "Microseconds": [
+            822.7,
+            114.4,
+            836.3
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 822.7,
+          "P95Microseconds": 836.3
+        },
+        {
+          "Operation": "verify",
+          "Microseconds": [
+            53.2,
+            53.1,
+            53.1
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 53.1,
+          "P95Microseconds": 53.2
+        }
+      ]
+    },
+    {
+      "Algorithm": "ML-DSA-87",
+      "Status": "passed",
+      "ProviderType": "System.Security.Cryptography.MLDsaImplementation",
+      "PublicKeyBytes": 2592,
+      "PrivateKeyBytes": 4896,
+      "CiphertextOrSignatureBytes": 4627,
+      "Notes": "Two pinned NIST ACVP verification cases passed (valid/invalid). Raw keys/signature; imported keys and message/signature tampering checked. This is not full ACVP certification.",
+      "Measurements": [
+        {
+          "Operation": "key-generation",
+          "Microseconds": [
+            516.8,
+            517.1,
+            3249.2
+          ],
+          "ManagedAllocatedBytes": [
+            72,
+            72,
+            72
+          ],
+          "P50Microseconds": 517.1,
+          "P95Microseconds": 3249.2
+        },
+        {
+          "Operation": "sign",
+          "Microseconds": [
+            659.3,
+            661.4,
+            414.5
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 659.3,
+          "P95Microseconds": 661.4
+        },
+        {
+          "Operation": "verify",
+          "Microseconds": [
+            76.1,
+            76,
+            76
+          ],
+          "ManagedAllocatedBytes": [
+            0,
+            0,
+            0
+          ],
+          "P50Microseconds": 76,
+          "P95Microseconds": 76.1
+        }
+      ]
+    }
+  ],
+  "Session": {
+    "Status": "passed",
+    "Suite": "ML-KEM-768/ML-DSA-65/HKDF-SHA256/HMAC-SHA256/AES-256-GCM",
+    "Assumptions": "Educational concretization of NIST SP 800-227 section 5.2.3. Server authenticated by a provisioned ML-DSA pin; client anonymous. Lab framing/confirmation/record extensions are not a reviewed production protocol or TLS implementation.",
+    "SuccessfulDirections": 2,
+    "RejectedAttacks": [
+      {
+        "Attack": "wrong-signing-key",
+        "Error": "AuthenticationFailed"
+      },
+      {
+        "Attack": "ciphertext-change",
+        "Error": "AuthenticationFailed"
+      },
+      {
+        "Attack": "signature-change",
+        "Error": "AuthenticationFailed"
+      },
+      {
+        "Attack": "finished-change",
+        "Error": "AuthenticationFailed"
+      },
+      {
+        "Attack": "downgrade",
+        "Error": "UnsupportedSuite"
+      },
+      {
+        "Attack": "wrong-identity",
+        "Error": "IdentityMismatch"
+      },
+      {
+        "Attack": "truncated-response",
+        "Error": "MalformedMessage"
+      },
+      {
+        "Attack": "cross-session-response",
+        "Error": "AuthenticationFailed"
+      },
+      {
+        "Attack": "client-finished-change",
+        "Error": "AuthenticationFailed"
+      },
+      {
+        "Attack": "finished-reflection",
+        "Error": "AuthenticationFailed"
+      },
+      {
+        "Attack": "finished-replay",
+        "Error": "UnexpectedState"
+      },
+      {
+        "Attack": "record-replay",
+        "Error": "SequenceMismatch"
+      },
+      {
+        "Attack": "record-change",
+        "Error": "AuthenticationFailed"
+      },
+      {
+        "Attack": "record-reflection",
+        "Error": "SequenceMismatch"
+      },
+      {
+        "Attack": "record-reordering",
+        "Error": "SequenceMismatch"
+      },
+      {
+        "Attack": "oversized-record",
+        "Error": "MalformedMessage"
+      },
+      {
+        "Attack": "record-limit",
+        "Error": "RecordLimit"
+      }
+    ]
+  }
+}

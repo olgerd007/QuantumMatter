@@ -4,25 +4,38 @@ using QuantumMatter.Application.Noise;
 using QuantumMatter.Application.Variational;
 using QuantumMatter.Core;
 using QuantumMatter.Demo;
+using QuantumMatter.Demo.Cryptography;
 using QuantumMatter.Infrastructure;
 
 string example = args.Length == 0 ? "bell" : args[0].ToLowerInvariant();
 string backend = args.Length < 2 ? "scalar" : args[1].ToLowerInvariant();
-if (args.Length > 2 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "observations" or "dynamic" or "noisy-dynamic" or "variational" or "vqe" or "all")
-    || backend is not ("scalar" or "parallel" or "parallel-simd" or "cuda"))
+string presetName = args.Length < 3 ? "default" : args[2].ToLowerInvariant();
+if (args.Length > 3 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "observations" or "dynamic" or "noisy-dynamic" or "variational" or "vqe" or "channel-assignment" or "limits" or "bb84" or "bb84-noise" or "chsh" or "grover-key" or "shor" or "cryptography" or "all")
+    || backend is not ("scalar" or "parallel" or "parallel-simd" or "cuda")
+    || presetName is not ("default" or "workstation"))
 {
-    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|observations|dynamic|noisy-dynamic|variational|vqe|all] [scalar|parallel|parallel-simd|cuda]");
+    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|observations|dynamic|noisy-dynamic|variational|vqe|channel-assignment|limits|bb84|bb84-noise|chsh|grover-key|shor|cryptography|all] [scalar|parallel|parallel-simd|cuda] [default|workstation]");
     return 2;
 }
 
+DemoExecutionPreset preset = DemoExecutionPreset.Create(presetName);
+if (backend == "parallel-simd") { preset = preset with { ParallelCpu = preset.ParallelCpu with { EnableSimd = true } }; }
+if (example == "limits")
+{
+    Console.WriteLine($"Execution preset: {presetName}");
+    preset.PrintLimits();
+    return 0;
+}
+
+if (presetName != "default") { Console.WriteLine($"Execution preset: {presetName}"); }
 IStateVectorBackend execution;
 try
 {
     execution = backend switch
     {
-        "parallel" => new ParallelCpuStateVectorBackend(),
-        "parallel-simd" => new ParallelCpuStateVectorBackend(new ParallelCpuOptions { EnableSimd = true }),
-        "cuda" => new CudaStateVectorBackend(),
+        "parallel" => new ParallelCpuStateVectorBackend(preset.ParallelCpu),
+        "parallel-simd" => new ParallelCpuStateVectorBackend(preset.ParallelCpu),
+        "cuda" => new CudaStateVectorBackend(preset.Cuda),
         _ => new CpuStateVectorBackend()
     };
 }
@@ -33,7 +46,7 @@ catch (PlatformNotSupportedException error) when (backend == "cuda")
 }
 
 using IDisposable? ownedBackend = execution as IDisposable;
-var simulator = new StateVectorSimulator(execution);
+var simulator = new StateVectorSimulator(execution, preset.Simulation);
 switch (example)
 {
     case "bell":
@@ -49,22 +62,45 @@ switch (example)
         AlgorithmExamples.RunGrover(simulator);
         break;
     case "noise":
-        NoiseExamples.Run(new NoisyStateVectorSimulator(execution, new CpuNoiseChannelBackend()));
+        NoiseExamples.Run(new NoisyStateVectorSimulator(execution, new CpuNoiseChannelBackend(), preset.Simulation));
         break;
     case "observations":
         ObservationExamples.Run(simulator);
         break;
     case "dynamic":
-        DynamicExamples.Run(new DynamicStateVectorSimulator(execution));
+        DynamicExamples.Run(new DynamicStateVectorSimulator(execution, preset.Simulation));
         break;
     case "noisy-dynamic":
-        NoisyDynamicExamples.Run(new NoisyDynamicStateVectorSimulator(execution, new CpuNoiseChannelBackend()));
+        NoisyDynamicExamples.Run(new NoisyDynamicStateVectorSimulator(execution, new CpuNoiseChannelBackend(), preset.Simulation));
         break;
     case "variational":
-        VariationalExamples.Run(new VariationalEnergyEvaluator(execution));
+        VariationalExamples.Run(new VariationalEnergyEvaluator(execution, preset.Simulation));
+        break;
+    case "channel-assignment":
+        ChannelAssignmentExample.Run(new VariationalEnergyEvaluator(execution, preset.Simulation), simulator);
+        break;
+    case "bb84":
+    case "bb84-noise":
+        CryptographyExamples.RunBb84(execution, new CpuNoiseChannelBackend(), preset.Simulation, example == "bb84-noise");
+        break;
+    case "chsh":
+        CryptographyExamples.RunChsh(execution, new CpuNoiseChannelBackend(), preset.Simulation);
+        break;
+    case "grover-key":
+        CryptographyExamples.RunToyGrover(simulator);
+        break;
+    case "shor":
+        CryptographyExamples.RunShor(simulator);
+        break;
+    case "cryptography":
+        CryptographyExamples.RunBb84(execution, new CpuNoiseChannelBackend(), preset.Simulation, false);
+        CryptographyExamples.RunBb84(execution, new CpuNoiseChannelBackend(), preset.Simulation, true);
+        CryptographyExamples.RunChsh(execution, new CpuNoiseChannelBackend(), preset.Simulation);
+        CryptographyExamples.RunToyGrover(simulator);
+        CryptographyExamples.RunShor(simulator);
         break;
     case "vqe":
-        VqeExamples.Run(new VqeSolver(execution));
+        VqeExamples.Run(new VqeSolver(execution, simulationOptions: preset.Simulation));
         break;
     case "all":
         RunBell(simulator);

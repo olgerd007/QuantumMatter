@@ -38,7 +38,7 @@ if (expectedVersion is not null)
 
 var targetFramework = new FrameworkName(Assembly.GetExecutingAssembly().GetCustomAttribute<TargetFrameworkAttribute>()!.FrameworkName);
 Require(Environment.Version.Major == targetFramework.Version.Major, "Consumer must execute on its declared major runtime.");
-Console.WriteLine($"Package consumer runtime: {System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}.");
+Console.WriteLine("Package consumer started; host details omitted.");
 ValidateBackend(new CpuStateVectorBackend());
 ValidateBackend(new ParallelCpuStateVectorBackend(new ParallelCpuOptions
 {
@@ -50,7 +50,7 @@ if (enableCuda)
 {
     using var cuda = new CudaStateVectorBackend();
     ValidateBackend(cuda);
-    Console.WriteLine($"Packaged CUDA backend validated on {cuda.Device.Name}.");
+    Console.WriteLine("Packaged CUDA backend validated.");
 }
 
 var noisy = new NoisyStateVectorSimulator(new CpuStateVectorBackend(), new CpuNoiseChannelBackend());

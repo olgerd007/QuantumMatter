@@ -1,0 +1,73 @@
+BB84 teaching simulation: independent signals; disclosed bits are removed; no secure key is produced.
+f=0.00, p=0.00: sifted=49951, disclosed=12557, errors=0, retained candidates=37394, QBER=0.000 %; predicted=0.000 %
+  Z QBER=0.000 %, X QBER=0.000 %; idealized asymptotic secret-fraction bound=1.0000
+  Z 99% Hoeffding interval: [0.000 %, 2.072 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [0.000 %, 2.037 %] (independent disclosed bits).
+f=0.25, p=0.00: sifted=49993, disclosed=12609, errors=784, retained candidates=37384, QBER=6.218 %; predicted=6.250 %
+  Z QBER=6.248 %, X QBER=6.188 %; idealized asymptotic secret-fraction bound=0.3279
+  Z 99% Hoeffding interval: [4.191 %, 8.305 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [4.146 %, 8.230 %] (independent disclosed bits).
+f=0.50, p=0.00: sifted=49915, disclosed=12483, errors=1562, retained candidates=37432, QBER=12.513 %; predicted=12.500 %
+  Z QBER=12.832 %, X QBER=12.204 %; idealized asymptotic secret-fraction bound=0.0000
+  Z 99% Hoeffding interval: [10.755 %, 14.909 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [10.161 %, 14.248 %] (independent disclosed bits).
+f=0.75, p=0.00: sifted=50051, disclosed=12725, errors=2383, retained candidates=37326, QBER=18.727 %; predicted=18.750 %
+  Z QBER=18.509 %, X QBER=18.946 %; idealized asymptotic secret-fraction bound=0.0000
+  Z 99% Hoeffding interval: [16.469 %, 20.548 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [16.904 %, 20.987 %] (independent disclosed bits).
+f=1.00, p=0.00: sifted=49799, disclosed=12355, errors=3084, retained candidates=37444, QBER=24.962 %; predicted=25.000 %
+  Z QBER=24.895 %, X QBER=25.028 %; idealized asymptotic secret-fraction bound=0.0000
+  Z 99% Hoeffding interval: [22.827 %, 26.963 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [22.955 %, 27.102 %] (independent disclosed bits).
+The bound assumes ideal reconciliation and asymptotic phase-error estimation; it is not a finite-key security claim.
+BB84 teaching simulation: independent signals; disclosed bits are removed; no secure key is produced.
+f=0.00, p=0.00: sifted=49951, disclosed=12557, errors=0, retained candidates=37394, QBER=0.000 %; predicted=0.000 %
+  Z QBER=0.000 %, X QBER=0.000 %; idealized asymptotic secret-fraction bound=1.0000
+  Z 99% Hoeffding interval: [0.000 %, 2.072 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [0.000 %, 2.037 %] (independent disclosed bits).
+f=0.00, p=0.10: sifted=49800, disclosed=12618, errors=662, retained candidates=37182, QBER=5.246 %; predicted=5.000 %
+  Z QBER=5.308 %, X QBER=5.184 %; idealized asymptotic secret-fraction bound=0.4065
+  Z 99% Hoeffding interval: [3.262 %, 7.354 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [3.132 %, 7.237 %] (independent disclosed bits).
+f=0.00, p=0.30: sifted=49800, disclosed=12618, errors=1930, retained candidates=37182, QBER=15.296 %; predicted=15.000 %
+  Z QBER=15.592 %, X QBER=14.997 %; idealized asymptotic secret-fraction bound=0.0000
+  Z 99% Hoeffding interval: [13.547 %, 17.638 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [12.944 %, 17.049 %] (independent disclosed bits).
+f=0.00, p=1.00: sifted=49800, disclosed=12618, errors=6358, retained candidates=37182, QBER=50.388 %; predicted=50.000 %
+  Z QBER=50.790 %, X QBER=49.984 %; idealized asymptotic secret-fraction bound=0.0000
+  Z 99% Hoeffding interval: [48.744 %, 52.836 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [47.932 %, 52.037 %] (independent disclosed bits).
+f=1.00, p=0.00: sifted=49799, disclosed=12355, errors=3084, retained candidates=37444, QBER=24.962 %; predicted=25.000 %
+  Z QBER=24.895 %, X QBER=25.028 %; idealized asymptotic secret-fraction bound=0.0000
+  Z 99% Hoeffding interval: [22.827 %, 26.963 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [22.955 %, 27.102 %] (independent disclosed bits).
+f=1.00, p=0.10: sifted=50057, disclosed=12672, errors=3476, retained candidates=37385, QBER=27.431 %; predicted=27.500 %
+  Z QBER=27.142 %, X QBER=27.719 %; idealized asymptotic secret-fraction bound=0.0000
+  Z 99% Hoeffding interval: [25.098 %, 29.187 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [25.674 %, 29.764 %] (independent disclosed bits).
+f=1.00, p=0.30: sifted=50057, disclosed=12672, errors=4107, retained candidates=37385, QBER=32.410 %; predicted=32.500 %
+  Z QBER=31.876 %, X QBER=32.944 %; idealized asymptotic secret-fraction bound=0.0000
+  Z 99% Hoeffding interval: [29.832 %, 33.921 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [30.899 %, 34.989 %] (independent disclosed bits).
+f=1.00, p=1.00: sifted=50057, disclosed=12672, errors=6340, retained candidates=37385, QBER=50.032 %; predicted=50.000 %
+  Z QBER=49.456 %, X QBER=50.608 %; idealized asymptotic secret-fraction bound=0.0000
+  Z 99% Hoeffding interval: [47.411 %, 51.500 %] (independent disclosed bits).
+  X 99% Hoeffding interval: [48.563 %, 52.653 %] (independent disclosed bits).
+The bound assumes ideal reconciliation and asymptotic phase-error estimation; it is not a finite-key security claim.
+Bell/CHSH teaching experiment; this does not certify device-independent security.
+p=0.00: S=2.81100, estimated SE=0.01423, analytic=2.82843; local bound |S|<=2
+p=0.20: S=2.29220, estimated SE=0.01639, analytic=2.26274; local bound |S|<=2
+p=0.50: S=1.42660, estimated SE=0.01868, analytic=1.41421; local bound |S|<=2
+p=1.00: S=0.03160, estimated SE=0.02000, analytic=0.00000; local bound |S|<=2
+Grover with a reversible three-bit toy cipher verifier; the cipher is trivially classically invertible.
+Public challenge: P=3, C=3; matching keys=1.
+Most probable key=5; probability=0.94531250; physical qubits=7, gates=83.
+Gate count includes cipher computation, comparison, uncomputation and diffusion. No classical speedup is claimed.
+Small Shor experiment: coherent controlled modular multiplication, inverse QFT, then classical continued fractions.
+N=15, a=2; physical qubits=14, gates=633; counting register is the low eight bits.
+  y=0: 137
+  y=64: 122
+  y=128: 146
+  y=192: 107
+Recovered factors: 3 * 5 = 15.
+Arithmetic synthesis is bounded to odd N<=15. This is not a resource estimate for real RSA/ECC.

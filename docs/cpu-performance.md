@@ -5,6 +5,17 @@ ParallelCpuStateVectorBackend explicitly to use bounded data parallelism and,
 optionally, the measured SIMD Hadamard kernel. Neither backend changes the domain
 or Application APIs. No external numerical or quantum library is used.
 
+The current opt-in SIMD implementation also accelerates uncontrolled matrix,
+diagonal and X gates with AVX, including q0 Hadamard. The
+[current performance analysis](performance-analysis.md) contains the implementation
+review, interleaved before/after results, and reproduction commands. The v0.5
+measurements below remain historical evidence for the original implementation.
+
+EnableAvx512 (default false, requires EnableSimd) adds guarded 512-bit kernels for
+uncontrolled targets q2 and above. Smaller target strides and unsupported hardware
+fall back to the existing paths. See the [AVX-512/CUDA comparison](avx512-cuda-performance.md)
+for matched-width results, observed regressions and real hardware validation.
+
 ## Select a backend
 
 ```csharp
@@ -54,11 +65,23 @@ one. Its partner has the opposite bits and is never selected by another worker.
 Diagonal gates partition amplitude indices directly. These rules give every
 written amplitude exactly one writer for a gate, even with unequal range lengths.
 
-Parallel.For joins all ranges before the next gate starts. Worker scheduling and
+By default Parallel.For joins all ranges before the next gate starts. Worker scheduling and
 cancellation use per-execution ParallelOptions and TaskScheduler.Default. State is
 not retained after Execute returns, and one backend may serve concurrent calls
 on independent buffers. Limits apply per call, not as a process-wide thread quota.
 Shared circuits must remain unchanged while executing.
+
+EnableGateBlocking (default false) optionally executes up to 32 adjacent uncontrolled
+same-target gates on each tile before moving to the next tile. Each tile contains at
+most 512 amplitude pairs (16 KiB of state data). Gates keep their original arithmetic
+order per pair; matrices are not multiplied together. Controls, SWAP, identities and
+target changes end a group. A join completes all tiles before the next group or
+ungrouped gate. The fixed 32-entry preparation array is backend metadata outside
+the state/CDF budget. High-target tiles additionally use at most 16 KiB of stack
+workspace per active worker to bulk-pack distant partners into a local two-half tile. There is
+no full-state scratch array. See the current analysis
+for measured 25-qubit behavior. Cancellation may leave different tiles at different
+points in a group; Evolve still throws and may leave a partially evolved state.
 
 The caller's token is passed to both the scheduler and kernels, which check at
 entry and within at most 4096 work items. Cancellation raised by a worker using
@@ -70,16 +93,23 @@ These cancellation semantics follow the
 
 ## SIMD scope and portability
 
-EnableSimd enables Vector<double> Hadamard updates for uncontrolled gates with
-sufficient target stride. Complex real/imaginary interleaving is verified with a
+EnableSimd selects AVX q0 Hadamard updates and Vector<double> Hadamard updates
+for uncontrolled gates with sufficient target stride.
+Complex real/imaginary interleaving is verified with a
 runtime layout probe before casting bounded spans. The kernel uses unaligned
 vector loads, never crosses a target block or worker range, and handles tails
-with scalar updates. Controlled H, other gate kinds, and unsuitable strides use
-scalar range kernels.
+with scalar updates. Controlled H uses scalar range kernels. On AVX hardware,
+uncontrolled matrix, diagonal and X gates use 256-bit double vectors. Adjacent q0
+pairs use lane permutations; higher targets process two complex amplitudes from
+each half-block. Diagonal gates avoid untouched identity halves where possible.
+Uneven ranges have scalar tails. Controls and SWAP keep the scalar range path.
+Hardware without AVX retains the portable Hadamard path and scalar fallback for
+the other gates.
 
-Hardware support is checked through Vector.IsHardwareAccelerated; unsupported
-hardware or an incompatible layout uses scalar kernels. Vector width is obtained
-from Vector<double>.Count rather than assuming AVX2. See the
+The portable H kernel checks Vector.IsHardwareAccelerated and obtains its width
+from Vector<double>.Count. The new fixed-width kernels additionally check
+Avx.IsSupported. Unsupported hardware or an incompatible layout uses the applicable
+portable/scalar fallback. See the
 [.NET SIMD guidance](https://learn.microsoft.com/dotnet/standard/simd).
 Double precision and the existing conformance tolerances are preserved. Passing
 tests on this host does not promise bit-identical results on all hardware.
@@ -120,14 +150,16 @@ CSV reports median/min/max time, gates/second, process-wide managed allocation
 deltas including workers, state bytes, cumulative process peak working set, and
 warmup conformance errors. The peak is not an isolated per-backend memory peak.
 Scheduling produces allocations proportional to gates/workers; the implementation
-does not claim allocation-free execution. Metadata records hardware, OS, SDK,
-runtime, vector width/features, precision, and benchmark parameters.
+does not claim allocation-free execution. Metadata records precision, requested
+backend settings and benchmark parameters. Host identity and installation details
+are deliberately omitted from public reports.
 
 ## Recorded local results
 
-Recorded 2026-10-25 local time; timestamps in metadata are UTC. Hardware: anonymized CPU, [processor count omitted], anonymized operating system, .NET 9, project-selected SDK.
-Vector<double> had four lanes; AVX2/AVX-512 were available, but this implementation
-uses the portable Vector API. Sources were the local feature-branch working tree.
+Recorded 2026-10-25 in an anonymized environment; timestamps are UTC. This
+implementation uses the portable Vector API. Sources were the local feature-branch
+working tree. Host models, capacities and installation details are withheld;
+results support comparisons within this run, not machine-specific recommendations.
 
 - [Quick CSV](benchmarks/cpu-quick-2026-10-25.csv) and [metadata](benchmarks/cpu-quick-2026-10-25.csv.metadata.json).
 - [Full CSV](benchmarks/cpu-full-2026-10-25.csv) and [metadata](benchmarks/cpu-full-2026-10-25.csv.metadata.json).

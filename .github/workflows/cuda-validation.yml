@@ -19,6 +19,8 @@ jobs:
       MSBuildEnableWorkloadResolver: 'false'
     steps:
       - uses: actions/checkout@v4
+      - name: Verify public report privacy
+        run: ./scripts/Test-ReportPrivacy.ps1
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |

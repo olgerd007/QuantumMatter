@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumMatter.Benchmarks", "benchmarks\QuantumMatter.Benchmarks\QuantumMatter.Benchmarks.csproj", "{8421FF5B-0389-4F51-990D-2826BEF28F7F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "experiments", "experiments", "{8E1D1CCC-9289-C849-48CA-D7E099D02B6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantumMatter.CryptographyLab", "experiments\QuantumMatter.CryptographyLab\QuantumMatter.CryptographyLab.csproj", "{762B6CED-3190-4C38-95F1-786331997D0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +105,18 @@ Global
 		{8421FF5B-0389-4F51-990D-2826BEF28F7F}.Release|x64.Build.0 = Release|Any CPU
 		{8421FF5B-0389-4F51-990D-2826BEF28F7F}.Release|x86.ActiveCfg = Release|Any CPU
 		{8421FF5B-0389-4F51-990D-2826BEF28F7F}.Release|x86.Build.0 = Release|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Debug|x64.Build.0 = Debug|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Debug|x86.Build.0 = Debug|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Release|x64.ActiveCfg = Release|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Release|x64.Build.0 = Release|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Release|x86.ActiveCfg = Release|Any CPU
+		{762B6CED-3190-4C38-95F1-786331997D0D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,5 +128,6 @@ Global
 		{B88A1DD7-B251-4D78-852A-1E23A75FAF5D} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{BEA9E7B9-08B4-48CC-BE3B-80EDCECB24CA} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{8421FF5B-0389-4F51-990D-2826BEF28F7F} = {66320409-64EC-F7C5-3DEF-65E7510DAAD1}
+		{762B6CED-3190-4C38-95F1-786331997D0D} = {8E1D1CCC-9289-C849-48CA-D7E099D02B6F}
 	EndGlobalSection
 EndGlobal

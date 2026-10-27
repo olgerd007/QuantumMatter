@@ -1,8 +1,39 @@
 # QuantumMatter
 
+Public reports intentionally omit host hardware and installation details. See the
+[report privacy policy](docs/report-privacy.md).
+
 An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
+
+## v1.8 security validation (candidate)
+
+Version **1.8.0-rc.1** retains the v1.7 development work and adds a server-authenticated
+PQC session experiment, adversarial cases and strict algorithm requirements for CI.
+The separate .NET 10 lab uses a provisioned server-key pin, transcript binding,
+key confirmation and bounded encrypted records. See the
+[security lab guide](docs/authenticated-pqc.md) and [candidate record](docs/releases/1.8.0.md).
+These are educational experiments; no security SDK API is added or production
+protocol/certification claim made. The candidate has not been published.
+
+```powershell
+dotnet run --project experiments/QuantumMatter.CryptographyLab -c Release -- --session --strict --output artifacts/pqc-session.json
+```
+
+## v1.7 cryptography experiments (candidate)
+
+Version **1.7.0-rc.1** adds educational BB84/intercept-resend, noisy BB84, CHSH,
+reversible toy-key Grover and small Shor demonstrations, plus a separate .NET 10
+ML-KEM/ML-DSA provider lab with pinned NIST vectors. See the
+[experiment guide](docs/cryptography.md) and [candidate validation record](docs/releases/1.7.0.md).
+SDK libraries retain net9.0; these cryptography experiments are repository tooling.
+The candidate has not been published.
+
+```powershell
+dotnet run --project src/QuantumMatter.Demo -- cryptography
+dotnet run --project experiments/QuantumMatter.CryptographyLab -c Release -- --output artifacts/pqc.json
+```
 
 ## SDK v1.6
 
@@ -126,7 +157,31 @@ dotnet run --project src/QuantumMatter.Demo -- noise
 See the [noise guide](docs/noise.md) for bit/phase flips, depolarization, amplitude
 damping, explicit placement, ensemble results and statistical uncertainty.
 
+Try a practical optimization example: assign six transmitters to two channels to
+reduce weighted same-channel interference on a synthetic graph:
+
+```sh
+dotnet run --project src/QuantumMatter.Demo -- channel-assignment
+```
+
+The example optimizes a parameterized circuit, samples assignments, and compares
+the result with all 64 classical possibilities. See the
+[channel-assignment walkthrough](docs/channel-assignment.md) for the model,
+assumptions and limitations.
+
 ## Example
+
+For example settings with larger array budgets and explicit worker limits, use the opt-in
+[workstation preset](docs/workstation-preset.md):
+
+```sh
+dotnet run --project src/QuantumMatter.Demo -- limits parallel workstation
+dotnet run --project src/QuantumMatter.Demo -- channel-assignment parallel workstation
+```
+
+Its calculated ceilings are 30 physical qubits on CPU and 29 on CUDA, subject to
+actual free memory and workload cost. The `limits` command does not allocate a
+large state or initialize CUDA.
 
 ```csharp
 using QuantumMatter.Application;
@@ -228,4 +283,5 @@ comparisons, exhaustive two-qubit truth tables, long-circuit inverse/norm tests,
 and resource, validation, cancellation, and measurement regressions.
 CI builds and tests Debug and Release on Windows and Linux under both runtimes,
 verifies formatting and validates source/binary compatibility with published 1.0.0.
+Name new branches `feature/<purpose>` (for example, `feature/avx512-optimization`).
 Use feature branches for significant changes and never push directly to main.

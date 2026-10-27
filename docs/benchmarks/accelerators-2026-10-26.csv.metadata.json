@@ -1,0 +1,108 @@
+{
+  "timestampUtc": "2026-10-26T20:45:03.0534089\u002B00:00",
+  "tieredCompilation": "0",
+  "precision": "double real/imaginary; no fast math, coefficient fusion or renormalization",
+  "sizes": [
+    12,
+    20,
+    25
+  ],
+  "depths": "64 gates for 12/20 qubits; 8 gates for 25 qubits",
+  "mixes": "hadamard-high, mixed-high, varying-high; plus rx-high and phase-high at 20 qubits",
+  "repetitions": 5,
+  "warmupsPerBackendAndCase": 2,
+  "configurations": [
+    {
+      "Name": "cpu-256-w1-block-false",
+      "Workers": 1,
+      "Wide": false,
+      "Blocking": false
+    },
+    {
+      "Name": "cpu-512-w1-block-false",
+      "Workers": 1,
+      "Wide": true,
+      "Blocking": false
+    },
+    {
+      "Name": "cpu-256-w1-block-true",
+      "Workers": 1,
+      "Wide": false,
+      "Blocking": true
+    },
+    {
+      "Name": "cpu-512-w1-block-true",
+      "Workers": 1,
+      "Wide": true,
+      "Blocking": true
+    },
+    {
+      "Name": "cpu-256-w4-block-false",
+      "Workers": 4,
+      "Wide": false,
+      "Blocking": false
+    },
+    {
+      "Name": "cpu-512-w4-block-false",
+      "Workers": 4,
+      "Wide": true,
+      "Blocking": false
+    },
+    {
+      "Name": "cpu-256-w4-block-true",
+      "Workers": 4,
+      "Wide": false,
+      "Blocking": true
+    },
+    {
+      "Name": "cpu-512-w4-block-true",
+      "Workers": 4,
+      "Wide": true,
+      "Blocking": true
+    },
+    {
+      "Name": "cpu-256-w8-block-false",
+      "Workers": 8,
+      "Wide": false,
+      "Blocking": false
+    },
+    {
+      "Name": "cpu-512-w8-block-false",
+      "Workers": 8,
+      "Wide": true,
+      "Blocking": false
+    },
+    {
+      "Name": "cpu-256-w8-block-true",
+      "Workers": 8,
+      "Wide": false,
+      "Blocking": true
+    },
+    {
+      "Name": "cpu-512-w8-block-true",
+      "Workers": 8,
+      "Wide": true,
+      "Blocking": true
+    },
+    {
+      "Name": "cuda",
+      "Workers": 0,
+      "Wide": false,
+      "Blocking": false
+    }
+  ],
+  "forcedParallelThresholdQubits": 1,
+  "benchmarkHostArrayBudgetBytes": 2147483648,
+  "maximumLiveHostArrayBytes": 2147483648,
+  "totalTiming": "Ordinary synchronous Execute; CUDA includes staging allocation/conversion, device allocation/free, transfers, dispatch/sync and host commit; events not created in timed Execute",
+  "deviceTiming": "Median of five separate post-timing ExecuteProfiled calls; event sequence excludes transfers/allocation but includes launch gaps and 32-launch barriers; not subtracted from ordinary Execute",
+  "excluded": "Context/kernel compilation, input reset, warmup and numerical validation",
+  "ordering": "Rotate all CPU/CUDA variants each repetition; reverse on odd repetitions",
+  "allocations": "Process-wide managed allocation delta, including CPU workers; excludes stack/native/device memory",
+  "workingSet": "Cumulative process peak, not an isolated backend peak",
+  "cpuMemory": "16N state; blocked CPU adds fixed 32-gate metadata and up to 16 KiB stack per active worker",
+  "cudaMemory": "Additional 16N staging \u002B 16N device state; runtime/driver/context overhead separate",
+  "validation": "Independent scalar oracle; amplitude \u003C=3e-12, compensated norm error \u003C=1e-11; warmups and every timed/profiled output checked",
+  "source": "Local working tree; see companion report",
+  "privacy": "Host hardware and installation details omitted; measurements and requested settings retained."
+}

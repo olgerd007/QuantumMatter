@@ -1,8 +1,6 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Numerics;
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text.Json;
 using QuantumMatter.Core;
 using QuantumMatter.Infrastructure;
@@ -22,13 +20,7 @@ internal static class CudaBenchmarks
         var metadata = new
         {
             timestampUtc = TimeProvider.System.GetUtcNow(),
-            gpu.Device,
-            os = RuntimeInformation.OSDescription,
-            runtime = RuntimeInformation.FrameworkDescription,
-            buildSdk = Assembly.GetExecutingAssembly().GetCustomAttributes<AssemblyMetadataAttribute>()
-                .First(attribute => attribute.Key == "BuildSdkVersion").Value,
-            logicalProcessors = Environment.ProcessorCount,
-            cpu = Environment.GetEnvironmentVariable("PROCESSOR_IDENTIFIER") ?? RuntimeInformation.ProcessArchitecture.ToString(),
+            privacy = "Anonymous benchmark; host hardware and installation details are not collected.",
             tieredCompilation = Environment.GetEnvironmentVariable("DOTNET_TieredCompilation") ?? "runtime default",
             precision = "IEEE double real and imaginary; ILGPU 1.5.3 MathMode.Default; no renormalization",
             sizes,
@@ -123,7 +115,7 @@ internal static class CudaBenchmarks
         return 0;
     }
 
-    private static QuantumCircuit Circuit(int qubits, int depth, string mix)
+    internal static QuantumCircuit Circuit(int qubits, int depth, string mix)
     {
         var circuit = new QuantumCircuit(qubits);
         bool high = mix.EndsWith("high", StringComparison.Ordinal);
@@ -153,7 +145,7 @@ internal static class CudaBenchmarks
         return circuit;
     }
 
-    private static (double Error, double NormError) Check(Complex[] expected, Complex[] actual)
+    internal static (double Error, double NormError) Check(Complex[] expected, Complex[] actual)
     {
         double maxError = 0;
         double norm = 0;
@@ -171,7 +163,7 @@ internal static class CudaBenchmarks
         double normError = Math.Abs(norm - 1);
         if (!double.IsFinite(maxError) || !double.IsFinite(normError) || maxError > 3e-12 || normError > 1e-11)
         {
-            throw new InvalidOperationException($"CUDA benchmark failed numerical validation: amplitude {maxError:R}, norm {normError:R}.");
+            throw new InvalidOperationException($"Backend benchmark failed numerical validation: amplitude {maxError:R}, norm {normError:R}.");
         }
 
         return (maxError, normError);

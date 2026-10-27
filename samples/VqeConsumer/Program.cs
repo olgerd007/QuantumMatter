@@ -16,9 +16,9 @@ if (args.Length == 1)
 {
     using var cuda = new CudaStateVectorBackend();
     Validate(cuda);
-    Console.WriteLine($"VQE consumer validated CUDA on {cuda.Device.Name}.");
+    Console.WriteLine("VQE consumer validated CUDA.");
 }
-Console.WriteLine($"VQE package consumer passed on {System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription}.");
+Console.WriteLine("VQE package consumer passed.");
 return 0;
 
 static void Validate(IStateVectorBackend backend)
