@@ -41,6 +41,10 @@ QuantumMatter.Infrastructure.CudaStateVectorBackend.Dispose() -> void
 QuantumMatter.Infrastructure.CudaStateVectorBackend.Execute(QuantumMatter.Core.QuantumCircuit! circuit, System.Memory<System.Numerics.Complex> amplitudes, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> void
 QuantumMatter.Infrastructure.CudaStateVectorBackend.ExecuteProfiled(QuantumMatter.Core.QuantumCircuit! circuit, System.Memory<System.Numerics.Complex> amplitudes, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> QuantumMatter.Infrastructure.CudaExecutionProfile!
 QuantumMatter.Infrastructure.ParallelCpuOptions
+QuantumMatter.Infrastructure.ParallelCpuOptions.EnableAvx512.get -> bool
+QuantumMatter.Infrastructure.ParallelCpuOptions.EnableAvx512.init -> void
+QuantumMatter.Infrastructure.ParallelCpuOptions.EnableGateBlocking.get -> bool
+QuantumMatter.Infrastructure.ParallelCpuOptions.EnableGateBlocking.init -> void
 QuantumMatter.Infrastructure.ParallelCpuOptions.EnableSimd.get -> bool
 QuantumMatter.Infrastructure.ParallelCpuOptions.EnableSimd.init -> void
 QuantumMatter.Infrastructure.ParallelCpuOptions.MaxDegreeOfParallelism.get -> int

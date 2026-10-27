@@ -32,6 +32,8 @@ restores ILGPU 1.5.3 even for CPU selection; Core/Application do not depend on I
 All three SDK packages share a semantic version. Stable version 1.6.0 is released;
 the [release record](releases/1.6.0.md) tracks publication and public-feed checks.
 Published 1.0.0 through 1.5.0 remain available. Use matching package versions.
+Stable 1.8.0 promotion is tracked in the [v1.8 release record](releases/1.8.0.md);
+the verified 1.8.0-rc.1 prerelease remains available.
 The release record distinguishes prepared artifacts from public publication.
 The 1.x compatibility policy is:
 
@@ -61,6 +63,11 @@ No existing ExpectationValue overload or backend port changes; see the
 Version 1.6 adds 33 Application declarations for VQE, for 316 shipped declarations
 while preserving all 283 earlier declarations. Core and backend ports are unchanged;
 see the [release record](releases/1.6.0.md).
+Version 1.8 freezes four previously reviewed Infrastructure accessors for
+EnableAvx512 and EnableGateBlocking, bringing the shipped total to 320 without
+removing or changing any of the earlier 316 declarations. Both options remain
+disabled by default; the cryptography experiments add no SDK protocol API.
+See the [API additions](api/1.8.0.md).
 Since v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
 parameter-name compatibility is enabled. SDK package validation compares compiled
 assets at pack time. A separate smoke check compiles the consumer against the

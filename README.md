@@ -7,28 +7,35 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
-## v1.8 security validation (candidate)
+## SDK v1.8
 
-Version **1.8.0-rc.1** retains the v1.7 development work and adds a server-authenticated
+Version **1.8.0** retains the v1.7 development work and adds a server-authenticated
 PQC session experiment, adversarial cases and strict algorithm requirements for CI.
 The separate .NET 10 lab uses a provisioned server-key pin, transcript binding,
 key confirmation and bounded encrypted records. See the
-[security lab guide](docs/authenticated-pqc.md) and [candidate record](docs/releases/1.8.0.md).
+[security lab guide](docs/authenticated-pqc.md) and [release record](docs/releases/1.8.0.md).
 These are educational experiments; no security SDK API is added or production
-protocol/certification claim made. The candidate has not been published.
+protocol/certification claim made. The release record distinguishes validation
+from publication. Four additive CPU-option accessors are frozen for opt-in
+gate blocking and AVX-512 execution; see the [API additions](docs/api/1.8.0.md).
+
+```sh
+dotnet add package QuantumMatter.Application --version 1.8.0
+dotnet add package QuantumMatter.Infrastructure --version 1.8.0
+```
 
 ```powershell
 dotnet run --project experiments/QuantumMatter.CryptographyLab -c Release -- --session --strict --output artifacts/pqc-session.json
 ```
 
-## v1.7 cryptography experiments (candidate)
+## v1.7 cryptography experiments (included in v1.8)
 
 Version **1.7.0-rc.1** adds educational BB84/intercept-resend, noisy BB84, CHSH,
 reversible toy-key Grover and small Shor demonstrations, plus a separate .NET 10
 ML-KEM/ML-DSA provider lab with pinned NIST vectors. See the
 [experiment guide](docs/cryptography.md) and [candidate validation record](docs/releases/1.7.0.md).
 SDK libraries retain net9.0; these cryptography experiments are repository tooling.
-The candidate has not been published.
+There was no separate v1.7 publication; these experiments are included in v1.8.
 
 ```powershell
 dotnet run --project src/QuantumMatter.Demo -- cryptography

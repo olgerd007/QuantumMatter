@@ -1,10 +1,10 @@
 # v1.8 authenticated PQC validation lab
 
-Version **1.8.0-rc.1** extends the [v1.7 experiments](cryptography.md) in the same
+Version **1.8.0** extends the [v1.7 experiments](cryptography.md) in the same
 development branch. It adds an in-process authenticated-session experiment,
 adversarial checks, strict CLI policies and a dedicated security CI job. Runtime
 libraries retain net9.0 and their existing API inventories. No runtime dependency
-or public SDK API is added. See the [candidate record](releases/1.8.0.md).
+or public SDK API is added. See the [release record](releases/1.8.0.md).
 
 ## Goal and trust model
 
