@@ -29,9 +29,9 @@ restores ILGPU 1.5.3 even for CPU selection; Core/Application do not depend on I
 
 ## Versioning
 
-All three SDK packages share a semantic version. Stable version 1.5.0 is released;
-the [release record](releases/1.5.0.md) tracks publication and public-feed checks.
-Published 1.0.0 through 1.4.0 remain available. Use matching package versions.
+All three SDK packages share a semantic version. Stable version 1.6.0 is released;
+the [release record](releases/1.6.0.md) tracks publication and public-feed checks.
+Published 1.0.0 through 1.5.0 remain available. Use matching package versions.
 The release record distinguishes prepared artifacts from public publication.
 The 1.x compatibility policy is:
 
@@ -58,6 +58,9 @@ Version 1.5 adds 28 declarations for Hamiltonians and variational building block
 giving 283 shipped declarations while preserving all 255 earlier declarations.
 No existing ExpectationValue overload or backend port changes; see the
 [release record](releases/1.5.0.md).
+Version 1.6 adds 33 Application declarations for VQE, for 316 shipped declarations
+while preserving all 283 earlier declarations. Core and backend ports are unchanged;
+see the [release record](releases/1.6.0.md).
 Since v1.1, PackageValidationBaselineVersion is pinned to published 1.0.0 and
 parameter-name compatibility is enabled. SDK package validation compares compiled
 assets at pack time. A separate smoke check compiles the consumer against the
@@ -98,12 +101,12 @@ licenses/notices. Packages carry documentation and license files. Consumers own
 injected backend lifetimes, especially IDisposable CUDA contexts. Core/Application
 have no container, logging, network or persistence dependencies.
 
-Release 1.5.0 packages and symbols are published on nuget.org under user
+Release 1.6.0 packages and symbols are published on nuget.org under user
 olgerd007, using the same OIDC Trusted Publishing approach as
 XBullet.EasyTesting. The user-provided screenshot confirms QuantumMatter's own
 repository/workflow policy and QuantumMatter.* scope. Its first OIDC
 publish has succeeded. Fresh .NET 9/10 public-feed baseline, observation, dynamic,
-noisy dynamic and variational consumers pass CPU/SIMD/CUDA checks with exact tagged-source
+noisy dynamic, variational and VQE consumers pass CPU/SIMD/CUDA checks with exact tagged-source
 metadata verified.
 The release record distinguishes that evidence from successful upload acceptance.
 The policy scope does not itself reserve the QuantumMatter prefix; no reserved-prefix

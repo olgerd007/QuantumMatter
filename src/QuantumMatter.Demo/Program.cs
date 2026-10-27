@@ -10,11 +10,11 @@ using QuantumMatter.Infrastructure;
 string example = args.Length == 0 ? "bell" : args[0].ToLowerInvariant();
 string backend = args.Length < 2 ? "scalar" : args[1].ToLowerInvariant();
 string presetName = args.Length < 3 ? "default" : args[2].ToLowerInvariant();
-if (args.Length > 3 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "observations" or "dynamic" or "noisy-dynamic" or "variational" or "channel-assignment" or "limits" or "bb84" or "bb84-noise" or "chsh" or "grover-key" or "shor" or "cryptography" or "all")
+if (args.Length > 3 || example is not ("bell" or "deutsch-jozsa" or "qft" or "grover" or "noise" or "observations" or "dynamic" or "noisy-dynamic" or "variational" or "vqe" or "channel-assignment" or "limits" or "bb84" or "bb84-noise" or "chsh" or "grover-key" or "shor" or "cryptography" or "all")
     || backend is not ("scalar" or "parallel" or "parallel-simd" or "cuda")
     || presetName is not ("default" or "workstation"))
 {
-    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|observations|dynamic|noisy-dynamic|variational|channel-assignment|limits|bb84|bb84-noise|chsh|grover-key|shor|cryptography|all] [scalar|parallel|parallel-simd|cuda] [default|workstation]");
+    Console.Error.WriteLine("Usage: QuantumMatter.Demo [bell|deutsch-jozsa|qft|grover|noise|observations|dynamic|noisy-dynamic|variational|vqe|channel-assignment|limits|bb84|bb84-noise|chsh|grover-key|shor|cryptography|all] [scalar|parallel|parallel-simd|cuda] [default|workstation]");
     return 2;
 }
 
@@ -98,6 +98,9 @@ switch (example)
         CryptographyExamples.RunChsh(execution, new CpuNoiseChannelBackend(), preset.Simulation);
         CryptographyExamples.RunToyGrover(simulator);
         CryptographyExamples.RunShor(simulator);
+        break;
+    case "vqe":
+        VqeExamples.Run(new VqeSolver(execution, simulationOptions: preset.Simulation));
         break;
     case "all":
         RunBell(simulator);

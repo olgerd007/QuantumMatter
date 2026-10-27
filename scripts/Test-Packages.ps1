@@ -21,6 +21,7 @@ $observationDirectory = $consumerDirectory + '-observations'
 $dynamicDirectory = $consumerDirectory + '-dynamic'
 $noisyDynamicDirectory = $consumerDirectory + '-noisy-dynamic'
 $variationalDirectory = $consumerDirectory + '-variational'
+$vqeDirectory = $consumerDirectory + '-vqe'
 $cacheDirectory = Join-Path $consumerDirectory 'packages'
 $env:DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE = 'true'
 $env:MSBuildEnableWorkloadResolver = 'false'
@@ -50,7 +51,8 @@ try {
                 'docs/api/1.3.0.md', 'docs/releases/1.3.0-notes.md',
                 'docs/noisy-dynamic-circuits.md', 'docs/releases/1.4.0.md',
                 'docs/api/1.4.0.md', 'docs/releases/1.4.0-notes.md',
-                'docs/variational.md', 'docs/releases/1.5.0.md',
+                'docs/variational.md', 'docs/releases/1.5.0.md', 'docs/vqe.md', 'docs/releases/1.6.0.md',
+                'docs/api/1.6.0.md', 'docs/releases/1.6.0-notes.md',
                 'docs/authenticated-pqc.md', 'docs/releases/1.8.0.md',
                 'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
                 if (!$archive.GetEntry($requiredEntry)) { throw "$packageId is missing $requiredEntry." }
@@ -82,7 +84,7 @@ try {
         }
     }
 
-    foreach ($directory in @($consumerDirectory, $observationDirectory, $dynamicDirectory, $noisyDynamicDirectory, $variationalDirectory)) {
+    foreach ($directory in @($consumerDirectory, $observationDirectory, $dynamicDirectory, $noisyDynamicDirectory, $variationalDirectory, $vqeDirectory)) {
         New-Item -ItemType Directory -Path $directory -Force | Out-Null
         # Stop traversal into repository build/package configuration: only package references are allowed.
         [IO.File]::WriteAllText((Join-Path $directory 'Directory.Build.props'), "<Project />`n")
@@ -132,7 +134,8 @@ try {
             @{ Name = 'ObservationConsumer'; Directory = $observationDirectory },
             @{ Name = 'DynamicConsumer'; Directory = $dynamicDirectory },
             @{ Name = 'NoisyDynamicConsumer'; Directory = $noisyDynamicDirectory },
-            @{ Name = 'VariationalConsumer'; Directory = $variationalDirectory }
+            @{ Name = 'VariationalConsumer'; Directory = $variationalDirectory },
+            @{ Name = 'VqeConsumer'; Directory = $vqeDirectory }
         )) {
             Copy-Item -Path (Join-Path $repositoryRoot "samples/$($sample.Name)/*") -Destination $sample.Directory
             $sampleProject = Join-Path $sample.Directory "$($sample.Name).csproj"
@@ -193,5 +196,6 @@ try {
     Write-Output "Isolated dynamic consumer: $([IO.Path]::GetRelativePath($repositoryRoot, $dynamicDirectory))"
     Write-Output "Isolated noisy dynamic consumer: $([IO.Path]::GetRelativePath($repositoryRoot, $noisyDynamicDirectory))"
     Write-Output "Isolated variational consumer: $([IO.Path]::GetRelativePath($repositoryRoot, $variationalDirectory))"
+    Write-Output "Isolated VQE consumer: $([IO.Path]::GetRelativePath($repositoryRoot, $vqeDirectory))"
 }
 finally { Pop-Location }

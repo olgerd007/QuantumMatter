@@ -29,6 +29,14 @@
   [CPU evidence](docs/performance-analysis.md) and the
   [AVX-512/CUDA comparison](docs/avx512-cuda-performance.md).
 
+## 1.6.0 — 2026-10-26
+
+- Deterministic pure-state VQE using the existing energy/gradient evaluator.
+- Bounded Armijo backtracking with explicit stationarity, iteration/evaluation limits and stalled search.
+- Immutable accepted-iterate results, complete circuit-execution counts and overlapping host-array budgets.
+- Independent analytic/dense tests, one-/two-qubit demos and a sixth fresh package consumer.
+- Preserve all 283 shipped APIs, 1.x binding and existing backend contracts.
+
 ## 1.5.0 — 2026-10-25
 
 - Immutable real Pauli Hamiltonians and normalized energy expectations without dense matrices.

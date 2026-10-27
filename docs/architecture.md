@@ -277,7 +277,7 @@ boundaries. See the [noisy dynamic guide](noisy-dynamic-circuits.md).
 
 ## Variational building blocks
 
-The v1.5 candidate adds immutable Core/Observables Pauli Hamiltonians and a
+Version 1.5 adds immutable Core/Observables Pauli Hamiltonians and a
 Core/Variational parameterized template. Constant operations are snapshotted;
 binding creates validated QuantumCircuit operations for existing backends. Public
 ExpectationValue remains unchanged; ExpectationEnergy adds weighted Hamiltonians
@@ -290,3 +290,12 @@ preserve small gradients under large identity offsets; composed same-axis shifts
 avoid lost angle increments. The host budget includes parameter/gradient/term arrays;
 backend device/staging budgets remain separate. No new infrastructure dependency
 or backend port is introduced. See the [variational guide](variational.md).
+
+Version 1.6 composes that evaluator in Application/Variational.VqeSolver.
+One deterministic gradient-descent/backtracking policy keeps optimization out of
+Core and Infrastructure; no generic optimizer port is needed for one policy.
+Options/results are immutable. Execution counts include every shifted preparation,
+and the solver reserves overlapping parameter arrays before nested evaluation.
+Backends remain caller-owned. Stationarity, limits and stalled searches have
+distinct results; cancellation and technical failures throw without partial results.
+See the [VQE guide](vqe.md).

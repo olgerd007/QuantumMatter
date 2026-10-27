@@ -5,8 +5,8 @@ scope targets, with no delivery dates assigned. A version is ready to release on
 when its acceptance criteria and the shared release checks below pass.
 
 The v0.x validation paragraphs below are historical records of local milestone
-work. Current cross-platform CI and publication status are in the v1.5 section
-and [release record](releases/1.5.0.md).
+work. Current cross-platform CI and publication status are in the v1.6 section
+and [release record](releases/1.6.0.md).
 
 | Version | Goal | Current implementation coverage |
 | --- | --- | --- |
@@ -23,6 +23,7 @@ and [release record](releases/1.5.0.md).
 | v1.3 | Dynamic circuits and classical control | Released as v1.3.0; platform CI, NuGet publication and fresh CPU/CUDA consumers verified |
 | v1.4 | Noisy dynamic circuits | Released as v1.4.0; platform CI, NuGet publication and all four fresh CPU/CUDA consumers verified |
 | v1.5 | Hamiltonians and variational gradients | Released as v1.5.0; platform CI, NuGet publication and all five fresh CPU/CUDA consumers verified |
+| v1.6 | Deterministic pure-state VQE | Released as v1.6.0; platform CI, NuGet publication and all six fresh CPU/CUDA consumers verified |
 
 Earlier milestones were delivered together in the v1.0.0 release rather than
 separate v0.x tags. The current foundation includes scalar CPU, parallel CPU and CUDA backends,
@@ -382,6 +383,30 @@ cases plus one GPU skip per runtime. All eight platform CI jobs pass in
 The v1.5.0 tagged-source workflow passes Windows/Linux validation and publishes all
 three packages and symbols through OIDC. All five fresh nuget.org-only consumers
 pass on .NET 9/10 with real CUDA and exact tagged-source metadata verified.
+
+## v1.6 — Deterministic pure-state VQE
+
+The user selected a reusable VQE workflow using the existing parameter-shift
+evaluator, one gradient-descent policy with backtracking, validated stopping and
+execution limits, immutable results and independent one-/two-qubit examples.
+Version 1.6 adds 33 Application declarations while preserving all 283 earlier
+APIs, backend ports and 1.x binding. See the [VQE guide](vqe.md) and
+[validation record](releases/1.6.0.md). A sixth sibling package consumer covers the
+new APIs on .NET 9/10; all earlier consumer sources remain unchanged.
+Stationarity is not a global-ground-state guarantee. Optimizer plugins, noisy/shot
+objectives and device-resident optimization are outside this increment.
+
+Local validation passes all 810 CUDA-enabled cases per runtime/configuration,
+disabled-intrinsics suites, zero-warning builds and formatting. CPU-only Release
+passes 720 cases plus an explicit hardware skip per runtime. All six fresh candidate
+consumers and unchanged baseline binaries pass on .NET 9/10, including CUDA.
+The existing v1.5 public-feed modes also pass on .NET 10. All eight platform CI jobs
+pass in merged [PR #18](https://github.com/olgerd007/QuantumMatter/pull/18).
+Stable promotion [PR #19](https://github.com/olgerd007/QuantumMatter/pull/19) passes
+all eight CI jobs and is merged. The tagged-source workflow passes Windows/Linux
+validation and OIDC publication of all three packages and symbols. All six fresh
+nuget.org-only consumers pass on .NET 9/10 with actual CUDA and exact tagged-source
+metadata verified. Milestone v1.6 is complete.
 
 ## Shared release checks
 
