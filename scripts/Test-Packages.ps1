@@ -54,6 +54,7 @@ try {
                 'docs/variational.md', 'docs/releases/1.5.0.md', 'docs/vqe.md', 'docs/releases/1.6.0.md',
                 'docs/api/1.6.0.md', 'docs/releases/1.6.0-notes.md',
                 'docs/authenticated-pqc.md', 'docs/releases/1.8.0.md',
+                'docs/api/1.8.0.md',
                 'api/PublicAPI.Shipped.txt', 'api/PublicAPI.Unshipped.txt')) {
                 if (!$archive.GetEntry($requiredEntry)) { throw "$packageId is missing $requiredEntry." }
             }

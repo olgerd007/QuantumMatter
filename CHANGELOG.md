@@ -1,6 +1,14 @@
 # Changelog
 
-## 1.8.0-rc.1 — 2026-10-27 (unpublished candidate)
+## 1.8.0 — 2026-10-27
+
+- Promote the verified 1.8.0-rc.1 implementation, including the earlier v1.7 work.
+- Freeze four additive CPU-option accessors for opt-in AVX-512 and gate blocking;
+  preserve all 316 earlier shipped declarations, existing defaults and 1.x binding.
+- Retain the separate educational security tooling, .NET 9 library assets,
+  .NET 9/10 package consumers and published 1.0.0 compatibility baseline.
+
+## 1.8.0-rc.1 — 2026-10-27 (published prerelease)
 
 - Extend the v1.7 lab with an ephemeral ML-KEM-768 exchange authenticated by a
   provisioned ML-DSA-65 server-key pin, signed transcripts and key confirmation.
