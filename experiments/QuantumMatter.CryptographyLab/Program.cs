@@ -1,36 +1,50 @@
-using System.Globalization;
 using System.Text.Json;
 using QuantumMatter.CryptographyLab;
+using QuantumMatter.CryptographyLab.Sessions;
 
-int repetitions = 10, warmup = 2;
-bool includeSlhDsa = false;
-string? output = null;
-for (int index = 0; index < args.Length; index++)
-{
-    switch (args[index])
-    {
-        case "--include-slh-dsa": includeSlhDsa = true; break;
-        case "--repetitions" when index + 1 < args.Length && int.TryParse(args[index + 1], CultureInfo.InvariantCulture, out int value):
-            repetitions = value; index++; break;
-        case "--warmup" when index + 1 < args.Length && int.TryParse(args[index + 1], CultureInfo.InvariantCulture, out int value):
-            warmup = value; index++; break;
-        case "--output" when index + 1 < args.Length:
-            output = args[++index]; break;
-        default: return Usage();
-    }
-}
-
-if (repetitions is < 1 or > 1000 || warmup is < 0 or > 100) { return Usage(); }
+if (!LabCommandLine.TryParse(args, out LabCommandLine? parsed)) { return Usage(); }
+LabCommandLine options = parsed!;
 using var cancellation = new CancellationTokenSource();
 Console.CancelKeyPress += (_, eventArgs) => { eventArgs.Cancel = true; cancellation.Cancel(); };
 try
 {
-    LabReport report = PqcExperiments.Run(repetitions, warmup, includeSlhDsa, cancellation.Token);
+    LabReport report = PqcExperiments.Run(options.Repetitions, options.Warmup, options.IncludeSlhDsa, cancellation.Token);
+    if (options.Session) { report = report with { Session = AuthenticatedSessionExperiment.Run(cancellation.Token) }; }
     string json = JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true });
-    if (output is null) { Console.WriteLine(json); }
-    else { await File.WriteAllTextAsync(output, json, cancellation.Token); Console.WriteLine($"Report saved to {Path.GetFileName(output)}"); }
-    // An unsupported provider is explicit report data, never a successful test row.
-    return 0;
+    if (options.Output is null) { Console.WriteLine(json); }
+    else
+    {
+        try
+        {
+            string? directory = Path.GetDirectoryName(options.Output);
+            if (!string.IsNullOrEmpty(directory)) { Directory.CreateDirectory(directory); }
+            await File.WriteAllTextAsync(options.Output, json, cancellation.Token);
+        }
+        catch (IOException)
+        {
+            Console.Error.WriteLine("Unable to write the requested report; path details are withheld.");
+            return 5;
+        }
+        catch (UnauthorizedAccessException)
+        {
+            Console.Error.WriteLine("Unable to write the requested report; path details are withheld.");
+            return 5;
+        }
+        Console.WriteLine($"Report saved to {Path.GetFileName(options.Output)}");
+    }
+    int exitCode = options.ExitCode(report);
+    if (exitCode != 0) { Console.Error.WriteLine("Required PQC validation did not pass; inspect algorithm/session status in the report."); }
+    return exitCode;
+}
+catch (System.Security.Cryptography.CryptographicException)
+{
+    Console.Error.WriteLine("PQC cryptographic validation failed; no successful report was returned.");
+    return 4;
+}
+catch (InvalidOperationException)
+{
+    Console.Error.WriteLine("PQC validation failed; no successful report was returned.");
+    return 4;
 }
 catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
 {
@@ -40,6 +54,6 @@ catch (OperationCanceledException) when (cancellation.IsCancellationRequested)
 
 static int Usage()
 {
-    Console.Error.WriteLine("Usage: QuantumMatter.CryptographyLab [--repetitions 1..1000] [--warmup 0..100] [--include-slh-dsa] [--output report.json]");
+    Console.Error.WriteLine("Usage: QuantumMatter.CryptographyLab [--repetitions 1..1000] [--warmup 0..100] [--include-slh-dsa] [--session] [--strict] [--require algorithm] [--output report.json]");
     return 2;
 }

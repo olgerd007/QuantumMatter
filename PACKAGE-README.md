@@ -1,5 +1,10 @@
 # QuantumMatter SDK
 
+The v1.8 development candidate includes the v1.7 work and extends the separate
+repository PQC lab with authenticated-session and adversarial validation. These
+remain educational tooling rather than an SDK security protocol. See the
+[security lab guide](docs/authenticated-pqc.md) and [candidate record](docs/releases/1.8.0.md).
+
 QuantumMatter is an MIT-licensed quantum simulator built from scratch in C# using
 double-precision System.Numerics.Complex. Libraries target .NET 9; package-only
 consumer checks also run on .NET 10. Starting with v1.1, the full xUnit suite runs

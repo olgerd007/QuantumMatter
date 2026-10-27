@@ -1,5 +1,9 @@
 # v1.7 cryptography experiments
 
+The [v1.8 development candidate](authenticated-pqc.md) retains these experiments
+and adds an authenticated-session lab and strict CI policies in the same branch.
+The behavior below describes the v1.7 baseline; discovery remains the default.
+
 Version **1.7.0-rc.1** implements the bounded experiments proposed in the
 [research guide](cryptography-research.md). These are runnable educational tools,
 not an operational QKD system, production attack toolkit, or security certification.

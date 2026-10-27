@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.8.0-rc.1 — 2026-10-27 (unpublished candidate)
+
+- Extend the v1.7 lab with an ephemeral ML-KEM-768 exchange authenticated by a
+  provisioned ML-DSA-65 server-key pin, signed transcripts and key confirmation.
+- Separate directional record keys/nonces, strict sequencing, 16 KiB record and
+  1024-record limits, fail-closed rejection and explicit key ownership/disposal.
+- In-process adversarial checks and deterministic malformed-framing/policy tests.
+- Additive --session, --strict and --require flags with nonzero exit codes for
+  unmet requirements; legacy discovery remains available.
+- Digest-pinned native-provider security CI and anonymous reports. No new SDK
+  API, project or runtime dependency; retain net9.0 libraries and 1.x binding.
+
 ## 1.7.0-rc.1 — 2026-10-26 (unpublished candidate)
 
 - Educational BB84/intercept-resend and independent noisy histories, disclosed-bit

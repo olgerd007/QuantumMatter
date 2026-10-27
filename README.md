@@ -7,6 +7,20 @@ An open-source quantum circuit simulator built from scratch in C#/.NET 9 using
 System.Numerics.Complex and xUnit. No external quantum simulation library is used.
 Projects, assemblies, and namespaces use the QuantumMatter prefix.
 
+## v1.8 security validation (candidate)
+
+Version **1.8.0-rc.1** retains the v1.7 development work and adds a server-authenticated
+PQC session experiment, adversarial cases and strict algorithm requirements for CI.
+The separate .NET 10 lab uses a provisioned server-key pin, transcript binding,
+key confirmation and bounded encrypted records. See the
+[security lab guide](docs/authenticated-pqc.md) and [candidate record](docs/releases/1.8.0.md).
+These are educational experiments; no security SDK API is added or production
+protocol/certification claim made. The candidate has not been published.
+
+```powershell
+dotnet run --project experiments/QuantumMatter.CryptographyLab -c Release -- --session --strict --output artifacts/pqc-session.json
+```
+
 ## v1.7 cryptography experiments (candidate)
 
 Version **1.7.0-rc.1** adds educational BB84/intercept-resend, noisy BB84, CHSH,

@@ -1,5 +1,15 @@
 # Architecture
 
+## v1.8 security tooling
+
+The existing net10.0 CryptographyLab hosts a bounded in-process session model,
+canonical framing, one-attempt handshake state, owned derived key material and
+ordered AEAD records. A provisioned server signature pin supplies unilateral
+authentication; clients remain anonymous. CLI requirement policy is separate from
+primitive measurement and session execution. All types are internal tooling and
+no runtime library references the lab. The SDK API inventories and dependency
+direction are preserved. See the [security lab guide](authenticated-pqc.md).
+
 ## v1.7 experiment tooling
 
 Internal Demo/Cryptography workflows compose existing circuit, trajectory,

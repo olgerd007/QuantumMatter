@@ -8,6 +8,33 @@ permissions:
   contents: read
 
 jobs:
+  pqc-security:
+    runs-on: ubuntu-latest
+    # Resolute supplies the newer OpenSSL required by .NET PQC. Strict mode
+    # deliberately fails if the provider/image ceases to support the algorithms.
+    container: mcr.microsoft.com/dotnet/sdk:10.0.402-resolute@sha256:9b045c06c7b57d3ba40a3f1731c843b8e9d707bce6aee069a7868dd75e3bb99e
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/Test-ReportPrivacy.ps1
+      - run: dotnet restore QuantumMatter.sln
+      - name: Exercise protocol, framing and strict-policy tests
+        run: dotnet test tests/QuantumMatter.Tests/QuantumMatter.Tests.csproj --no-restore -c Release -f net10.0 --filter "FullyQualifiedName~Pqc" --verbosity minimal
+      - name: Require real PQC and authenticated-session validation
+        run: dotnet run --project experiments/QuantumMatter.CryptographyLab -c Release --no-build -- --session --strict --require ML-KEM-768 --require ML-DSA-65 --repetitions 3 --warmup 1 --output artifacts/pqc-security.json
+      - name: Verify generated report privacy
+        id: report-privacy
+        if: always()
+        run: ./scripts/Test-ReportPrivacy.ps1 -ReportPaths docs,artifacts/pqc-security.json
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.report-privacy.outcome == 'success'
+        with:
+          name: pqc-security-report
+          path: artifacts/pqc-security.json
+          if-no-files-found: ignore
   validate:
     strategy:
       matrix:

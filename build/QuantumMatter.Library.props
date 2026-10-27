@@ -9,7 +9,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>PACKAGE-README.md</PackageReadmeFile>
     <PackageTags>quantum;simulation;state-vector;dotnet</PackageTags>
-    <PackageReleaseNotes>1.7 candidate: educational cryptography experiments and a separate .NET 10 PQC provider lab. Cryptography adds no SDK API; CPU tuning adds opt-in gate blocking and AVX-512 controls. Library targets and 1.x assembly binding remain stable. See CHANGELOG.md and docs/releases/1.7.0.md in the package.</PackageReleaseNotes>
+    <PackageReleaseNotes>1.8 candidate: authenticated PQC session experiment, adversarial validation and strict algorithm requirements in the separate .NET 10 lab. Includes the earlier v1.7 work. Security tooling adds no SDK API or dependency; library targets and 1.x binding are preserved. See CHANGELOG.md and docs/releases/1.8.0.md in the package.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <EnablePackageValidation>true</EnablePackageValidation>
     <PackageValidationBaselineVersion>1.0.0</PackageValidationBaselineVersion>

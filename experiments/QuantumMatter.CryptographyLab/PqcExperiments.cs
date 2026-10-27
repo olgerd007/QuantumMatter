@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.Security.Cryptography;
+using System.Text.Json.Serialization;
+using QuantumMatter.CryptographyLab.Sessions;
 
 namespace QuantumMatter.CryptographyLab;
 
@@ -181,7 +183,11 @@ internal static class PqcExperiments
 
 internal sealed record LabReport(DateTimeOffset TimestampUtc, string TargetFramework,
     string Configuration, int MessageBytes, int Repetitions, int Warmup,
-    string Methodology, IReadOnlyList<PrimitiveResult> Primitives);
+    string Methodology, IReadOnlyList<PrimitiveResult> Primitives)
+{
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public SessionExperimentResult? Session { get; init; }
+}
 
 internal sealed record PrimitiveResult(string Algorithm, string Status, string? ProviderType, int? PublicKeyBytes,
     int? PrivateKeyBytes, int? CiphertextOrSignatureBytes, string Notes, IReadOnlyList<OperationMeasurement> Measurements);
